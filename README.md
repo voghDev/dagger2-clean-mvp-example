@@ -1,15 +1,19 @@
 # Dagger2-CLEAN-MVP Example
 
-Sample project with the first steps of my approach to Android CLEAN architecture, based on elegant solutions from various developers.
+Sample project with the first steps of my approach to Android CLEAN architecture, based on elegant solutions from respected developers.
 Features a ListView containing users, obtained from randomuser API.
 Some of the aspects covered on this project are:
 
-* Dependency Injection using [Dagger2][6]. Includes two modules with different scopes.
+* Dependency Injection using [Dagger2][6].
 * Correct **ListView** implementation using [Renderers][15], from [@pedrovgs][1].
 * Elegant View management using Jake Wharton's [ButterKnife][11].
-* Image loading using [picasso][12], round transformations using the **PorterDuff** technique.
-* Model-View-Presenter + Interactor + DataSource layers, where a Dagger-injected **Interactor** can query different **DataSources** (REST Api using [retrofit][13], local JSON file, mock generator class)
+* Image loading using [picasso][12], round transformations using **PorterDuff**.
+* Model-View-Presenter + Interactor + DataSource layers, where a Dagger-injected **Interactor** can query different **DataSource**s:
+  * a REST Api using [retrofit][13]
+  * a local **JSON file**
+  * a class generating **mock** instances
 * A less-boilerplate **MVP** implementation using generics (splitted into Presenter / APresenter / APresenterImpl).
+* Retro-compatible architecture (minSdkVersion is 8)
 
 This project has taken the following **talks**, **articles**, and **repos** as inspiration (it wouldn't have been possible without them)
 
