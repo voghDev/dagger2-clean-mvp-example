@@ -28,9 +28,10 @@ This project has taken the following **talks**, **articles**, and **repos** as i
 
 Desirable TODOs
 
-* A better Thread management to do heavier operations outside the UI Thread
-* RecyclerViews+Renderers2.0, Fragments, Material, CustomViews...
-* More DataSources like parse, Google Cloud, Azure, protobuf...
+- [ ] A better Thread management to do heavier operations outside the UI Thread
+- [ ] RecyclerViews+Renderers2.0, Fragments, Material, CustomViews...
+- [ ] More DataSources like parse, Google Cloud, Azure, protobuf...
+- [X] Some tests
 
 Developed By
 ------------

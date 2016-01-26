@@ -56,7 +56,7 @@ public class UserListTest {
     }
 
     @Test
-    public void shouldCreateMockedContext() throws Exception {
+    public void shouldCreateNonNullMockedContext() throws Exception {
         Context context = mock(Context.class);
 
         assertNotNull(context);
