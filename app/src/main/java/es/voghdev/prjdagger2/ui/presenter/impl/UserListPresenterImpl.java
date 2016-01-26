@@ -19,8 +19,6 @@ import android.content.Context;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import es.voghdev.prjdagger2.global.DaggerApplication;
 import es.voghdev.prjdagger2.global.datasource.GetUsers;
 import es.voghdev.prjdagger2.global.model.User;
