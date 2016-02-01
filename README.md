@@ -1,7 +1,7 @@
 # Dagger2-CLEAN-MVP Example
 
 Sample project with the first steps of my approach to Android CLEAN architecture, based on elegant solutions from respected developers.
-Features a ListView containing users, obtained from randomuser API.
+Features a List of users, obtained from randomuser API.
 Some of the aspects covered on this project are:
 
 * Dependency Injection using [Dagger2][6].
@@ -20,13 +20,14 @@ This project has taken the following **talks**, **articles**, and **repos** as i
 * [Jorge Barroso - Forgetting Android][3]
 * [Pedro Vicente Gómez Sánchez - EffectiveAndroidUI][2]
 * [Dependency Injection on Android - Pedro Gómez][4]
-* [Dagger2 Example by David Lázaro (dlazaro66)][5]
+* [Dagger2 Example by David Lázaro  aka dlazaro66][5]
 * [Google's Dagger Example][6]
 * [Antonio Leiva's MVP Example][7] and [Blog article][8]
 * [protohipster - Jorge Barroso][9]
 * [UpcomingMoviesMVP - Jose Luis Martín][14]
 
-Desirable TODOs
+TODOs
+-----
 
 - [ ] A better Thread management to do heavier operations outside the UI Thread
 - [X] RecyclerViews, Renderers2.0
