@@ -5,7 +5,7 @@ Features a ListView containing users, obtained from randomuser API.
 Some of the aspects covered on this project are:
 
 * Dependency Injection using [Dagger2][6].
-* Correct **ListView** implementation using [Renderers][15], from [@pedrovgs][1].
+* Elegant ~~ListView~~ **RecyclerView** implementation using [Renderers][15].
 * Elegant View management using Jake Wharton's [ButterKnife][11].
 * Image loading using [picasso][12], round transformations using **PorterDuff**.
 * Model-View-Presenter + Interactor + DataSource layers, where a Dagger-injected **Interactor** can query different **DataSource**s:
@@ -29,9 +29,11 @@ This project has taken the following **talks**, **articles**, and **repos** as i
 Desirable TODOs
 
 - [ ] A better Thread management to do heavier operations outside the UI Thread
-- [ ] RecyclerViews+Renderers2.0, Fragments, Material, CustomViews...
-- [ ] More DataSources like parse, Google Cloud, Azure, protobuf...
-- [X] Some tests
+- [X] RecyclerViews, Renderers2.0
+- [ ] More DataSources like ~~parse~~, Google Cloud, Azure, protobuf...
+- [X] Unit tests
+- [ ] UI tests
+- [ ] Refactor to add Repository layer
 
 Developed By
 ------------

@@ -52,7 +52,6 @@ public class UserListTest {
         UserListPresenter.View mockView = new UserListViewMockImpl();
         UserListPresenter userListPresenter = new UserListPresenterImpl(context);
         userListPresenter.setView(mockView);
-        UserListViewStatus status = (UserListViewStatus) mockView;
     }
 
     @Test

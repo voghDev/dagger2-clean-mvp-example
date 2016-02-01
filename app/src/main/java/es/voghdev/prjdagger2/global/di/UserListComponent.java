@@ -20,7 +20,7 @@ import dagger.Provides;
 import es.voghdev.prjdagger2.ui.activity.UserListActivity;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 
-@PerActivity @Component(dependencies = RootComponent.class, modules = UserListModule.class)
+@Component(dependencies = RootComponent.class, modules = UserListModule.class)
 public interface UserListComponent {
     void inject(UserListActivity activity);
 

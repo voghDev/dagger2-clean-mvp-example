@@ -15,15 +15,11 @@
  */
 package es.voghdev.prjdagger2.global.di;
 
-import javax.inject.Singleton;
-
 import dagger.Component;
-import es.voghdev.prjdagger2.ui.activity.BaseActivity;
 import es.voghdev.prjdagger2.global.DaggerApplication;
-import es.voghdev.prjdagger2.ui.activity.UserListActivity;
+import es.voghdev.prjdagger2.ui.activity.BaseActivity;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 
-@Singleton
 @Component(modules = MainModule.class)
 public interface RootComponent {
 

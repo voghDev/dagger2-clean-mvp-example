@@ -19,6 +19,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 
 import com.pedrogomez.renderers.ListAdapteeCollection;
+import com.pedrogomez.renderers.RVRendererAdapter;
 import com.pedrogomez.renderers.RendererAdapter;
 
 import java.util.ArrayList;
@@ -37,12 +38,12 @@ import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 @Module
 public class UserListModule {
 
-    RendererAdapter<User> adapter;
+    RVRendererAdapter<User> adapter;
     private final Context mContext;
 
     public UserListModule(final Context context, final UserRenderer.OnUserClicked listener) {
         mContext = context;
-        adapter = new RendererAdapter<User>(
+        adapter = new RVRendererAdapter<User>(
                 LayoutInflater.from(context),
                 new UserRendererBuilder(context, listener),
                 new ListAdapteeCollection<User>(new ArrayList<User>())
@@ -55,7 +56,7 @@ public class UserListModule {
     }
 
     @Provides
-    RendererAdapter<User> provideUserAdapter(){
+    RVRendererAdapter<User> provideUserAdapter(){
         return adapter;
     }
 }

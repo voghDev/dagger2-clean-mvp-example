@@ -16,6 +16,8 @@
 package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pedrogomez.renderers.ListAdapteeCollection;
+import com.pedrogomez.renderers.RVRendererAdapter;
 import com.pedrogomez.renderers.RendererAdapter;
 
 import java.util.ArrayList;
@@ -45,13 +48,13 @@ import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 
 public class UserListActivity extends BaseActivity implements UserListPresenter.View{
     @InjectView(R.id.users_list)
-    ListView listView;
+    RecyclerView recyclerView;
 
     @InjectView(R.id.users_progressBar)
     ProgressBar progressBar;
 
     @Inject
-    RendererAdapter<User> adapter;
+    RVRendererAdapter<User> adapter;
 
     @Inject
     UserListPresenter presenter;
@@ -79,7 +82,12 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
         presenter.setView(this);
         presenter.initialize();
 
-        listView.setAdapter(adapter);
+        initializeRecyclerView();
+    }
+
+    private void initializeRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

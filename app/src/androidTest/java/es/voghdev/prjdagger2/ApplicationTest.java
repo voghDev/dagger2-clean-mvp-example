@@ -1,13 +1,18 @@
 package es.voghdev.prjdagger2;
 
-import android.app.Application;
-import android.test.ApplicationTestCase;
+import android.support.test.runner.AndroidJUnit4;
+import android.test.suitebuilder.annotation.LargeTest;
 
-/**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
- */
-public class ApplicationTest extends ApplicationTestCase<Application> {
-    public ApplicationTest() {
-        super(Application.class);
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static junit.framework.Assert.assertEquals;
+
+@RunWith(AndroidJUnit4.class) @LargeTest
+public class ApplicationTest  {
+
+    @Test
+    public void shouldPassThisTest()  {
+        assertEquals(1,1);
     }
 }
