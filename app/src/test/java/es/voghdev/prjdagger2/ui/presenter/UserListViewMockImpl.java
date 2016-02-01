@@ -1,5 +1,3 @@
-package es.voghdev.prjdagger2.ui.presenter;
-
 /*
  * Copyright (C) 2015 Olmo Gallegos Hernández.
  *
@@ -15,6 +13,8 @@ package es.voghdev.prjdagger2.ui.presenter;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package es.voghdev.prjdagger2.ui.presenter;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.presenter.UserListViewStatus;
