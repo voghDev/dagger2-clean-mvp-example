@@ -37,7 +37,7 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     @Override
     public void initialize() {
         view.showLoading();
-        interactor.getUsers(this);
+        interactor.get(this);
     }
 
     @Override
@@ -56,18 +56,6 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     }
 
     @Override
-    public void onUsersListReceived(List<User> users) {
-        view.showUserList(users);
-        view.hideLoading();
-    }
-
-    @Override
-    public void onUsersListError(Exception e) {
-        view.showUserListError(e);
-        view.hideLoading();
-    }
-
-    @Override
     public void onNoInternetAvailable() {
         view.showNoInternetMessage();
         view.hideLoading();
@@ -81,5 +69,17 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     @Override
     public void onUserRowClicked(User user) {
         view.showUserClickedMessage(user);
+    }
+
+    @Override
+    public void onResultsReceived(List list) {
+        view.showUserList(list);
+        view.hideLoading();
+    }
+
+    @Override
+    public void onError(Exception e) {
+        view.showUserListError(e);
+        view.hideLoading();
     }
 }

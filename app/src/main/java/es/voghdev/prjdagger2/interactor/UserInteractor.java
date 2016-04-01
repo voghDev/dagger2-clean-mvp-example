@@ -18,7 +18,6 @@ package es.voghdev.prjdagger2.interactor;
 import java.util.List;
 
 import es.voghdev.prjdagger2.global.datasource.GetUsers;
-import es.voghdev.prjdagger2.global.model.User;
 
 public class UserInteractor extends GetUsers implements Interactor, GetUsers.Listener {
 
@@ -28,18 +27,19 @@ public class UserInteractor extends GetUsers implements Interactor, GetUsers.Lis
         dataSource = getUsers;
     }
 
-    public void getUsers() {
-        this.execute();
+    @Override
+    public void execute() {
+        dataSource.get(this);
     }
 
     @Override
-    public void onUsersListReceived(List<User> users) {
-        listener.onUsersListReceived(users);
+    public void onResultsReceived(List list) {
+        listener.onResultsReceived(list);
     }
 
     @Override
-    public void onUsersListError(Exception e) {
-        listener.onUsersListError(e);
+    public void onError(Exception e) {
+        listener.onError(e);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class UserInteractor extends GetUsers implements Interactor, GetUsers.Lis
     }
 
     @Override
-    public void execute() {
-        dataSource.getUsers(this);
+    protected void get() {
+        this.execute();
     }
 }

@@ -23,8 +23,17 @@ import es.voghdev.prjdagger2.global.datasource.GetUsers;
 import es.voghdev.prjdagger2.global.model.User;
 
 public class GetUsersMockImpl extends GetUsers {
+
+    private User generateMockUser(String id, String name, String addr){
+        User u = new User();
+        u.setId(id);
+        u.setName(name);
+        u.setAddress(addr);
+        return u;
+    }
+
     @Override
-    public void getUsers() {
+    protected void get() {
         List<User> users = new ArrayList<User>();
 
         users.add(generateMockUser("1", "Antonio", "I.E.S. Zaidin-Vergeles, 5"));
@@ -35,18 +44,10 @@ public class GetUsersMockImpl extends GetUsers {
         int random = new Random().nextInt(10);
 
         if(random < 8)
-            listener.onUsersListReceived(users);
-        else if( random >= 8 && random <= 9)
+            listener.onResultsReceived(users);
+        else if(random >= 8 && random <= 9)
             listener.onNoInternetAvailable();
         else
-            listener.onUsersListError(new Exception("Unparseable response"));
-    }
-
-    private User generateMockUser(String id, String name, String addr){
-        User u = new User();
-        u.setId(id);
-        u.setName(name);
-        u.setAddress(addr);
-        return u;
+            listener.onError(new Exception("Unparseable response"));
     }
 }

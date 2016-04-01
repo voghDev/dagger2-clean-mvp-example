@@ -15,34 +15,8 @@
  */
 package es.voghdev.prjdagger2.global.datasource;
 
-import java.util.List;
-
 import es.voghdev.prjdagger2.global.model.User;
 
-public abstract class GetUsers {
-    public void getUsers(final Listener listener){
-        setListener(listener);
-        getUsers();
-    }
+public abstract class GetUsers extends GetEntity<User>{
 
-    public abstract void getUsers();
-
-    protected Listener listener = new NullListener();
-
-    protected void setListener(Listener listener) {
-        if(listener != null)
-            this.listener = listener;
-    }
-
-    public interface Listener{
-        public void onUsersListReceived(List<User> users);
-        public void onUsersListError(Exception e);
-        public void onNoInternetAvailable();
-    }
-
-    private class NullListener implements Listener{
-        public void onUsersListReceived(List<User> users) { }
-        public void onUsersListError(Exception e) { }
-        public void onNoInternetAvailable() { }
-    }
 }

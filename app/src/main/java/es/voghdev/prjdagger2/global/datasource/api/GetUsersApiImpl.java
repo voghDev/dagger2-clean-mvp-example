@@ -38,7 +38,7 @@ public class GetUsersApiImpl extends GetUsers implements Callback<GetUsersRespon
     }
 
     @Override
-    public void getUsers() {
+    protected void get() {
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(ENDPOINT).build();
         GetUsersRetrofitRequest request = restAdapter.create(GetUsersRetrofitRequest.class);
         request.getRandomUsers(pageSize, pageNumber, this);
@@ -52,7 +52,7 @@ public class GetUsersApiImpl extends GetUsers implements Callback<GetUsersRespon
             users.add( entry.parseUser() );
         }
 
-        listener.onUsersListReceived(users);
+        listener.onResultsReceived(users);
     }
 
     @Override

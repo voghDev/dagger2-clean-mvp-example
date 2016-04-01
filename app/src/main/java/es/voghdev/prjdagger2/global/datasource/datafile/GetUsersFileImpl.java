@@ -39,26 +39,6 @@ public class GetUsersFileImpl extends GetUsers {
         mContext = applicationContext;
     }
 
-    @Override
-    public void getUsers() {
-
-        try {
-            final List<User> users = parseUsersFromRawFile(R.raw.users);
-
-            // Wait 3s to simulate a real load process
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    listener.onUsersListReceived(users);
-                }
-            }, 3000);
-
-        }catch(IOException e){
-            listener.onUsersListError(e);
-        }
-    }
-
     private List<User> parseUsersFromRawFile(int resId) throws IOException {
         InputStream inputStream = mContext.getResources().openRawResource(resId);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -82,5 +62,24 @@ public class GetUsersFileImpl extends GetUsers {
             users.add(entry.parseUser());
         }
         return users;
+    }
+
+    @Override
+    protected void get() {
+        try {
+            final List<User> users = parseUsersFromRawFile(R.raw.users);
+
+            // Wait 3s to simulate a real load process
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    listener.onResultsReceived(users);
+                }
+            }, 3000);
+
+        }catch(IOException e){
+            listener.onError(e);
+        }
     }
 }
