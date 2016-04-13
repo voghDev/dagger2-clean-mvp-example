@@ -16,6 +16,7 @@
 package es.voghdev.prjdagger2.global;
 
 import android.app.Application;
+import android.support.annotation.VisibleForTesting;
 
 import es.voghdev.prjdagger2.global.di.DaggerRootComponent;
 import es.voghdev.prjdagger2.global.di.MainModule;
@@ -40,5 +41,10 @@ public class DaggerApplication extends Application {
 
     public RootComponent getComponent() {
         return component;
+    }
+
+    @VisibleForTesting
+    public void setComponent(RootComponent component) {
+        this.component = component;
     }
 }
