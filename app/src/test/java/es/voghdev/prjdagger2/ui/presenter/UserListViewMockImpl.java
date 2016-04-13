@@ -17,10 +17,9 @@
 package es.voghdev.prjdagger2.ui.presenter;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
-import es.voghdev.prjdagger2.ui.presenter.UserListViewStatus;
 import java.util.List;
 
-public class UserListViewMockImpl implements UserListPresenter.View, UserListViewStatus {
+public class UserListViewMockImpl implements UserListPresenter.View {
     boolean loading = false;
     String errorMessage = "";
     String userMessage = "";
@@ -59,35 +58,5 @@ public class UserListViewMockImpl implements UserListPresenter.View, UserListVie
     @Override
     public void showUserClickedMessage(User user){
         userMessage = String.format("User %s was clicked", user.getName());
-    }
-
-    @Override
-    public boolean isLoading(){
-        return loading;
-    }
-
-    @Override
-    public boolean isShowingUserList(){
-        return users != null && users.size() > 0;
-    }
-
-    @Override
-    public int getUserListCount(){
-        return users.size();
-    }
-
-    @Override
-    public User getUserAtIndex(int index){
-        return users.get(index);
-    }
-
-    @Override
-    public boolean isShowingError(){
-        return !errorMessage.isEmpty();
-    }
-
-    @Override
-    public String getErrorMessage(){
-        return errorMessage;
     }
 }

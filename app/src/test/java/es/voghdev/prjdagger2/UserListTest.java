@@ -38,9 +38,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.UserListPresenter.View;
 import es.voghdev.prjdagger2.ui.presenter.impl.UserListPresenterImpl;
 import es.voghdev.prjdagger2.ui.presenter.UserListViewMockImpl;
-import es.voghdev.prjdagger2.ui.presenter.UserListViewStatus;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,19 +60,32 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class UserListTest {
 
+    @Mock Context fakeContext;
+
+    @Test
+    public void shouldNotCreateNullMockedContext() throws Exception {
+        Context context = mock(Context.class);
+        assertNotNull(context);
+    }
+
     @Test
     public void shouldBeLoadingOnStart() throws Exception {
         Context context = mock(Context.class);
 
-        UserListPresenter.View mockView = new UserListViewMockImpl();
-        UserListPresenter userListPresenter = new UserListPresenterImpl(context);
-        userListPresenter.setView(mockView);
+        UserListPresenter.View mockView = mock(UserListViewMockImpl.class);
+        // This line throws NPE because of the dagger2 component thing
+        UserListPresenter mockPresenter = new UserListPresenterImpl(context);
+
+        mockPresenter.setView(mockView);
+        mockPresenter.initialize();
+
+        verify(mockView, times(1)).showLoading();
     }
 
     @Test
-    public void shouldCreateNonNullMockedContext() throws Exception {
-        Context context = mock(Context.class);
+    public void shouldCreateNonNullMockedView() throws Exception {
+        UserListPresenter.View mockView = mock(UserListPresenter.View.class);
 
-        assertNotNull(context);
+        assertNotNull(mockView);
     }
 }
