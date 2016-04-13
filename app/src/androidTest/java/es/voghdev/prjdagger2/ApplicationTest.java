@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import es.voghdev.prjdagger2.global.DaggerApplication;
-import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.ui.activity.UserListActivity;
