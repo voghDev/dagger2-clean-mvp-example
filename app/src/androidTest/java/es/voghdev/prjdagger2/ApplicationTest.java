@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import es.voghdev.prjdagger2.global.DaggerApplication;
 import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
+import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.ui.activity.UserListActivity;
 import it.cosenonjaviste.daggermock.DaggerMockRule;
 
@@ -25,9 +26,11 @@ public class ApplicationTest  {
 
     @Rule
     public DaggerMockRule<RootComponent> daggerRule =
-            new DaggerMockRule<>(RootComponent.class, new MainModule((DaggerApplication) InstrumentationRegistry.getInstrumentation()
-                    .getTargetContext()
-                    .getApplicationContext())).set(
+            new DaggerMockRule<>(RootComponent.class,
+                    new UserListModule((DaggerApplication) InstrumentationRegistry.getInstrumentation()
+                            .getTargetContext()
+                            .getApplicationContext(),
+                            null)).set(
                     new DaggerMockRule.ComponentSetter<RootComponent>() {
                         @Override public void setComponent(RootComponent component) {
                             DaggerApplication app =
