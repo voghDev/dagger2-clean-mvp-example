@@ -25,11 +25,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "boolean", "DEBUGGING", "false"
+            buildConfigField "String", "DEFAULT_USER", "\"\""
         }
 
         debug {
-            buildConfigField "boolean", "DEBUGGING", "true"
+            buildConfigField "boolean", "DEFAULT_USER", "\"autoassigned_user@example.com\""
         }
     }
 }
