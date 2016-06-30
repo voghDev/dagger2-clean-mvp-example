@@ -28,8 +28,7 @@ public class ApplicationTest  {
             new DaggerMockRule<>(RootComponent.class,
                     new UserListModule((App) InstrumentationRegistry.getInstrumentation()
                             .getTargetContext()
-                            .getApplicationContext(),
-                            null)).set(
+                            .getApplicationContext())).set(
                     new DaggerMockRule.ComponentSetter<RootComponent>() {
                         @Override public void setComponent(RootComponent component) {
                             App app =

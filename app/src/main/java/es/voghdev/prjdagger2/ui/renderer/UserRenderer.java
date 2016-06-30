@@ -99,7 +99,7 @@ public class UserRenderer extends Renderer<User> {
     }
 
     private void renderThumbnail(User user) {
-        Picasso.with(mContext).load(user.getThumbnail()).transform(new RoundedTransformation()).placeholder(R.drawable.ic_launcher).into(thumbnail);
+        Picasso.with(mContext).load(user.getThumbnail()).transform(new RoundedTransformation()).placeholder(R.drawable.ic_launcher).into(ivThumbnail);
         Drawable background = mContext.getResources().getDrawable(R.drawable.rounded_edges);
         background.setColorFilter(mContext.getResources().getColor(R.color.light_gray), PorterDuff.Mode.SRC_OVER);
         ivThumbnail.setBackgroundDrawable(background); // setBackground requires minSdkVersion >= 16!!
