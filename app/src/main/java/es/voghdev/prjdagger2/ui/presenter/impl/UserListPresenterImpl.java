@@ -21,6 +21,7 @@ import java.util.List;
 
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.datasource.GetUsers;
+import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 
@@ -30,8 +31,7 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     public UserListPresenterImpl(Context ctx){
         mContext = ctx;
 
-        ((App)ctx.getApplicationContext())
-                .getComponent().inject(this); // This line provides injected fields declared in UserListPresenter.java
+        getComponent().inject(this);
     }
 
     @Override
@@ -81,5 +81,9 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     @Override
     public void onUserRowClicked(User user) {
         view.showUserClickedMessage(user);
+    }
+
+    protected RootComponent getComponent() {
+        return ((App)mContext.getApplicationContext()).getComponent();
     }
 }

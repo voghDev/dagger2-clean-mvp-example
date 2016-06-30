@@ -47,13 +47,13 @@ public class UserRenderer extends Renderer<User> {
     @InjectView(R.id.user_container)
     RelativeLayout root;
     @InjectView(R.id.user_iv_thumbnail)
-    ImageView thumbnail;
+    ImageView ivThumbnail;
     @InjectView(R.id.user_tv_title)
-    TextView title;
+    TextView tvTitle;
     @InjectView(R.id.user_tv_description)
-    TextView description;
+    TextView tvDescription;
     @InjectView(R.id.user_tv_label)
-    TextView clicks;
+    TextView tvClicks;
 
     public interface OnUserClicked{
         public void onPictureClicked(User user);
@@ -102,19 +102,19 @@ public class UserRenderer extends Renderer<User> {
         Picasso.with(mContext).load(user.getThumbnail()).transform(new RoundedTransformation()).placeholder(R.drawable.ic_launcher).into(thumbnail);
         Drawable background = mContext.getResources().getDrawable(R.drawable.rounded_edges);
         background.setColorFilter(mContext.getResources().getColor(R.color.light_gray), PorterDuff.Mode.SRC_OVER);
-        thumbnail.setBackgroundDrawable(background); // setBackground requires minSdkVersion >= 16!!
+        ivThumbnail.setBackgroundDrawable(background); // setBackground requires minSdkVersion >= 16!!
     }
 
     private void renderDescription(User user) {
-        description.setText(user.getId());
+        tvDescription.setText(user.getId());
     }
 
     private void renderTitle(User user) {
-        title.setText(user.getName());
+        tvTitle.setText(user.getName());
     }
 
     private void renderClicks(User user) {
-        clicks.setText(Integer.toString(0));
+        tvClicks.setText(Integer.toString(0));
     }
 
     private class EmptyOnUserClicked implements OnUserClicked{
