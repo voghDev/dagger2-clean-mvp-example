@@ -20,12 +20,12 @@ import android.content.Context;
 import java.util.List;
 
 import es.voghdev.prjdagger2.global.App;
-import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
+import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class UserListPresenterImpl extends UserListPresenter implements AbsGetUsers.Listener {
+public class UserListPresenterImpl extends UserListPresenter implements GetUsers.Listener {
     protected Context mContext;
 
     public UserListPresenterImpl(Context ctx){
@@ -56,13 +56,13 @@ public class UserListPresenterImpl extends UserListPresenter implements AbsGetUs
     }
 
     @Override
-    public void onUsersListReceived(List<User> users) {
+    public void onUsersReceived(List<User> users, boolean isCached) {
         view.showUserList(users);
         view.hideLoading();
     }
 
     @Override
-    public void onUsersListError(Exception e) {
+    public void onError(Exception e) {
         view.showUserListError(e);
         view.hideLoading();
     }

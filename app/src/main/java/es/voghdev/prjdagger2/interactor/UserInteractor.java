@@ -17,29 +17,31 @@ package es.voghdev.prjdagger2.interactor;
 
 import java.util.List;
 
-import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class UserInteractor extends AbsGetUsers implements Interactor, AbsGetUsers.Listener {
+public class UserInteractor implements Interactor, GetUsers.Listener {
+    GetUsers.Listener listener = new NullListener();
+    GetUsers dataSource;
 
-    AbsGetUsers dataSource;
-
-    public UserInteractor(AbsGetUsers getUsers) {
+    public UserInteractor(GetUsers getUsers) {
         dataSource = getUsers;
     }
 
-    public void getUsers() {
+    public void getUsers(GetUsers.Listener listener) {
+        if(listener != null)
+            this.listener = listener;
         this.execute();
     }
 
     @Override
-    public void onUsersListReceived(List<User> users) {
-        listener.onUsersListReceived(users);
+    public void onUsersReceived(List<User> list, boolean isCached) {
+        listener.onUsersReceived(list, isCached);
     }
 
     @Override
-    public void onUsersListError(Exception e) {
-        listener.onUsersListError(e);
+    public void onError(Exception e) {
+        listener.onError(e);
     }
 
     @Override
@@ -49,6 +51,12 @@ public class UserInteractor extends AbsGetUsers implements Interactor, AbsGetUse
 
     @Override
     public void execute() {
-        dataSource.getUsers(this);
+        dataSource.getAsync(this);
+    }
+
+    private class NullListener implements GetUsers.Listener {
+        public void onUsersReceived(List<User> list, boolean isCached) {}
+        public void onError(Exception e) {}
+        public void onNoInternetAvailable() {}
     }
 }

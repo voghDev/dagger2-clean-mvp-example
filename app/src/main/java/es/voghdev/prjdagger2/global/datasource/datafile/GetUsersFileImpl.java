@@ -24,39 +24,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import es.voghdev.prjdagger2.R;
-import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.datasource.api.GetUsersResponse;
 import es.voghdev.prjdagger2.global.datasource.api.rest.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class GetUsersFileImpl extends AbsGetUsers {
+public class GetUsersFileImpl implements GetUsers {
     private Context mContext = null;
 
     public GetUsersFileImpl(Context applicationContext){
         mContext = applicationContext;
-    }
-
-    @Override
-    public void getUsers() {
-
-        try {
-            final List<User> users = parseUsersFromRawFile(R.raw.users);
-
-            // Wait 3s to simulate a real load process
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    listener.onUsersListReceived(users);
-                }
-            }, 3000);
-
-        }catch(IOException e){
-            listener.onUsersListError(e);
-        }
     }
 
     private List<User> parseUsersFromRawFile(int resId) throws IOException {
@@ -82,5 +63,33 @@ public class GetUsersFileImpl extends AbsGetUsers {
             users.add(entry.parseUser());
         }
         return users;
+    }
+
+    @Override
+    public List<User> get() {
+        try {
+            return parseUsersFromRawFile(R.raw.users);
+        } catch (IOException e) {
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public void getAsync(final Listener listener) {
+        try {
+            final List<User> users = parseUsersFromRawFile(R.raw.users);
+
+            // Wait 3s to simulate a real load process
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    listener.onUsersReceived(users, true);
+                }
+            }, 3000);
+
+        }catch(IOException e){
+            listener.onError(e);
+        }
     }
 }

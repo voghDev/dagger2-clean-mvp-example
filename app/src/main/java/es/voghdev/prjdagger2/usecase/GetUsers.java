@@ -9,7 +9,7 @@ public interface GetUsers {
     public void getAsync(final Listener listener);
 
     public interface Listener {
-        public void onUsersReceived(final List<User> list, boolean isCached);
+        public void onUsersReceived(final List<User> users, boolean isCached);
         public void onError(Exception e);
         public void onNoInternetAvailable();
     }
