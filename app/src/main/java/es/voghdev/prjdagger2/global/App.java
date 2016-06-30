@@ -22,7 +22,7 @@ import es.voghdev.prjdagger2.global.di.DaggerRootComponent;
 import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 
-public class DaggerApplication extends Application {
+public class App extends Application {
     private RootComponent component;
 
     @Override
