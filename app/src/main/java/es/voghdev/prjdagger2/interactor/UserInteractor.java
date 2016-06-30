@@ -17,14 +17,14 @@ package es.voghdev.prjdagger2.interactor;
 
 import java.util.List;
 
-import es.voghdev.prjdagger2.global.datasource.GetUsers;
+import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.model.User;
 
-public class UserInteractor extends GetUsers implements Interactor, GetUsers.Listener {
+public class UserInteractor extends AbsGetUsers implements Interactor, AbsGetUsers.Listener {
 
-    GetUsers dataSource;
+    AbsGetUsers dataSource;
 
-    public UserInteractor(GetUsers getUsers) {
+    public UserInteractor(AbsGetUsers getUsers) {
         dataSource = getUsers;
     }
 

@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import es.voghdev.prjdagger2.global.datasource.GetUsers;
+import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.model.User;
 
-public class GetUsersMockImpl extends GetUsers {
+public class GetUsersMockImpl extends AbsGetUsers {
     @Override
     public void getUsers() {
         List<User> users = new ArrayList<User>();

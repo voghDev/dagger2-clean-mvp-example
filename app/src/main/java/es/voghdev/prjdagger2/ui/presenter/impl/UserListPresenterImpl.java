@@ -20,12 +20,12 @@ import android.content.Context;
 import java.util.List;
 
 import es.voghdev.prjdagger2.global.App;
-import es.voghdev.prjdagger2.global.datasource.GetUsers;
+import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 
-public class UserListPresenterImpl extends UserListPresenter implements GetUsers.Listener {
+public class UserListPresenterImpl extends UserListPresenter implements AbsGetUsers.Listener {
     protected Context mContext;
 
     public UserListPresenterImpl(Context ctx){

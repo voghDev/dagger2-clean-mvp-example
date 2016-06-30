@@ -19,7 +19,7 @@ import java.util.List;
 
 import es.voghdev.prjdagger2.global.model.User;
 
-public abstract class GetUsers {
+public abstract class AbsGetUsers {
     public void getUsers(final Listener listener){
         setListener(listener);
         getUsers();

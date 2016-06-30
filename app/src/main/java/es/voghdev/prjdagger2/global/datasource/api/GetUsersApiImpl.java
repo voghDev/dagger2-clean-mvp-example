@@ -18,7 +18,7 @@ package es.voghdev.prjdagger2.global.datasource.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.voghdev.prjdagger2.global.datasource.GetUsers;
+import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.datasource.api.rest.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.datasource.api.rest.GetUsersRetrofitRequest;
 import es.voghdev.prjdagger2.global.model.User;
@@ -27,7 +27,7 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class GetUsersApiImpl extends GetUsers implements Callback<GetUsersResponse> {
+public class GetUsersApiImpl extends AbsGetUsers implements Callback<GetUsersResponse> {
     private static final String ENDPOINT = "http://api.randomuser.me";
     private int pageSize = 0;
     private int pageNumber = 0;

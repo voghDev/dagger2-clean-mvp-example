@@ -27,12 +27,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.voghdev.prjdagger2.R;
-import es.voghdev.prjdagger2.global.datasource.GetUsers;
+import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.datasource.api.GetUsersResponse;
 import es.voghdev.prjdagger2.global.datasource.api.rest.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.model.User;
 
-public class GetUsersFileImpl extends GetUsers {
+public class GetUsersFileImpl extends AbsGetUsers {
     private Context mContext = null;
 
     public GetUsersFileImpl(Context applicationContext){
