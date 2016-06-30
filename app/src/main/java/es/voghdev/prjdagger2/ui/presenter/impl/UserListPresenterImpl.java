@@ -19,7 +19,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import es.voghdev.prjdagger2.global.DaggerApplication;
+import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.datasource.GetUsers;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
@@ -30,7 +30,7 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     public UserListPresenterImpl(Context ctx){
         mContext = ctx;
 
-        ((DaggerApplication)ctx.getApplicationContext())
+        ((App)ctx.getApplicationContext())
                 .getComponent().inject(this); // This line provides injected fields declared in UserListPresenter.java
     }
 

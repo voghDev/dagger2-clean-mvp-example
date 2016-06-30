@@ -28,7 +28,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import es.voghdev.prjdagger2.global.DaggerApplication;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.presenter.impl.UserListPresenterImpl;

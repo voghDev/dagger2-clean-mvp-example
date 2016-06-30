@@ -17,11 +17,7 @@ package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
 
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
-import es.voghdev.prjdagger2.global.DaggerApplication;
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 
 public abstract class BaseActivity extends android.app.Activity{
 

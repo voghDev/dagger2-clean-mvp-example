@@ -17,15 +17,11 @@ package es.voghdev.prjdagger2;
 
 import android.content.Context;
 
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import es.voghdev.prjdagger2.global.DaggerApplication;
-import es.voghdev.prjdagger2.global.di.MainModule;
-import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.presenter.UserListViewMockImpl;
 import es.voghdev.prjdagger2.ui.presenter.impl.UserListPresenterImpl;

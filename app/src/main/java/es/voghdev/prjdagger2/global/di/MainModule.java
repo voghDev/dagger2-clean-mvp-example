@@ -16,25 +16,14 @@
 package es.voghdev.prjdagger2.global.di;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-
-import com.pedrogomez.renderers.ListAdapteeCollection;
-import com.pedrogomez.renderers.RendererAdapter;
-
-import java.util.ArrayList;
 
 import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
 import es.voghdev.prjdagger2.global.App;
-import es.voghdev.prjdagger2.global.DaggerApplication;
 import es.voghdev.prjdagger2.global.datasource.datafile.GetUsersFileImpl;
-import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.UserInteractor;
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
-import es.voghdev.prjdagger2.ui.presenter.impl.UserListPresenterImpl;
-import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 
 @Module
 public class MainModule {
