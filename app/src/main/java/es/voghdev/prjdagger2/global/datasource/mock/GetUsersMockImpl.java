@@ -19,34 +19,44 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
 import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class GetUsersMockImpl extends AbsGetUsers {
-    @Override
-    public void getUsers() {
-        List<User> users = new ArrayList<User>();
-
-        users.add(generateMockUser("1", "Antonio", "I.E.S. Zaidin-Vergeles, 5"));
-        users.add(generateMockUser("2", "Juan", "I.E.S. Zaidin-Vergeles, 6"));
-        users.add(generateMockUser("3", "Ana", "I.E.S. Zaidin-Vergeles, 7"));
-        users.add(generateMockUser("4", "Isabel", "I.E.S. Zaidin-Vergeles, 8"));
-
-        int random = new Random().nextInt(10);
-
-        if(random < 8)
-            listener.onUsersListReceived(users);
-        else if( random >= 8 && random <= 9)
-            listener.onNoInternetAvailable();
-        else
-            listener.onUsersListError(new Exception("Unparseable response"));
-    }
-
+public class GetUsersMockImpl implements GetUsers {
     private User generateMockUser(String id, String name, String addr){
         User u = new User();
         u.setId(id);
         u.setName(name);
         u.setAddress(addr);
         return u;
+    }
+
+    @Override
+    public List<User> get() {
+        List<User> users = generateMockedUsers();
+        return users;
+    }
+
+    @Override
+    public void getAsync(GetUsers.Listener listener) {
+        List<User> users = generateMockedUsers();
+
+        int random = new Random().nextInt(10);
+
+        if(random < 8)
+            listener.onUsersReceived(users, true);
+        else if( random >= 8 && random <= 9)
+            listener.onNoInternetAvailable();
+        else
+            listener.onError(new Exception("Unparseable response"));
+    }
+
+    private List<User> generateMockedUsers() {
+        List<User> users = new ArrayList<User>();
+        users.add(generateMockUser("1", "Antonio", "I.E.S. Zaidin-Vergeles, 5"));
+        users.add(generateMockUser("2", "Juan", "I.E.S. Zaidin-Vergeles, 6"));
+        users.add(generateMockUser("3", "Ana", "I.E.S. Zaidin-Vergeles, 7"));
+        users.add(generateMockUser("4", "Isabel", "I.E.S. Zaidin-Vergeles, 8"));
+        return users;
     }
 }

@@ -18,19 +18,22 @@ package es.voghdev.prjdagger2.global.datasource.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.voghdev.prjdagger2.global.datasource.AbsGetUsers;
-import es.voghdev.prjdagger2.global.datasource.api.rest.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.datasource.api.rest.GetUsersRetrofitRequest;
+import es.voghdev.prjdagger2.global.datasource.api.rest.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.usecase.GetUsers;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class GetUsersApiImpl extends AbsGetUsers implements Callback<GetUsersResponse> {
+public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
     private static final String ENDPOINT = "http://api.randomuser.me";
+
     private int pageSize = 0;
     private int pageNumber = 0;
+
+    GetUsers.Listener listener = new NullListener();
 
     public GetUsersApiImpl(int pageSize, int pageNumber) {
         this.pageSize = pageSize;
@@ -38,7 +41,12 @@ public class GetUsersApiImpl extends AbsGetUsers implements Callback<GetUsersRes
     }
 
     @Override
-    public void getUsers() {
+    public List<User> get() {
+        throw new IllegalStateException("Not implemented yet");
+    }
+
+    @Override
+    public void getAsync(Listener listener) {
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(ENDPOINT).build();
         GetUsersRetrofitRequest request = restAdapter.create(GetUsersRetrofitRequest.class);
         request.getRandomUsers(pageSize, pageNumber, this);
@@ -52,11 +60,17 @@ public class GetUsersApiImpl extends AbsGetUsers implements Callback<GetUsersRes
             users.add( entry.parseUser() );
         }
 
-        listener.onUsersListReceived(users);
+        listener.onUsersReceived(users, false);
     }
 
     @Override
     public void failure(RetrofitError error) {
 
+    }
+
+    private class NullListener implements GetUsers.Listener {
+        public void onUsersReceived(List<User> users, boolean isCached) {}
+        public void onError(Exception e) {}
+        public void onNoInternetAvailable() {}
     }
 }
