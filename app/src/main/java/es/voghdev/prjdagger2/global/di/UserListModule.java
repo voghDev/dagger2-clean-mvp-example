@@ -16,46 +16,23 @@
 package es.voghdev.prjdagger2.global.di;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-
-import com.pedrogomez.renderers.ListAdapteeCollection;
-import com.pedrogomez.renderers.RVRendererAdapter;
-import com.pedrogomez.renderers.RendererAdapter;
-
-import java.util.ArrayList;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.presenter.impl.UserListPresenterImpl;
-import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
-import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 
 @Module
 public class UserListModule {
 
-    RVRendererAdapter<User> adapter;
     private final Context mContext;
 
-    public UserListModule(final Context context, final UserRenderer.OnUserClicked listener) {
+    public UserListModule(final Context context) {
         mContext = context;
-        adapter = new RVRendererAdapter<User>(
-                LayoutInflater.from(context),
-                new UserRendererBuilder(context, listener),
-                new ListAdapteeCollection<User>(new ArrayList<User>())
-        );
     }
 
     @Provides
     UserListPresenter provideUserListPresenter(){
         return new UserListPresenterImpl(mContext);
-    }
-
-    @Provides
-    RVRendererAdapter<User> provideUserAdapter(){
-        return adapter;
     }
 }

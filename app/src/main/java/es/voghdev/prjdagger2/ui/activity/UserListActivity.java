@@ -18,12 +18,15 @@ package es.voghdev.prjdagger2.ui.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.pedrogomez.renderers.ListAdapteeCollection;
 import com.pedrogomez.renderers.RVRendererAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,6 +40,7 @@ import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
+import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 
 public class UserListActivity extends BaseActivity implements UserListPresenter.View{
     @InjectView(R.id.users_list)
@@ -45,7 +49,6 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
     @InjectView(R.id.users_progressBar)
     ProgressBar progressBar;
 
-    @Inject
     RVRendererAdapter<User> adapter;
 
     @Inject
@@ -70,6 +73,12 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
         super.onCreate(savedInstanceState);
 
         component().inject(this);
+
+        adapter = new RVRendererAdapter<User>(
+                LayoutInflater.from(this),
+                new UserRendererBuilder(this, mUserClickListener),
+                new ListAdapteeCollection<User>(new ArrayList<User>())
+        );
 
         presenter.setView(this);
         presenter.initialize();
@@ -129,7 +138,7 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
         if(component == null){
             component = DaggerUserListComponent.builder()
                     .rootComponent(((App)getApplication()).getComponent())
-                    .userListModule(new UserListModule(getApplicationContext(), mUserClickListener))
+                    .userListModule(new UserListModule(getApplicationContext()))
                     .build();
         }
         return component;
