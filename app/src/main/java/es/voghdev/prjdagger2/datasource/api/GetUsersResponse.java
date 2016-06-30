@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.datasource.api;
+package es.voghdev.prjdagger2.datasource.api;
 
 import java.util.List;
 
-import es.voghdev.prjdagger2.global.datasource.api.rest.model.UserApiEntry;
+import es.voghdev.prjdagger2.datasource.api.rest.model.UserApiEntry;
 
 public class GetUsersResponse {
     private List<UserApiEntry> results;

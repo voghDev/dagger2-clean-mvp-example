@@ -13,27 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.datasource.api.rest.model;
+package es.voghdev.prjdagger2.datasource.api.rest.model;
 
-public class UserApiLocation {
-    private String street;
-    private String city;
-    private String state;
-    private String zip;
+public class UserApiPicture {
+    private String large;
+    private String medium;
+    private String thumbnail;
 
-    public String getStreet() {
-        return street;
-    }
+    public String getLarge() {        return large;    }
 
-    public String getCity() {
-        return city;
-    }
+    public String getMedium() {        return medium;    }
 
-    public String getState() {
-        return state;
-    }
-
-    public String getZip() {
-        return zip;
-    }
+    public String getThumbnail() {        return thumbnail;    }
 }

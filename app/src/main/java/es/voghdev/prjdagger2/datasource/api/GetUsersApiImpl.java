@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.datasource.api;
+package es.voghdev.prjdagger2.datasource.api;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import es.voghdev.prjdagger2.global.datasource.api.rest.GetUsersRetrofitRequest;
-import es.voghdev.prjdagger2.global.datasource.api.rest.model.UserApiEntry;
+import es.voghdev.prjdagger2.datasource.api.rest.GetUsersRetrofitRequest;
+import es.voghdev.prjdagger2.datasource.api.rest.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 import retrofit.Callback;
@@ -33,7 +33,7 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
     private int pageSize = 0;
     private int pageNumber = 0;
 
-    GetUsers.Listener listener = new NullListener();
+    Listener listener = new NullListener();
 
     public GetUsersApiImpl(int pageSize, int pageNumber) {
         this.pageSize = pageSize;
@@ -68,7 +68,7 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
 
     }
 
-    private class NullListener implements GetUsers.Listener {
+    private class NullListener implements Listener {
         public void onUsersReceived(List<User> users, boolean isCached) {}
         public void onError(Exception e) {}
         public void onNoInternetAvailable() {}

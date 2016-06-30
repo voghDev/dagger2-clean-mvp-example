@@ -13,15 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.datasource.api.rest;
+package es.voghdev.prjdagger2.datasource.api.rest.model;
 
-import es.voghdev.prjdagger2.global.datasource.api.GetUsersResponse;
-import retrofit.Callback;
-import retrofit.http.GET;
-import retrofit.http.Query;
+public class UserApiName {
+    private String title;
+    private String first;
+    private String last;
 
-public interface GetUsersRetrofitRequest {
-    @GET("/")
-    void getRandomUsers(@Query("results") int maxUsers,@Query("seed") int page,
-                        Callback<GetUsersResponse> callback);
+    public String getTitle() {
+        return title;
+    }
+
+    public String getFirst() {
+        return first;
+    }
+
+    public String getLast() {
+        return last;
+    }
 }

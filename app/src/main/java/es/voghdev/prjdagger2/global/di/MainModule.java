@@ -21,8 +21,8 @@ import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
+import es.voghdev.prjdagger2.datasource.datafile.GetUsersFileImpl;
 import es.voghdev.prjdagger2.global.App;
-import es.voghdev.prjdagger2.global.datasource.datafile.GetUsersFileImpl;
 import es.voghdev.prjdagger2.interactor.UserInteractor;
 
 @Module

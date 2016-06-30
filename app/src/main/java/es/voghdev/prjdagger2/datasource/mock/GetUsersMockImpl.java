@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.datasource.mock;
+package es.voghdev.prjdagger2.datasource.mock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class GetUsersMockImpl implements GetUsers {
     }
 
     @Override
-    public void getAsync(GetUsers.Listener listener) {
+    public void getAsync(Listener listener) {
         List<User> users = generateMockedUsers();
 
         int random = new Random().nextInt(10);

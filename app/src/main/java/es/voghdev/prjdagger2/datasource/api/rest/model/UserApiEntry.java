@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.datasource.api.rest.model;
+package es.voghdev.prjdagger2.datasource.api.rest.model;
 
 import es.voghdev.prjdagger2.global.model.User;
 

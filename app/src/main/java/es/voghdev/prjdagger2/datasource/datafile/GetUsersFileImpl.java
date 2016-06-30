@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.datasource.datafile;
+package es.voghdev.prjdagger2.datasource.datafile;
 
 import android.content.Context;
 import android.os.Handler;
@@ -28,8 +28,8 @@ import java.util.Collections;
 import java.util.List;
 
 import es.voghdev.prjdagger2.R;
-import es.voghdev.prjdagger2.global.datasource.api.GetUsersResponse;
-import es.voghdev.prjdagger2.global.datasource.api.rest.model.UserApiEntry;
+import es.voghdev.prjdagger2.datasource.api.GetUsersResponse;
+import es.voghdev.prjdagger2.datasource.api.rest.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
