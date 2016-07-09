@@ -17,24 +17,12 @@ package es.voghdev.prjdagger2.global.model;
 
 public class User {
 
-    protected String id;
-    protected String name;
-    protected String address;
-    protected String username;
-    protected String thumbnail;
-    protected String facebookId;
-
-    public User() {
-        initEmptyData();
-    }
-
-    protected void initEmptyData(){
-        id = "";
-        name = "";
-        address = "";
-        username = "";
-        facebookId = "";
-    }
+    protected String id = "";
+    protected String name = "";
+    protected String address = "";
+    protected String username = "";
+    protected String thumbnail = "";
+    protected String facebookId = "";
 
     public String getId() {
         return id;
