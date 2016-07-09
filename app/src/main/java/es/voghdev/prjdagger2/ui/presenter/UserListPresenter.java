@@ -20,16 +20,16 @@ import java.util.List;
 import javax.inject.Inject;
 
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.interactor.UserInteractor;
+import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 
 public abstract class UserListPresenter extends Presenter<UserListPresenter.View>{
     @Inject
-    protected UserInteractor interactor;
+    protected GetUsersInteractor interactor;
 
     public abstract void onUserPictureClicked(User user);
     public abstract void onUserRowClicked(User user);
 
-    public interface View{
+    public interface View {
         public void showUserList(List<User> users);
         public void showUserListError(Exception e);
         public void showNoInternetMessage();

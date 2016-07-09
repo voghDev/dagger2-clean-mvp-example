@@ -23,22 +23,22 @@ import dagger.Module;
 import dagger.Provides;
 import es.voghdev.prjdagger2.datasource.datafile.GetUsersFileImpl;
 import es.voghdev.prjdagger2.global.App;
-import es.voghdev.prjdagger2.interactor.UserInteractor;
+import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 
 @Module
 public class MainModule {
     private App application;
 
-    UserInteractor interactor;
+    GetUsersInteractor interactor;
 
     public MainModule(App application) {
         this.application = application;
 
-        interactor = new UserInteractor(new GetUsersFileImpl(application)); // new GetUsersMockImpl();
+        interactor = new GetUsersInteractor(new GetUsersFileImpl(application)); // new GetUsersMockImpl();
     }
 
     @Provides
-    UserInteractor provideUserInteractor(){
+    GetUsersInteractor provideUserInteractor(){
         return interactor;
     }
 

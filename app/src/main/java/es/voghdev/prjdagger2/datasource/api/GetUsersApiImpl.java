@@ -65,7 +65,7 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
 
     @Override
     public void failure(RetrofitError error) {
-
+        listener.onError(error);
     }
 
     private class NullListener implements Listener {

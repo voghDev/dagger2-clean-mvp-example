@@ -20,11 +20,11 @@ import java.util.List;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class UserInteractor implements Interactor, GetUsers.Listener {
+public class GetUsersInteractor implements Interactor, GetUsers.Listener {
     GetUsers.Listener listener = new NullListener();
     GetUsers dataSource;
 
-    public UserInteractor(GetUsers getUsers) {
+    public GetUsersInteractor(GetUsers getUsers) {
         dataSource = getUsers;
     }
 
