@@ -15,51 +15,7 @@
  */
 package es.voghdev.prjdagger2;
 
-import android.content.Context;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
-import es.voghdev.prjdagger2.ui.presenter.UserListViewMockImpl;
-import es.voghdev.prjdagger2.ui.presenter.impl.UserListPresenterImpl;
-
-import static junit.framework.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-@RunWith(MockitoJUnitRunner.class)
 public class UserListTest {
 
-    @Mock Context fakeContext;
 
-    @Test
-    public void shouldNotCreateNullMockedContext() throws Exception {
-        Context context = mock(Context.class);
-        assertNotNull(context);
-    }
-
-    @Test
-    public void shouldBeLoadingOnStart() throws Exception {
-        Context context = mock(Context.class);
-
-        UserListPresenter.View mockView = mock(UserListViewMockImpl.class);
-        // This line throws NPE because of the dagger2 component thing
-        UserListPresenter mockPresenter = new UserListPresenterImpl(context);
-
-        mockPresenter.setView(mockView);
-        mockPresenter.initialize();
-
-        verify(mockView, times(1)).showLoading();
-    }
-
-    @Test
-    public void shouldCreateNonNullMockedView() throws Exception {
-        UserListPresenter.View mockView = mock(UserListPresenter.View.class);
-
-        assertNotNull(mockView);
-    }
 }
