@@ -24,6 +24,8 @@ import dagger.Provides;
 import es.voghdev.prjdagger2.datasource.datafile.GetUsersFileImpl;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
+import es.voghdev.prjdagger2.interactor.impl.MainThreadImpl;
+import es.voghdev.prjdagger2.interactor.impl.ThreadExecutor;
 
 @Module
 public class MainModule {
@@ -34,7 +36,9 @@ public class MainModule {
     public MainModule(App application) {
         this.application = application;
 
-        interactor = new GetUsersInteractor(new GetUsersFileImpl(application)); // new GetUsersMockImpl();
+        interactor = new GetUsersInteractor(new GetUsersFileImpl(application),
+                new ThreadExecutor(),
+                new MainThreadImpl());
     }
 
     @Provides

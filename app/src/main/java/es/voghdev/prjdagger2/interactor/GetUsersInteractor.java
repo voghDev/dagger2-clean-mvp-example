@@ -23,15 +23,19 @@ import es.voghdev.prjdagger2.usecase.GetUsers;
 public class GetUsersInteractor implements Interactor, GetUsers.Listener {
     GetUsers.Listener listener = new NullListener();
     GetUsers dataSource;
+    Executor executor;
+    MainThread mainThread;
 
-    public GetUsersInteractor(GetUsers getUsers) {
-        dataSource = getUsers;
+    public GetUsersInteractor(GetUsers dataSource, Executor executor, MainThread mainThread) {
+        this.dataSource = dataSource;
+        this.executor = executor;
+        this.mainThread = mainThread;
     }
 
     public void getUsers(GetUsers.Listener listener) {
         if(listener != null)
             this.listener = listener;
-        this.execute();
+        this.executor.run(this);
     }
 
     @Override
@@ -50,8 +54,14 @@ public class GetUsersInteractor implements Interactor, GetUsers.Listener {
     }
 
     @Override
-    public void execute() {
-        dataSource.getAsync(this);
+    public void run() {
+        final List<User> list = dataSource.get();
+        mainThread.post(new Runnable(){
+            @Override
+            public void run() {
+                listener.onUsersReceived(list, false);
+            }
+        });
     }
 
     private class NullListener implements GetUsers.Listener {
