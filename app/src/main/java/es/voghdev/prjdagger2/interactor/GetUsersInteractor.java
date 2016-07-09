@@ -22,12 +22,12 @@ import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class GetUsersInteractor implements Interactor, GetUsers.Listener {
     GetUsers.Listener listener = new NullListener();
-    GetUsers dataSource;
+    GetUsers repository;
     Executor executor;
     MainThread mainThread;
 
     public GetUsersInteractor(GetUsers dataSource, Executor executor, MainThread mainThread) {
-        this.dataSource = dataSource;
+        this.repository = dataSource;
         this.executor = executor;
         this.mainThread = mainThread;
     }
@@ -55,7 +55,7 @@ public class GetUsersInteractor implements Interactor, GetUsers.Listener {
 
     @Override
     public void run() {
-        final List<User> list = dataSource.get();
+        final List<User> list = repository.get();
         mainThread.post(new Runnable(){
             @Override
             public void run() {
