@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package es.voghdev.prjdagger2.ui.view;
+package es.voghdev.prjdagger2.usecase;
 
-public interface ShowMessage {
+public interface ShowError {
     public void show(String message);
 }

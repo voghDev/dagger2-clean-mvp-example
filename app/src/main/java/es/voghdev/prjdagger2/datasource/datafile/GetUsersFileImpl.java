@@ -29,7 +29,7 @@ import java.util.List;
 
 import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.datasource.api.GetUsersResponse;
-import es.voghdev.prjdagger2.datasource.api.rest.model.UserApiEntry;
+import es.voghdev.prjdagger2.datasource.api.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 

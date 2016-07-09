@@ -18,8 +18,8 @@ package es.voghdev.prjdagger2.datasource.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.voghdev.prjdagger2.datasource.api.rest.GetUsersRetrofitRequest;
-import es.voghdev.prjdagger2.datasource.api.rest.model.UserApiEntry;
+import es.voghdev.prjdagger2.datasource.api.model.UserApiEntry;
+import es.voghdev.prjdagger2.datasource.api.retrofit.GetUsersRetrofitRequest;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 import retrofit.Callback;
