@@ -17,5 +17,4 @@ package es.voghdev.prjdagger2;
 
 public class UserListTest {
 
-
 }

@@ -8,7 +8,8 @@ Some of the aspects covered on this project are:
 * Elegant ~~ListView~~ **RecyclerView** implementation using [Renderers][15].
 * Elegant View management using Jake Wharton's [ButterKnife][11].
 * Image loading using [picasso][12], round transformations using **PorterDuff**.
-* Model-View-Presenter + Interactor + DataSource layers, where a Dagger-injected **Interactor** can query different **DataSource**s:
+* Creating an image cache with [picasso][12].
+* Model-View-Presenter + Interactor + DataSource layers, with different **DataSource**s:
   * a REST Api using [retrofit][13]
   * a local **JSON file**
   * a class generating **mock** instances
@@ -33,7 +34,7 @@ TODOs
 - [X] RecyclerViews, Renderers2.0
 - [ ] More DataSources like ~~parse~~, Google Cloud, Azure, protobuf...
 - [X] Unit tests
-- [ ] UI tests
+- [X] UI tests
 - [ ] Refactor to add Repository layer
 
 Developed By
