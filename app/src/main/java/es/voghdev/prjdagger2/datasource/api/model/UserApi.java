@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.datasource.api.rest.model;
+package es.voghdev.prjdagger2.datasource.api.model;
 
 public class UserApi {
-    private UserApiName name;
+    private UserNameApiEntry name;
     private String email;
     private String gender;
-    private UserApiPicture picture;
-    private UserApiLocation location;
+    private UserPictureApiEntry picture;
+    private UserLocationApiEntry location;
     private String md5;
 
-    public UserApiName getName() {
+    public UserNameApiEntry getName() {
         return name;
     }
 
@@ -33,9 +33,9 @@ public class UserApi {
 
     public String getGender() { return gender; }
 
-    public UserApiPicture getPicture() { return picture; }
+    public UserPictureApiEntry getPicture() { return picture; }
 
-    public UserApiLocation getLocation() {
+    public UserLocationApiEntry getLocation() {
         return location;
     }
 

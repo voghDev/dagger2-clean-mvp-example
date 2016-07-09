@@ -13,22 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.datasource.api.rest.model;
+package es.voghdev.prjdagger2.datasource.api.model;
 
-public class UserApiName {
-    private String title;
-    private String first;
-    private String last;
+public class UserLocationApiEntry {
+    private String street;
+    private String city;
+    private String state;
+    private String zip;
 
-    public String getTitle() {
-        return title;
+    public String getStreet() {
+        return street;
     }
 
-    public String getFirst() {
-        return first;
+    public String getCity() {
+        return city;
     }
 
-    public String getLast() {
-        return last;
+    public String getState() {
+        return state;
+    }
+
+    public String getZip() {
+        return zip;
     }
 }

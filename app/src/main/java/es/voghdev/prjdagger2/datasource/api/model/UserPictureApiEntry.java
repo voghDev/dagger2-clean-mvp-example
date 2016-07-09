@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.datasource.api.rest;
+package es.voghdev.prjdagger2.datasource.api.model;
 
-import es.voghdev.prjdagger2.datasource.api.GetUsersResponse;
-import retrofit.Callback;
-import retrofit.http.GET;
-import retrofit.http.Query;
+public class UserPictureApiEntry {
+    private String large;
+    private String medium;
+    private String thumbnail;
 
-public interface GetUsersRetrofitRequest {
-    @GET("/")
-    void getRandomUsers(@Query("results") int maxUsers, @Query("seed") int page,
-                        Callback<GetUsersResponse> callback);
+    public String getLarge() {        return large;    }
+
+    public String getMedium() {        return medium;    }
+
+    public String getThumbnail() {        return thumbnail;    }
 }
