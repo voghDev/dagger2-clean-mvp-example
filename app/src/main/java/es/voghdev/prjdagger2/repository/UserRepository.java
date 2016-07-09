@@ -18,9 +18,25 @@ public class UserRepository implements GetUsers {
         this.fileDataSource = fileDataSource;
     }
 
+    public void setCachePolicy(CachePolicy cachePolicy) {
+        this.cachePolicy = cachePolicy;
+    }
+
     @Override
     public List<User> get() {
-        return null;
+        invalidateCacheIfNecessary(cachePolicy, users);
+
+        if(users != null && users.size() > 0)
+            return users;
+
+        List<User> apiUsers = apiDataSource.get();
+        users = apiUsers;
+        return users;
+    }
+
+    private void invalidateCacheIfNecessary(CachePolicy cachePolicy, List<User> users) {
+        if(!cachePolicy.isCacheValid())
+            users.clear();
     }
 
     @Override
