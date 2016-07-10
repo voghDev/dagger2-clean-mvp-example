@@ -41,7 +41,28 @@ public class UserRepository implements GetUsers {
     }
 
     @Override
-    public void getAsync(Listener listener) {
+    public void getAsync(final Listener listener) {
+        invalidateCacheIfNecessary(cachePolicy, users);
 
+        if(users != null && users.size() > 0)
+            listener.onUsersReceived(users, true);
+
+        apiDataSource.getAsync(new Listener() {
+            @Override
+            public void onUsersReceived(List<User> list, boolean isCached) {
+                users = list;
+                listener.onUsersReceived(list, isCached);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                listener.onError(e);
+            }
+
+            @Override
+            public void onNoInternetAvailable() {
+                listener.onNoInternetAvailable();
+            }
+        });
     }
 }
