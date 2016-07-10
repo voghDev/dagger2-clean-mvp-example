@@ -30,6 +30,7 @@ public class UserRepository implements GetUsers {
             return users;
 
         List<User> apiUsers = apiDataSource.get();
+        cachePolicy = new TimedCachePolicy(TimedCachePolicy.ONE_MINUTE);
         users = apiUsers;
         return users;
     }
