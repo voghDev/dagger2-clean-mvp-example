@@ -27,6 +27,7 @@ import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.interactor.impl.MainThreadImpl;
 import es.voghdev.prjdagger2.interactor.impl.ThreadExecutor;
+import es.voghdev.prjdagger2.repository.NoCachePolicy;
 import es.voghdev.prjdagger2.repository.UserRepository;
 
 @Module
@@ -43,7 +44,7 @@ public class MainModule {
                 new ThreadExecutor(),
                 new MainThreadImpl());
 
-        userRepository = new UserRepository(null, new GetUsersApiImpl(10, 0), new GetUsersFileImpl(application));
+        userRepository = new UserRepository(application, new GetUsersApiImpl(10, 0), new GetUsersFileImpl(application));
     }
 
     @Provides

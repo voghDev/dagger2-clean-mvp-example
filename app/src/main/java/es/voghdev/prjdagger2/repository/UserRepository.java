@@ -1,21 +1,33 @@
 package es.voghdev.prjdagger2.repository;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import es.voghdev.prjdagger2.global.App;
+import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class UserRepository implements GetUsers {
+    Context context;
     CachePolicy cachePolicy;
     GetUsers apiDataSource;
     GetUsers fileDataSource;
     List<User> users = new ArrayList<>();
 
-    public UserRepository(CachePolicy cachePolicy, GetUsers apiDataSource, GetUsers fileDataSource) {
-        this.cachePolicy = cachePolicy;
+    public UserRepository(Context context, GetUsers apiDataSource, GetUsers fileDataSource) {
+        this.context = context;
         this.apiDataSource = apiDataSource;
         this.fileDataSource = fileDataSource;
+        this.cachePolicy = new NoCachePolicy();
+
+        getComponent().inject(this);
+    }
+
+    private RootComponent getComponent() {
+        return ((App)context.getApplicationContext()).getComponent();
     }
 
     public void setCachePolicy(CachePolicy cachePolicy) {
