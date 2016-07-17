@@ -45,9 +45,7 @@ public class App extends Application {
                 .mainModule(new MainModule(this))
                 .build();
         component.inject(this);
-
     }
-
 
     public void initializeImageCache() {
         File cacheDir = getPicturesDir();

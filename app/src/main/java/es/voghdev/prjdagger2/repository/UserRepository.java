@@ -5,8 +5,6 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.voghdev.prjdagger2.global.App;
-import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
@@ -22,12 +20,6 @@ public class UserRepository implements GetUsers {
         this.apiDataSource = apiDataSource;
         this.fileDataSource = fileDataSource;
         this.cachePolicy = new NoCachePolicy();
-
-        getComponent().inject(this);
-    }
-
-    private RootComponent getComponent() {
-        return ((App)context.getApplicationContext()).getComponent();
     }
 
     public void setCachePolicy(CachePolicy cachePolicy) {

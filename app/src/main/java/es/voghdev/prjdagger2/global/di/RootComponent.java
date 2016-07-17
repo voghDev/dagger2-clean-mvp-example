@@ -28,5 +28,4 @@ public interface RootComponent {
     void inject(App application);
 
     void inject(UserListPresenter presenter); // UserListPresenter can inject dependencies from this Component
-    void inject(UserRepository repository);
 }

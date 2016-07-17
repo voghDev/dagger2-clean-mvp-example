@@ -27,7 +27,6 @@ import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.interactor.impl.MainThreadImpl;
 import es.voghdev.prjdagger2.interactor.impl.ThreadExecutor;
-import es.voghdev.prjdagger2.repository.NoCachePolicy;
 import es.voghdev.prjdagger2.repository.UserRepository;
 
 @Module
