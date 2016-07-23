@@ -25,11 +25,11 @@ import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class UserListPresenterImpl extends UserListPresenter implements GetUsers.Listener {
-    protected Context mContext;
+public class UserListPresenterImpl extends UserListPresenter {
+    protected Context context;
 
     public UserListPresenterImpl(Context ctx){
-        mContext = ctx;
+        context = ctx;
 
         getComponent().inject(this);
     }
@@ -37,7 +37,26 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     @Override
     public void initialize() {
         view.showLoading();
-        interactor.getUsers(this);
+        interactor.getUsers(new GetUsers.Listener() {
+            @Override
+            public void onUsersReceived(List<User> users, boolean isCached) {
+                view.showUserList(users);
+                view.hideLoading();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                view.showUserListError(e);
+                view.hideLoading();
+            }
+
+            @Override
+            public void onNoInternetAvailable() {
+                view.showNoInternetMessage();
+                view.hideLoading();
+            }
+
+        });
     }
 
     @Override
@@ -56,24 +75,6 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     }
 
     @Override
-    public void onUsersReceived(List<User> users, boolean isCached) {
-        view.showUserList(users);
-        view.hideLoading();
-    }
-
-    @Override
-    public void onError(Exception e) {
-        view.showUserListError(e);
-        view.hideLoading();
-    }
-
-    @Override
-    public void onNoInternetAvailable() {
-        view.showNoInternetMessage();
-        view.hideLoading();
-    }
-
-    @Override
     public void onUserPictureClicked(User user) {
         view.makeUserSayHello(user);
     }
@@ -84,6 +85,6 @@ public class UserListPresenterImpl extends UserListPresenter implements GetUsers
     }
 
     protected RootComponent getComponent() {
-        return ((App)mContext.getApplicationContext()).getComponent();
+        return ((App) context.getApplicationContext()).getComponent();
     }
 }
