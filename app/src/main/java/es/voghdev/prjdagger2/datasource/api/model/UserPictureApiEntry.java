@@ -16,9 +16,9 @@
 package es.voghdev.prjdagger2.datasource.api.model;
 
 public class UserPictureApiEntry {
-    private String large;
-    private String medium;
-    private String thumbnail;
+    private String large = "";
+    private String medium = "";
+    private String thumbnail = "";
 
     public String getLarge() {        return large;    }
 

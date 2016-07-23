@@ -55,13 +55,7 @@ public class GetUsersInteractor implements Interactor, GetUsers.Listener {
 
     @Override
     public void run() {
-        final List<User> list = repository.get();
-        mainThread.post(new Runnable(){
-            @Override
-            public void run() {
-                listener.onUsersReceived(list, false);
-            }
-        });
+        repository.getAsync(listener);
     }
 
     private class NullListener implements GetUsers.Listener {

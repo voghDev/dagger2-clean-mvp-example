@@ -16,10 +16,10 @@
 package es.voghdev.prjdagger2.datasource.api.model;
 
 public class UserLocationApiEntry {
-    private String street;
-    private String city;
-    private String state;
-    private String zip;
+    private String street = "";
+    private String city = "";
+    private String state = "";
+    private String zip = "";
 
     public String getStreet() {
         return street;

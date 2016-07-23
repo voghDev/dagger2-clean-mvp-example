@@ -16,12 +16,12 @@
 package es.voghdev.prjdagger2.datasource.api.model;
 
 public class UserApi {
-    private UserNameApiEntry name;
-    private String email;
-    private String gender;
-    private UserPictureApiEntry picture;
-    private UserLocationApiEntry location;
-    private String md5;
+    private UserNameApiEntry name = new UserNameApiEntry();
+    private String email = "";
+    private String gender = "";
+    private UserPictureApiEntry picture = new UserPictureApiEntry();
+    private UserLocationApiEntry location = new UserLocationApiEntry();
+    private String md5 = "";
 
     public UserNameApiEntry getName() {
         return name;

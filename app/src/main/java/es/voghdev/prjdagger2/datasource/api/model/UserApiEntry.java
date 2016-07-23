@@ -23,7 +23,7 @@ public class UserApiEntry {
     private UserApi user;
 
     public UserApi getUser() {
-        return user;
+        return user != null ? user : new UserApi();
     }
 
     public User parseUser(){
