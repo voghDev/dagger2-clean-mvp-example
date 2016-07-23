@@ -47,6 +47,8 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
 
     @Override
     public void getAsync(Listener listener) {
+        if(listener != null)
+            this.listener = listener;
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(ENDPOINT).build();
         GetUsersRetrofitRequest request = restAdapter.create(GetUsersRetrofitRequest.class);
         request.getRandomUsers(pageSize, pageNumber, this);

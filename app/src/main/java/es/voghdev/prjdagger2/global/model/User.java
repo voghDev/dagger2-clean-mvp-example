@@ -71,4 +71,8 @@ public class User {
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
+
+    public boolean hasThumbnail() {
+        return thumbnail != null && !thumbnail.isEmpty();
+    }
 }
