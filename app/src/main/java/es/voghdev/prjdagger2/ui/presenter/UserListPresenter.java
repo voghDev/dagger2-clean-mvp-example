@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.ui.presenter.impl;
+package es.voghdev.prjdagger2.ui.presenter;
 
 import android.content.Context;
 
@@ -22,7 +22,7 @@ import java.util.List;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.ui.presenter.AbsUserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class UserListPresenter extends AbsUserListPresenter {

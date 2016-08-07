@@ -38,7 +38,7 @@ import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.ui.presenter.AbsUserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
 import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 

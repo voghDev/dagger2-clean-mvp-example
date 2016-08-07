@@ -17,9 +17,8 @@ package es.voghdev.prjdagger2.global.di;
 
 import dagger.Component;
 import es.voghdev.prjdagger2.global.App;
-import es.voghdev.prjdagger2.repository.UserRepository;
 import es.voghdev.prjdagger2.ui.activity.BaseActivity;
-import es.voghdev.prjdagger2.ui.presenter.AbsUserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 
 @Component(modules = MainModule.class)
 public interface RootComponent {
