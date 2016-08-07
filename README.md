@@ -21,7 +21,7 @@ This project has taken the following **talks**, **articles**, and **repos** as i
 * [Jorge Barroso - Forgetting Android][3]
 * [Pedro Vicente Gómez Sánchez - EffectiveAndroidUI][2]
 * [Dependency Injection on Android - Pedro Gómez][4]
-* [Dagger2 Example by David Lázaro  aka dlazaro66][5]
+* [Dagger2 Example by David Lázaro][5]
 * [Google's Dagger Example][6]
 * [Antonio Leiva's MVP Example][7] and [Blog article][8]
 * [protohipster - Jorge Barroso][9]
@@ -51,7 +51,7 @@ Developed By
 
 # License
 
-    Copyright 2015 Olmo Gallegos Hernández
+    Copyright 2016 Olmo Gallegos Hernández
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
