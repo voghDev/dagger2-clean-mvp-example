@@ -35,7 +35,7 @@ TODOs
 - [ ] More DataSources like ~~parse~~, Google Cloud, Azure, protobuf...
 - [X] Unit tests
 - [X] UI tests
-- [ ] Refactor to add Repository layer
+- [X] Refactor to add Repository layer
 
 Developed By
 ------------
