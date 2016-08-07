@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.repository.cachepolicy.CachePolicy;
+import es.voghdev.prjdagger2.repository.cachepolicy.NoCachePolicy;
+import es.voghdev.prjdagger2.repository.cachepolicy.TimedCachePolicy;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class UserRepository implements GetUsers {

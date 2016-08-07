@@ -22,7 +22,7 @@ import javax.inject.Inject;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 
-public abstract class UserListPresenter extends Presenter<UserListPresenter.View>{
+public abstract class AbsUserListPresenter extends Presenter<AbsUserListPresenter.View>{
     @Inject
     protected GetUsersInteractor interactor;
 

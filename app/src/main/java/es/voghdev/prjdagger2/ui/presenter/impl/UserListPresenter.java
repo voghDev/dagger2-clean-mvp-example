@@ -22,13 +22,13 @@ import java.util.List;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.AbsUserListPresenter;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class UserListPresenterImpl extends UserListPresenter {
+public class UserListPresenter extends AbsUserListPresenter {
     protected Context context;
 
-    public UserListPresenterImpl(Context ctx){
+    public UserListPresenter(Context ctx){
         context = ctx;
 
         getComponent().inject(this);

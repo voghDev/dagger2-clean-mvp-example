@@ -19,8 +19,8 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
-import es.voghdev.prjdagger2.ui.presenter.impl.UserListPresenterImpl;
+import es.voghdev.prjdagger2.ui.presenter.AbsUserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.impl.UserListPresenter;
 
 @Module
 public class UserListModule {
@@ -32,7 +32,7 @@ public class UserListModule {
     }
 
     @Provides
-    UserListPresenter provideUserListPresenter(){
-        return new UserListPresenterImpl(mContext);
+    AbsUserListPresenter provideUserListPresenter(){
+        return new UserListPresenter(mContext);
     }
 }

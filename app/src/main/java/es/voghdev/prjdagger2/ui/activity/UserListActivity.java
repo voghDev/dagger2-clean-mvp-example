@@ -38,11 +38,11 @@ import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.AbsUserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
 import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 
-public class UserListActivity extends BaseActivity implements UserListPresenter.View{
+public class UserListActivity extends BaseActivity implements AbsUserListPresenter.View {
     @InjectView(R.id.users_list)
     RecyclerView recyclerView;
 
@@ -52,7 +52,7 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
     RVRendererAdapter<User> adapter;
 
     @Inject
-    UserListPresenter presenter;
+    AbsUserListPresenter presenter;
 
     private UserListComponent component;
 

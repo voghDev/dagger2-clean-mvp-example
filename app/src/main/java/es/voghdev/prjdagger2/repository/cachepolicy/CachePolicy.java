@@ -13,11 +13,8 @@
  * See the License for the specific language governing permissions and
 * limitations under the License.
  */
-package es.voghdev.prjdagger2.repository;
+package es.voghdev.prjdagger2.repository.cachepolicy;
 
-public class NoCachePolicy implements CachePolicy {
-    @Override
-    public boolean isCacheValid() {
-        return false;
-    }
+public interface CachePolicy {
+    public boolean isCacheValid();
 }

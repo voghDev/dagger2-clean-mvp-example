@@ -19,7 +19,7 @@ import dagger.Component;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.repository.UserRepository;
 import es.voghdev.prjdagger2.ui.activity.BaseActivity;
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.AbsUserListPresenter;
 
 @Component(modules = MainModule.class)
 public interface RootComponent {
@@ -27,5 +27,5 @@ public interface RootComponent {
     void inject(BaseActivity activity); // BaseActivity can inject dependencies from this Component
     void inject(App application);
 
-    void inject(UserListPresenter presenter); // UserListPresenter can inject dependencies from this Component
+    void inject(AbsUserListPresenter presenter); // UserListPresenter can inject dependencies from this Component
 }

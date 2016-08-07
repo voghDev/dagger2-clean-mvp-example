@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
 * limitations under the License.
  */
-package es.voghdev.prjdagger2.repository;
+package es.voghdev.prjdagger2.repository.cachepolicy;
+
+import es.voghdev.prjdagger2.repository.cachepolicy.CachePolicy;
 
 public class TimedCachePolicy implements CachePolicy {
     protected static final long MS_PER_MINUTE = 60000;

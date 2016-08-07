@@ -16,9 +16,7 @@
 package es.voghdev.prjdagger2.global.di;
 
 import dagger.Component;
-import dagger.Provides;
 import es.voghdev.prjdagger2.ui.activity.UserListActivity;
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 
 @Component(dependencies = RootComponent.class, modules = UserListModule.class)
 public interface UserListComponent {
