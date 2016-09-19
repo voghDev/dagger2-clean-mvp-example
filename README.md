@@ -26,7 +26,7 @@ This project has taken the following **talks**, **articles**, and **repos** as i
 * [Dagger2 Example by David Lázaro][5]
 * [Google's Dagger Example][6]
 * [Antonio Leiva's MVP Example][7] and [Blog article][8]
-* [protohipster - Jorge Barroso][9]
+* [protohipster - Jorge Barroso][21]
 * [UpcomingMoviesMVP - Jose Luis Martín][14]
 * [KataSuperHeroesAndroid - Karumi][20]
 
@@ -89,3 +89,4 @@ Developed By
 [18]: http://mockito.org/
 [19]: https://google.github.io/android-testing-support-library/docs/espresso/
 [20]: https://github.com/Karumi/KataSuperHeroesAndroid
+[21]: https://github.com/flipper83/protohipster
