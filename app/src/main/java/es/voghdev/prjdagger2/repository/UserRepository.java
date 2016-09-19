@@ -33,8 +33,9 @@ public class UserRepository implements GetUsers {
     public List<User> get() {
         invalidateCacheIfNecessary(cachePolicy, users);
 
-        if(users != null && users.size() > 0)
+        if (users != null && users.size() > 0) {
             return users;
+        }
 
         List<User> apiUsers = apiDataSource.get();
         cachePolicy = new TimedCachePolicy(TimedCachePolicy.ONE_MINUTE);
@@ -43,16 +44,18 @@ public class UserRepository implements GetUsers {
     }
 
     private void invalidateCacheIfNecessary(CachePolicy cachePolicy, List<User> users) {
-        if(!cachePolicy.isCacheValid())
+        if (!cachePolicy.isCacheValid()) {
             users.clear();
+        }
     }
 
     @Override
     public void getAsync(final Listener listener) {
         invalidateCacheIfNecessary(cachePolicy, users);
 
-        if(users != null && users.size() > 0)
+        if (users != null && users.size() > 0) {
             listener.onUsersReceived(users, true);
+        }
 
         apiDataSource.getAsync(new Listener() {
             @Override

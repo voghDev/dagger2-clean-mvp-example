@@ -98,8 +98,9 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     @Override
     public void showUserList(List<User> users) {
-        for(User u : users)
+        for (User u : users) {
             adapter.add(u);
+        }
 
         adapter.notifyDataSetChanged();
     }
@@ -134,10 +135,10 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
         Toast.makeText(this, getString(R.string.user_was_clicked, user.getId()), Toast.LENGTH_LONG).show();
     }
 
-    private UserListComponent component(){
-        if(component == null){
+    private UserListComponent component() {
+        if (component == null) {
             component = DaggerUserListComponent.builder()
-                    .rootComponent(((App)getApplication()).getComponent())
+                    .rootComponent(((App) getApplication()).getComponent())
                     .userListModule(new UserListModule(getApplicationContext()))
                     .build();
         }

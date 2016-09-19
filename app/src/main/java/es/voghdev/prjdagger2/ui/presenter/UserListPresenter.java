@@ -28,7 +28,7 @@ import es.voghdev.prjdagger2.usecase.GetUsers;
 public class UserListPresenter extends AbsUserListPresenter {
     protected Context context;
 
-    public UserListPresenter(Context ctx){
+    public UserListPresenter(Context ctx) {
         context = ctx;
 
         getComponent().inject(this);

@@ -20,12 +20,15 @@ import java.util.List;
 import es.voghdev.prjdagger2.global.model.User;
 
 public interface GetUsers {
-    public List<User> get();
-    public void getAsync(final Listener listener);
+    List<User> get();
 
-    public interface Listener {
-        public void onUsersReceived(final List<User> users, boolean isCached);
-        public void onError(Exception e);
-        public void onNoInternetAvailable();
+    void getAsync(final Listener listener);
+
+    interface Listener {
+        void onUsersReceived(final List<User> users, boolean isCached);
+
+        void onError(Exception e);
+
+        void onNoInternetAvailable();
     }
 }

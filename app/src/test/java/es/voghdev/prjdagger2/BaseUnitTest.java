@@ -6,7 +6,9 @@ import es.voghdev.prjdagger2.global.model.User;
  * Created by olmo on 19/09/16.
  */
 public class BaseUnitTest {
-    protected User createMockUser(String id, String name, String address, String user, String thumbnail, String facebookId) {
+    protected User createMockUser(
+            String id, String name, String address,
+            String user, String thumbnail, String facebookId) {
         User u = new User();
         u.setId(id);
         u.setName(name);

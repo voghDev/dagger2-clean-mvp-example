@@ -28,17 +28,22 @@ public abstract class AbsUserListPresenter extends Presenter<AbsUserListPresente
     protected GetUsersInteractor interactor;
 
     public abstract void onUserPictureClicked(User user);
+
     public abstract void onUserRowClicked(User user);
 
     public interface View {
-        public void showUserList(List<User> users);
-        public void showUserListError(Exception e);
-        public void showNoInternetMessage();
+        void showUserList(List<User> users);
 
-        public void showLoading();
-        public void hideLoading();
+        void showUserListError(Exception e);
 
-        public void makeUserSayHello(User user);
-        public void showUserClickedMessage(User user);
+        void showNoInternetMessage();
+
+        void showLoading();
+
+        void hideLoading();
+
+        void makeUserSayHello(User user);
+
+        void showUserClickedMessage(User user);
     }
 }

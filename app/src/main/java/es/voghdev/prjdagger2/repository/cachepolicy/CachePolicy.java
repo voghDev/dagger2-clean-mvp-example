@@ -16,5 +16,5 @@
 package es.voghdev.prjdagger2.repository.cachepolicy;
 
 public interface CachePolicy {
-    public boolean isCacheValid();
+    boolean isCacheValid();
 }

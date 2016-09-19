@@ -52,7 +52,7 @@ public class RoundedTransformation implements com.squareup.picasso.Transformatio
         paint.setAntiAlias(true);
         paint.setColorFilter(new PorterDuffColorFilter(Color.GREEN, PorterDuff.Mode.DST_OVER));
 
-        float r = size/2f;
+        float r = size / 2f;
         canvas.drawCircle(r, r, r, paint);
 
         squaredBitmap.recycle();

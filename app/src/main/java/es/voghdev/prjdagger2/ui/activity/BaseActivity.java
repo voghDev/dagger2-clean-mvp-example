@@ -19,13 +19,13 @@ import android.os.Bundle;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends android.app.Activity{
+public abstract class BaseActivity extends android.app.Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView( getLayoutId() );
+        setContentView(getLayoutId());
 
         ButterKnife.inject(this);
 

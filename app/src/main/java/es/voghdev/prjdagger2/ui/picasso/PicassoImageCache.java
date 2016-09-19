@@ -39,14 +39,14 @@ public class PicassoImageCache implements Cache {
 
     @Override
     public Bitmap get(String key) {
-        key = String.format("%s.png", transform(key) );
+        key = String.format("%s.png", transform(key));
         File f = new File(mCacheDir, key);
         return getBitmapFromFile(f.getAbsolutePath());
     }
 
     @Override
     public void set(String key, Bitmap bitmap) {
-        key = String.format("%s.png", transform(key) );
+        key = String.format("%s.png", transform(key));
         File f = new File(mCacheDir, key);
         saveBitmapToFile(bitmap, f.getAbsolutePath());
     }
@@ -75,8 +75,8 @@ public class PicassoImageCache implements Cache {
     }
 
     //region Util methods (could be moved to another Util class)
-    public void saveBitmapToFile(Bitmap bmp, String absolutePath){
-        bitmapToFile( getBytesFromBitmap(bmp), absolutePath);
+    public void saveBitmapToFile(Bitmap bmp, String absolutePath) {
+        bitmapToFile(getBytesFromBitmap(bmp), absolutePath);
     }
 
     private void bitmapToFile(byte[] data, String absolutePath) {
@@ -92,7 +92,7 @@ public class PicassoImageCache implements Cache {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -103,7 +103,7 @@ public class PicassoImageCache implements Cache {
         return bos.toByteArray();
     }
 
-    public static Bitmap getBitmapFromFile(String absolutePath){
+    public static Bitmap getBitmapFromFile(String absolutePath) {
         File file = new File(absolutePath);
         if (file.exists()) {
             return BitmapFactory.decodeFile(absolutePath);

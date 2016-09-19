@@ -47,8 +47,9 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
 
     @Override
     public void getAsync(Listener listener) {
-        if(listener != null)
+        if (listener != null) {
             this.listener = listener;
+        }
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(ENDPOINT).build();
         GetUsersRetrofitRequest request = restAdapter.create(GetUsersRetrofitRequest.class);
         request.getRandomUsers(pageSize, pageNumber, this);
@@ -58,8 +59,8 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
     public void success(GetUsersResponse getUsersResponse, Response response) {
         List<User> users = new ArrayList<User>();
 
-        for(UserApiEntry entry :  getUsersResponse.getResults()){
-            users.add( entry.parseUser() );
+        for (UserApiEntry entry : getUsersResponse.getResults()) {
+            users.add(entry.parseUser());
         }
 
         listener.onUsersReceived(users, false);
@@ -71,8 +72,13 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
     }
 
     private class NullListener implements Listener {
-        public void onUsersReceived(List<User> users, boolean isCached) {}
-        public void onError(Exception e) {}
-        public void onNoInternetAvailable() {}
+        public void onUsersReceived(List<User> users, boolean isCached) {
+        }
+
+        public void onError(Exception e) {
+        }
+
+        public void onNoInternetAvailable() {
+        }
     }
 }

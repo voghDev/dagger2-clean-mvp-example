@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'checkstyle'
 
 buildscript {
     repositories {
@@ -9,6 +10,17 @@ buildscript {
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
     }
 }
+
+task checkstyle(type: Checkstyle) {
+    configFile = rootProject.file('config/checkstyle.xml')
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    classpath = files()
+}
+
 
 android {
     compileSdkVersion 23

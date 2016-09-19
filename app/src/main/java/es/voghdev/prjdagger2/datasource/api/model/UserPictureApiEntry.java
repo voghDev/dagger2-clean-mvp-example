@@ -20,9 +20,15 @@ public class UserPictureApiEntry {
     private String medium = "";
     private String thumbnail = "";
 
-    public String getLarge() {        return large;    }
+    public String getLarge() {
+        return large;
+    }
 
-    public String getMedium() {        return medium;    }
+    public String getMedium() {
+        return medium;
+    }
 
-    public String getThumbnail() {        return thumbnail;    }
+    public String getThumbnail() {
+        return thumbnail;
+    }
 }

@@ -36,7 +36,7 @@ import es.voghdev.prjdagger2.usecase.GetUsers;
 public class GetUsersFileImpl implements GetUsers {
     private Context mContext = null;
 
-    public GetUsersFileImpl(Context applicationContext){
+    public GetUsersFileImpl(Context applicationContext) {
         mContext = applicationContext;
     }
 
@@ -46,7 +46,7 @@ public class GetUsersFileImpl implements GetUsers {
 
         int x = -1;
         byte[] buffer = new byte[1024];
-        while((x = inputStream.read(buffer, 0, buffer.length)) != -1){
+        while ((x = inputStream.read(buffer, 0, buffer.length)) != -1) {
             bos.write(buffer, 0, x);
         }
         inputStream.close();
@@ -56,10 +56,10 @@ public class GetUsersFileImpl implements GetUsers {
 
     }
 
-    private List<User> getUsersFromJson(String json){
+    private List<User> getUsersFromJson(String json) {
         GetUsersResponse response = new Gson().fromJson(json, GetUsersResponse.class);
         List<User> users = new ArrayList<User>();
-        for(UserApiEntry entry :  response.getResults()){
+        for (UserApiEntry entry : response.getResults()) {
             users.add(entry.parseUser());
         }
         return users;
@@ -88,7 +88,7 @@ public class GetUsersFileImpl implements GetUsers {
                 }
             }, 3000);
 
-        }catch(IOException e){
+        } catch (IOException e) {
             listener.onError(e);
         }
     }

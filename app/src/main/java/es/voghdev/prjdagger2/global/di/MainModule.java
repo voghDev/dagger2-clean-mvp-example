@@ -47,16 +47,18 @@ public class MainModule {
     }
 
     @Provides
-    GetUsersInteractor provideUserInteractor(){
+    GetUsersInteractor provideUserInteractor() {
         return interactor;
     }
 
     @Provides
-    UserRepository provideUserRepository() { return userRepository; }
+    UserRepository provideUserRepository() {
+        return userRepository;
+    }
 
     @Provides
     @Named("applicationContext")
-    Context provideApplicationContext(){
+    Context provideApplicationContext() {
         return application.getApplicationContext();
     }
 

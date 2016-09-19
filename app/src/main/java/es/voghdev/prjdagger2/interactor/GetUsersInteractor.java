@@ -33,8 +33,9 @@ public class GetUsersInteractor implements Interactor, GetUsers.Listener {
     }
 
     public void getUsers(GetUsers.Listener listener) {
-        if(listener != null)
+        if (listener != null) {
             this.listener = listener;
+        }
         this.executor.run(this);
     }
 
@@ -59,8 +60,13 @@ public class GetUsersInteractor implements Interactor, GetUsers.Listener {
     }
 
     private class NullListener implements GetUsers.Listener {
-        public void onUsersReceived(List<User> list, boolean isCached) {}
-        public void onError(Exception e) {}
-        public void onNoInternetAvailable() {}
+        public void onUsersReceived(List<User> list, boolean isCached) {
+        }
+
+        public void onError(Exception e) {
+        }
+
+        public void onNoInternetAvailable() {
+        }
     }
 }

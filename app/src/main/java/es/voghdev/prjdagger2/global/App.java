@@ -49,19 +49,20 @@ public class App extends Application {
 
     public void initializeImageCache() {
         File cacheDir = getPicturesDir();
-        if(cacheDir == null)
+        if (cacheDir == null) {
             return;
+        }
 
         cacheDir.mkdirs();
         cache = new PicassoImageCache(this, cacheDir);
         Picasso picasso = new Picasso.Builder(this)
-        //        .downloader(new OkHttpDownloader(cacheDir))
+                //        .downloader(new OkHttpDownloader(cacheDir))
                 .memoryCache(cache)
                 .build();
         //Picasso.setSingletonInstance(picasso);
     }
 
-    public File getPicturesDir(){
+    public File getPicturesDir() {
         File f = getExternalFilesDir(IMAGES_DIR);
         return f;
     }

@@ -32,7 +32,7 @@ public class UserListModule {
     }
 
     @Provides
-    AbsUserListPresenter provideUserListPresenter(){
+    AbsUserListPresenter provideUserListPresenter() {
         return new UserListPresenter(mContext);
     }
 }

@@ -15,8 +15,6 @@
  */
 package es.voghdev.prjdagger2.repository.cachepolicy;
 
-import es.voghdev.prjdagger2.repository.cachepolicy.CachePolicy;
-
 public class TimedCachePolicy implements CachePolicy {
     protected static final long MS_PER_MINUTE = 60000;
     public static final long ONE_MINUTE = MS_PER_MINUTE;

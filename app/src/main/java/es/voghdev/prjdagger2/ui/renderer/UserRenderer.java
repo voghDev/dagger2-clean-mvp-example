@@ -18,6 +18,8 @@ package es.voghdev.prjdagger2.ui.renderer;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,14 +57,16 @@ public class UserRenderer extends Renderer<User> {
     @InjectView(R.id.user_tv_label)
     TextView tvClicks;
 
-    public interface OnUserClicked{
-        public void onPictureClicked(User user);
-        public void onBackgroundClicked(User user);
+    public interface OnUserClicked {
+        void onPictureClicked(User user);
+
+        void onBackgroundClicked(User user);
     }
 
     protected void setListener(OnUserClicked listener) {
-        if(listener != null)
+        if (listener != null) {
             this.listener = listener;
+        }
     }
 
     @Override
@@ -76,11 +80,12 @@ public class UserRenderer extends Renderer<User> {
     }
 
     @OnClick(R.id.user_container)
-    public void onClickRow(RelativeLayout root){
+    public void onClickRow(RelativeLayout root) {
         listener.onBackgroundClicked(getContent());
     }
+
     @OnClick(R.id.user_iv_thumbnail)
-    public void onClickThumbnail(ImageView imageView){
+    public void onClickThumbnail(ImageView imageView) {
         listener.onPictureClicked(getContent());
     }
 
@@ -99,13 +104,19 @@ public class UserRenderer extends Renderer<User> {
     }
 
     private void renderThumbnail(User user) {
-        if(!user.hasThumbnail())
+        if (!user.hasThumbnail()) {
             return;
+        }
 
-        Picasso.with(mContext).load(user.getThumbnail()).transform(new RoundedTransformation()).placeholder(R.drawable.ic_launcher).into(ivThumbnail);
+        Picasso.with(mContext).load(user.getThumbnail())
+                .transform(new RoundedTransformation()).placeholder(R.drawable.ic_launcher).into(ivThumbnail);
         Drawable background = mContext.getResources().getDrawable(R.drawable.rounded_edges);
-        background.setColorFilter(mContext.getResources().getColor(R.color.light_gray), PorterDuff.Mode.SRC_OVER);
-        ivThumbnail.setBackgroundDrawable(background); // setBackground requires minSdkVersion >= 16!!
+        background.setColorFilter(ContextCompat.getColor(mContext, R.color.light_gray), PorterDuff.Mode.SRC_OVER);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            ivThumbnail.setBackground(background); // setBackground requires minSdkVersion >= 16!!
+        } else {
+            ivThumbnail.setBackgroundDrawable(background); // setBackground requires minSdkVersion >= 16!!
+        }
     }
 
     private void renderDescription(User user) {
@@ -120,8 +131,11 @@ public class UserRenderer extends Renderer<User> {
         tvClicks.setText(Integer.toString(0));
     }
 
-    private class EmptyOnUserClicked implements OnUserClicked{
-        public void onPictureClicked(User user) { }
-        public void onBackgroundClicked(User user) { }
+    private class EmptyOnUserClicked implements OnUserClicked {
+        public void onPictureClicked(User user) {
+        }
+
+        public void onBackgroundClicked(User user) {
+        }
     }
 }

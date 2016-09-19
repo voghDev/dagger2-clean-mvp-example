@@ -17,5 +17,5 @@
 package es.voghdev.prjdagger2.usecase;
 
 public interface ShowError {
-    public void show(String message);
+    void show(String message);
 }

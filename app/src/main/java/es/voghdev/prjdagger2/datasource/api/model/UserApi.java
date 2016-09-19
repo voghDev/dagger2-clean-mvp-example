@@ -31,9 +31,13 @@ public class UserApi {
         return email;
     }
 
-    public String getGender() { return gender; }
+    public String getGender() {
+        return gender;
+    }
 
-    public UserPictureApiEntry getPicture() { return picture; }
+    public UserPictureApiEntry getPicture() {
+        return picture;
+    }
 
     public UserLocationApiEntry getLocation() {
         return location;

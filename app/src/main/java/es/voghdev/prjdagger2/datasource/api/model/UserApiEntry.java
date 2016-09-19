@@ -26,7 +26,7 @@ public class UserApiEntry {
         return user != null ? user : new UserApi();
     }
 
-    public User parseUser(){
+    public User parseUser() {
 
         User u = new User();
         u.setId(getUser().getEmail());

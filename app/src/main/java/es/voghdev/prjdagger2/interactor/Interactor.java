@@ -16,5 +16,5 @@
 package es.voghdev.prjdagger2.interactor;
 
 public interface Interactor {
-    public void run();
+    void run();
 }

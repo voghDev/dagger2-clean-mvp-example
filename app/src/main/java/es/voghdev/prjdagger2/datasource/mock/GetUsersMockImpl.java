@@ -23,7 +23,7 @@ import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class GetUsersMockImpl implements GetUsers {
-    private User generateMockUser(String id, String name, String addr){
+    private User generateMockUser(String id, String name, String addr) {
         User u = new User();
         u.setId(id);
         u.setName(name);
@@ -43,12 +43,13 @@ public class GetUsersMockImpl implements GetUsers {
 
         int random = new Random().nextInt(10);
 
-        if(random < 8)
+        if (random < 8) {
             listener.onUsersReceived(users, true);
-        else if( random >= 8 && random <= 9)
+        } else if (random >= 8 && random <= 9) {
             listener.onNoInternetAvailable();
-        else
+        } else {
             listener.onError(new Exception("Unparseable response"));
+        }
     }
 
     private List<User> generateMockedUsers() {
