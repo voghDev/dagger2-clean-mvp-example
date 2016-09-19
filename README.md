@@ -6,15 +6,17 @@ Some of the aspects covered on this project are:
 
 * Dependency Injection using [Dagger2][6].
 * Elegant ~~ListView~~ **RecyclerView** implementation using [Renderers][15].
-* Elegant View management using Jake Wharton's [ButterKnife][11].
+* View binding using Jake Wharton's [ButterKnife 6.x][11] (current is 8.x).
 * Image loading using [picasso][12], round transformations using **PorterDuff**.
 * Creating an image cache with [picasso][12].
 * Model-View-Presenter + Interactor + DataSource layers, with different **DataSource**s:
   * a REST Api using [retrofit][13]
   * a local **JSON file**
   * a class generating **mock** instances
-* A less-boilerplate **MVP** implementation using generics (splitted into Presenter / APresenter / APresenterImpl).
-* Retro-compatible architecture (minSdkVersion is 8)
+* Code-style rules using [checkstyle][16]. [This blogpost][17] indicates how checkstyle has been imported
+* Android Unit testing using JUnit 4 and [Mockito][18].
+* UI Testing using [Espresso][19]
+* Low-boilerplate **MVP** implementation using generics (splitted into Presenter / APresenter / APresenterImpl).
 
 This project has taken the following **talks**, **articles**, and **repos** as inspiration (it wouldn't have been possible without them)
 
@@ -26,6 +28,7 @@ This project has taken the following **talks**, **articles**, and **repos** as i
 * [Antonio Leiva's MVP Example][7] and [Blog article][8]
 * [protohipster - Jorge Barroso][9]
 * [UpcomingMoviesMVP - Jose Luis Martín][14]
+* [KataSuperHeroesAndroid - Karumi][20]
 
 TODOs
 -----
@@ -81,3 +84,8 @@ Developed By
 [13]: https://github.com/square/retrofit
 [14]: https://github.com/jlmd/UpcomingMoviesMVP
 [15]: https://github.com/pedrovgs/Renderers
+[16]: http://checkstyle.sourceforge.net/
+[17]: https://mobiledevstories.wordpress.com/2016/06/17/android-configuring-checkstyle-for-your-android-project/
+[18]: http://mockito.org/
+[19]: https://google.github.io/android-testing-support-library/docs/espresso/
+[20]: https://github.com/Karumi/KataSuperHeroesAndroid
