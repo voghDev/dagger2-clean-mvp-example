@@ -15,6 +15,62 @@
  */
 package es.voghdev.prjdagger2;
 
-public class UserListTest {
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.usecase.GetUsers;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+public class UserListTest extends BaseUnitTest {
+    @Mock
+    UserListCollaborator userListCollaborator;
+
+    UserListCaller userListCaller;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        userListCaller = new UserListCaller(userListCollaborator);
+    }
+
+    @Test
+    public void shouldAddTwoPlusTwo() throws Exception {
+        assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void shouldReturnAMockedListOfUsers() throws Exception {
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                List<User> users = new ArrayList<User>();
+                User b = createMockUser("A001", "John Smith", "Sunset Blvd. 27", "smithjohn", "", "1248234823");
+                users.add(b);
+                ((GetUsers.Listener) invocation.getArguments()[0]).onUsersReceived(users, true);
+                return null;
+            }
+        }).when(userListCollaborator).getUsers(
+                any(GetUsers.Listener.class));
+
+        userListCaller.getUsers();
+
+        verify(userListCollaborator, times(1)).getUsers(
+                any(GetUsers.Listener.class));
+
+        assertEquals(userListCaller.getResult().size(), 1);
+        assertEquals(userListCaller.getResult().get(0).getName(), "John Smith");
+    }
 }
