@@ -17,6 +17,8 @@ package es.voghdev.prjdagger2;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
@@ -28,6 +30,10 @@ import java.util.List;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
+import static junit.framework.Assert.assertNull;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doAnswer;
@@ -39,6 +45,9 @@ public class UserListTest extends BaseUnitTest {
     UserListCollaborator userListCollaborator;
 
     UserListCaller userListCaller;
+
+    @Captor
+    ArgumentCaptor<GetUsers.Listener> argumentCaptor;
 
     @Before
     public void setUp() {
@@ -72,5 +81,26 @@ public class UserListTest extends BaseUnitTest {
 
         assertEquals(userListCaller.getResult().size(), 1);
         assertEquals(userListCaller.getResult().get(0).getName(), "John Smith");
+    }
+
+    @Test
+    public void shouldReturnAMockedListOfUsersUsingAnArgumentCaptor() throws Exception {
+        userListCaller.getUsers();
+
+        List<User> result = new ArrayList<User>();
+        User a = createMockUser("A001", "John Smith", "Sunset Blvd. 27", "smithjohn", "", "1248234823");
+        result.add(a);
+
+        // Let's call the callback. ArgumentCaptor.capture() works like a matcher.
+        verify(userListCollaborator, times(1)).getUsers(
+                argumentCaptor.capture());
+
+        assertNull(userListCaller.getResult());
+
+        // Once you're satisfied, trigger the reply on callbackCaptor.getValue().
+        argumentCaptor.getValue().onUsersReceived(result, true);
+
+        // Some assertion about the state after the callback is called
+        assertThat(userListCaller.getResult().size(), is(equalTo(1)));
     }
 }

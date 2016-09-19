@@ -9,10 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.activity.UserListActivity;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
