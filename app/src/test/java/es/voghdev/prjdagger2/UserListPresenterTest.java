@@ -58,9 +58,7 @@ public class UserListPresenterTest {
 
     @Test
     public void shouldCreateANonNullMockedPresenter() throws Exception {
-        givenAMockedEnvironment();
-
-        UserListPresenter presenter = new UserListPresenter(mockContext, mockInteractor);
+        UserListPresenter presenter = givenAMockedPresenter();
         assertNotNull(presenter);
     }
 
@@ -68,7 +66,6 @@ public class UserListPresenterTest {
     public void shouldShowLoadingOnStart() throws Exception {
         UserListPresenter presenter = givenAMockedPresenter();
 
-        presenter.setView(mockView);
         presenter.initialize();
 
         verify(mockView, times(1)).showLoading();
