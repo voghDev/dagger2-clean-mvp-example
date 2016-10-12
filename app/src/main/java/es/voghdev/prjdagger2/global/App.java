@@ -22,8 +22,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
-import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.DaggerRootComponent;
+import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.ui.picasso.PicassoImageCache;
 

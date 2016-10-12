@@ -18,9 +18,6 @@ package es.voghdev.prjdagger2.global.di;
 import android.content.Context;
 
 import dagger.Module;
-import dagger.Provides;
-import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
-import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 
 @Module
 public class UserListModule {

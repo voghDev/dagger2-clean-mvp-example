@@ -17,10 +17,7 @@ package es.voghdev.prjdagger2.ui.presenter.abs;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.ui.presenter.Presenter;
 
 public abstract class AbsUserListPresenter extends Presenter<AbsUserListPresenter.View> {

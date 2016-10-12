@@ -24,6 +24,7 @@ import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 public interface RootComponent {
 
     void inject(BaseActivity activity); // BaseActivity can inject dependencies from this Component
+
     void inject(App application);
 
     void inject(AbsUserListPresenter presenter); // UserListPresenter can inject dependencies from this Component
