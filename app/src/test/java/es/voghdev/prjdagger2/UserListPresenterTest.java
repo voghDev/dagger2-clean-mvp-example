@@ -19,6 +19,7 @@ import android.content.Context;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import es.voghdev.prjdagger2.global.App;
@@ -38,22 +39,22 @@ import static org.mockito.Mockito.when;
 
 public class UserListPresenterTest {
 
+    @Mock
     GetUsersInteractor mockInteractor;
+    @Mock
     App mockApp;
+    @Mock
     RootComponent mockComponent;
+    @Mock
     MainModule mockModule;
+    @Mock
     Context mockContext;
+    @Mock
     UserListPresenter.View mockView;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(UserListPresenterTest.class);
-        mockModule = mock(MainModule.class);
-        mockApp = mock(App.class);
-        mockContext = mock(Context.class);
-        mockInteractor = mock(GetUsersInteractor.class);
-        mockView = mock(UserListPresenter.View.class);
-        mockComponent = mock(RootComponent.class);
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
