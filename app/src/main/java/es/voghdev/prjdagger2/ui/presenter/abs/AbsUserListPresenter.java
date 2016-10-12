@@ -24,8 +24,7 @@ import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.ui.presenter.Presenter;
 
 public abstract class AbsUserListPresenter extends Presenter<AbsUserListPresenter.View> {
-    @Inject
-    protected GetUsersInteractor interactor;
+
 
     public abstract void onUserPictureClicked(User user);
 

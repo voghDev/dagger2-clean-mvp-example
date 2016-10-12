@@ -19,17 +19,25 @@ import android.content.Context;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class UserListPresenter extends AbsUserListPresenter {
+
+    protected GetUsersInteractor interactor;
+
     protected Context context;
 
-    public UserListPresenter(Context ctx) {
+    @Inject
+    public UserListPresenter(Context ctx, GetUsersInteractor getUsersInteractor) {
         context = ctx;
+        interactor = getUsersInteractor;
 
         getComponent().inject(this);
     }

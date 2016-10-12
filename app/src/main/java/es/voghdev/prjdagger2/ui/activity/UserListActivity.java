@@ -38,6 +38,8 @@ import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
+import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
 import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
@@ -51,8 +53,10 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     RVRendererAdapter<User> adapter;
 
-    @Inject
     AbsUserListPresenter presenter;
+
+    @Inject
+    GetUsersInteractor getUsersInteractor;
 
     private UserListComponent component;
 
@@ -80,6 +84,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
                 new ListAdapteeCollection<User>(new ArrayList<User>())
         );
 
+        presenter = new UserListPresenter(this, getUsersInteractor);
         presenter.setView(this);
         presenter.initialize();
 
@@ -140,6 +145,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
             component = DaggerUserListComponent.builder()
                     .rootComponent(((App) getApplication()).getComponent())
                     .userListModule(new UserListModule(getApplicationContext()))
+                    .mainModule(((App) getApplication()).getMainModule())
                     .build();
         }
         return component;

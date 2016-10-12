@@ -22,8 +22,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
-import es.voghdev.prjdagger2.global.di.DaggerRootComponent;
 import es.voghdev.prjdagger2.global.di.MainModule;
+import es.voghdev.prjdagger2.global.di.DaggerRootComponent;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.ui.picasso.PicassoImageCache;
 
@@ -32,6 +32,7 @@ public class App extends Application {
 
     private RootComponent component;
     private PicassoImageCache cache;
+    private MainModule mainModule;
 
     @Override
     public void onCreate() {
@@ -41,8 +42,9 @@ public class App extends Application {
     }
 
     private void initializeDependencyInjector() {
+        mainModule = new MainModule(this);
         component = DaggerRootComponent.builder()
-                .mainModule(new MainModule(this))
+                .mainModule(mainModule)
                 .build();
         component.inject(this);
     }
@@ -60,6 +62,10 @@ public class App extends Application {
                 .memoryCache(cache)
                 .build();
         //Picasso.setSingletonInstance(picasso);
+    }
+
+    public MainModule getMainModule() {
+        return mainModule;
     }
 
     public File getPicturesDir() {

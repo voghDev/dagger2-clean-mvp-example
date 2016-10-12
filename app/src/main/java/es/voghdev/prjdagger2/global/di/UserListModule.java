@@ -31,8 +31,4 @@ public class UserListModule {
         mContext = context;
     }
 
-    @Provides
-    AbsUserListPresenter provideUserListPresenter() {
-        return new UserListPresenter(mContext);
-    }
 }
