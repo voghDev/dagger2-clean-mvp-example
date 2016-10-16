@@ -4,7 +4,6 @@ jdk: oraclejdk7
 android:
   components:
     - tools
-    - tools # See https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943
     - platform-tools
     - build-tools-23.0.2
     - android-23
@@ -13,4 +12,4 @@ android:
     - extra-android-m2repository
 
 script:
-   - ./gradlew build test
+   - ./gradlew test
