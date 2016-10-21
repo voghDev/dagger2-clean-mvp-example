@@ -1,5 +1,7 @@
 # Dagger2-CLEAN-MVP Example
 
+[![Build Status](https://travis-ci.org/voghDev/dagger2-clean-mvp-example.svg?branch=master)](https://travis-ci.org/voghDev/dagger2-clean-mvp-example)
+
 Sample project with the first steps of my approach to Android CLEAN architecture, based on elegant solutions from respected developers.
 Features a List of users, obtained from randomuser API.
 Some of the aspects covered on this project are:
