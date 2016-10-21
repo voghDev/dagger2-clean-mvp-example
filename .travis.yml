@@ -1,5 +1,8 @@
 language: android
-jdk: oraclejdk7
+
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8 # 8 minutes (2 minutes by default)
 
 android:
   components:
@@ -7,9 +10,8 @@ android:
     - platform-tools
     - build-tools-23.0.2
     - android-23
-    - extra-android-support
     - extra-google-m2repository
     - extra-android-m2repository
 
 script:
-   - ./gradlew build checkstyle # test
+   - ./gradlew build checkstyle # connectedCheck
