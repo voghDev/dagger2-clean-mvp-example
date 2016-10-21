@@ -12,4 +12,4 @@ android:
     - extra-android-m2repository
 
 script:
-   - ./gradlew test
+   - ./gradlew build checkstyle test
