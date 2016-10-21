@@ -17,4 +17,4 @@ android:
     - extra-android-m2repository
 
 script:
-   - ./gradlew build checkstyle # connectedCheck
+   - ./gradlew build checkstyle test # connectedCheck
