@@ -1,7 +1,7 @@
 language: android
-jdk: oraclejdk8 # Solves #699 https://github.com/OneBusAway/onebusaway-android/commit/7a88700b68864dd780cb4900d7a07f3cd7411a8c
+# jdk: oraclejdk8 # Solves #699 https://github.com/OneBusAway/onebusaway-android/commit/7a88700b68864dd780cb4900d7a07f3cd7411a8c
 # Turn off caching to avoid any caching problems
-cache: false
+# cache: false
 
 env:
   global:
