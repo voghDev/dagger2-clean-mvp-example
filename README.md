@@ -19,6 +19,7 @@ Some of the aspects covered on this project are:
 * Android Unit testing using JUnit 4 and [Mockito][18].
 * UI Testing using [Espresso][19]
 * Low-boilerplate **MVP** implementation using generics (splitted into Presenter / APresenter / APresenterImpl).
+* [Travis CI][22] integration including instrumentation tests ran on an AVD. see [.travis.yml script][23]
 
 This project has taken the following **talks**, **articles**, and **repos** as inspiration (it wouldn't have been possible without them)
 
@@ -92,3 +93,5 @@ Developed By
 [19]: https://google.github.io/android-testing-support-library/docs/espresso/
 [20]: https://github.com/Karumi/KataSuperHeroesAndroid
 [21]: https://github.com/flipper83/protohipster
+[22]: http://travis-ci.org
+[23]: https://github.com/voghDev/dagger2-clean-mvp-example/blob/master/.travis.yml
