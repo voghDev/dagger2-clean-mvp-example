@@ -21,6 +21,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.MainModule;
@@ -32,6 +34,7 @@ import es.voghdev.prjdagger2.usecase.GetUsers;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -41,6 +44,8 @@ public class UserListPresenterTest {
 
     @Mock
     GetUsersInteractor mockInteractor;
+    @Mock
+    GetUsersInteractor mockErrorInteractor;
     @Mock
     App mockApp;
     @Mock
@@ -91,6 +96,42 @@ public class UserListPresenterTest {
         verify(mockView, times(1)).makeUserSayHello(mockUser);
     }
 
+    @Test
+    public void shouldShowNoInternetMessageWhenInternetIsNotAvailable() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenterWithNoInternet();
+
+        presenter.initialize();
+
+        verify(mockView, times(1)).showNoInternetMessage();
+    }
+
+    @Test
+    public void shouldNotShowAPIErrorWhenInternetIsNotAvailable() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenterWithNoInternet();
+
+        presenter.initialize();
+
+        verify(mockView, times(0)).showUserListError(any(Exception.class));
+    }
+
+    @Test
+    public void shouldShowErrorMessageWhenTheresAnErrorInTheAPI() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenterWithBrokenAPI();
+
+        presenter.initialize();
+
+        verify(mockView, times(1)).showUserListError(any(Exception.class));
+    }
+
+    @Test
+    public void shouldNotShowNoInternetMessageWhenThereIsAnErrorInTheAPI() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenterWithBrokenAPI();
+
+        presenter.initialize();
+
+        verify(mockView, times(0)).showNoInternetMessage();
+    }
+
     private void givenAMockedEnvironment() {
         when(mockContext.getApplicationContext()).thenReturn(mockApp);
         when(mockApp.getComponent()).thenReturn(mockComponent);
@@ -100,6 +141,38 @@ public class UserListPresenterTest {
     private UserListPresenter givenAMockedPresenter() {
         givenAMockedEnvironment();
         UserListPresenter presenter = new UserListPresenter(mockContext, mockInteractor);
+        presenter.setView(mockView);
+        return presenter;
+    }
+
+    private UserListPresenter givenAMockedPresenterWithNoInternet() {
+        givenAMockedEnvironment();
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                ((GetUsers.Listener) invocation.getArguments()[0]).onNoInternetAvailable();
+                return null;
+            }
+        }).when(mockErrorInteractor).getUsers(
+                any(GetUsers.Listener.class));
+
+        UserListPresenter presenter = new UserListPresenter(mockContext, mockErrorInteractor);
+        presenter.setView(mockView);
+        return presenter;
+    }
+
+    private UserListPresenter givenAMockedPresenterWithBrokenAPI() {
+        givenAMockedEnvironment();
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                ((GetUsers.Listener) invocation.getArguments()[0]).onError(new Exception("Unparseable JSON Message"));
+                return null;
+            }
+        }).when(mockErrorInteractor).getUsers(
+                any(GetUsers.Listener.class));
+
+        UserListPresenter presenter = new UserListPresenter(mockContext, mockErrorInteractor);
         presenter.setView(mockView);
         return presenter;
     }
