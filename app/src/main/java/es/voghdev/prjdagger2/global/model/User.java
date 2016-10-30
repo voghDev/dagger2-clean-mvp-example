@@ -17,12 +17,13 @@ package es.voghdev.prjdagger2.global.model;
 
 public class User {
 
-    protected String id = "";
-    protected String name = "";
-    protected String address = "";
-    protected String username = "";
-    protected String thumbnail = "";
-    protected String facebookId = "";
+    String id = "";
+    String name = "";
+    String address = "";
+    String username = "";
+    String thumbnail = "";
+    String facebookId = "";
+    String email = "";
 
     public String getId() {
         return id;
@@ -74,5 +75,13 @@ public class User {
 
     public boolean hasThumbnail() {
         return thumbnail != null && !thumbnail.isEmpty();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

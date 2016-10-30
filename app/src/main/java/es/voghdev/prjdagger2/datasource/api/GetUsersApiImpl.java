@@ -28,7 +28,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
-    private static final String ENDPOINT = "http://api.randomuser.me";
+    private static final String ENDPOINT = "https://api.randomuser.me/";
 
     private int pageSize = 0;
     private int pageNumber = 0;

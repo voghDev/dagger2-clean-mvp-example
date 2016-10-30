@@ -20,25 +20,56 @@ import es.voghdev.prjdagger2.global.model.User;
 public class UserApiEntry {
     private static final String SPACE = " ";
 
-    private UserApi user;
+    IdApiEntry id;
+    UserNameApiEntry name = new UserNameApiEntry();
+    String email = "";
+    String gender = "";
+    UserPictureApiEntry picture = new UserPictureApiEntry();
+    UserLocationApiEntry location = new UserLocationApiEntry();
+    String md5 = "";
+    String dob = "";
 
-    public UserApi getUser() {
-        return user != null ? user : new UserApi();
+    public UserNameApiEntry getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public UserPictureApiEntry getPicture() {
+        return picture;
+    }
+
+    public UserLocationApiEntry getLocation() {
+        return location;
+    }
+
+    public String getMd5() {
+        return md5;
+    }
+
+    public String getId() {
+        return id != null ? id.parseId() : "";
     }
 
     public User parseUser() {
 
         User u = new User();
-        u.setId(getUser().getEmail());
-        u.setName(getUser().getName().getFirst());
-        u.setAddress(getUser().getLocation().getStreet());
+        u.setId(getId());
+        u.setEmail(getEmail());
+        u.setAddress(getLocation().getStreet());
 
         StringBuilder strb = new StringBuilder()
-                .append(getUser().getName().getTitle()).append(SPACE)
-                .append(getUser().getName().getFirst()).append(SPACE)
-                .append(getUser().getName().getLast());
+                .append(getName().getTitle()).append(SPACE)
+                .append(getName().getFirst()).append(SPACE)
+                .append(getName().getLast());
         u.setName(strb.toString());
-        u.setThumbnail(getUser().getPicture().getThumbnail());
+        u.setThumbnail(getPicture().getThumbnail());
 
         return u;
     }

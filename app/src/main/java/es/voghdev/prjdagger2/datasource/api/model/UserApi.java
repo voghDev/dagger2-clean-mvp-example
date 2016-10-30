@@ -15,6 +15,7 @@
  */
 package es.voghdev.prjdagger2.datasource.api.model;
 
+@Deprecated
 public class UserApi {
     private UserNameApiEntry name = new UserNameApiEntry();
     private String email = "";
