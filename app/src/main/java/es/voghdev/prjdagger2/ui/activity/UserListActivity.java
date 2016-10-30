@@ -137,7 +137,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     @Override
     public void showUserClickedMessage(User user) {
-        Toast.makeText(this, getString(R.string.user_was_clicked, user.getId()), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.user_was_clicked, user.getEmail()), Toast.LENGTH_LONG).show();
     }
 
     private UserListComponent component() {

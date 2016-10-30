@@ -120,7 +120,7 @@ public class UserRenderer extends Renderer<User> {
     }
 
     private void renderDescription(User user) {
-        tvDescription.setText(user.getId());
+        tvDescription.setText(user.getEmail());
     }
 
     private void renderTitle(User user) {
