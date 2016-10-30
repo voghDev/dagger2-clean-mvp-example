@@ -42,6 +42,7 @@ TODOs
 - [X] Unit tests
 - [X] UI tests
 - [X] Refactor to add Repository layer
+- [ ] Refactor Presenter layer to make it testable with JUinit
 
 Developed By
 ------------
