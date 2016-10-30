@@ -20,7 +20,7 @@ import es.voghdev.prjdagger2.global.model.User;
 public class UserApiEntry {
     private static final String SPACE = " ";
 
-    IdApiEntry id;
+    IdApiEntry id = new IdApiEntry();
     UserNameApiEntry name = new UserNameApiEntry();
     String email = "";
     String gender = "";
@@ -29,47 +29,19 @@ public class UserApiEntry {
     String md5 = "";
     String dob = "";
 
-    public UserNameApiEntry getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public UserPictureApiEntry getPicture() {
-        return picture;
-    }
-
-    public UserLocationApiEntry getLocation() {
-        return location;
-    }
-
-    public String getMd5() {
-        return md5;
-    }
-
-    public String getId() {
-        return id != null ? id.parseId() : "";
-    }
-
     public User parseUser() {
 
         User u = new User();
-        u.setId(getId());
-        u.setEmail(getEmail());
-        u.setAddress(getLocation().getStreet());
+        u.setId(id.parseId());
+        u.setEmail(email);
+        u.setAddress(location.getStreet());
 
         StringBuilder strb = new StringBuilder()
-                .append(getName().getTitle()).append(SPACE)
-                .append(getName().getFirst()).append(SPACE)
-                .append(getName().getLast());
+                .append(name.getTitle()).append(SPACE)
+                .append(name.getFirst()).append(SPACE)
+                .append(name.getLast());
         u.setName(strb.toString());
-        u.setThumbnail(getPicture().getThumbnail());
+        u.setThumbnail(picture.getThumbnail());
 
         return u;
     }

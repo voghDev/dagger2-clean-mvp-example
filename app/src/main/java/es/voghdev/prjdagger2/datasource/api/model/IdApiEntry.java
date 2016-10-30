@@ -17,8 +17,8 @@ package es.voghdev.prjdagger2.datasource.api.model;
 
 
 public class IdApiEntry {
-    String name;
-    String value;
+    String name = "";
+    String value = "";
 
     public String parseId() {
         StringBuilder strb = new StringBuilder()
