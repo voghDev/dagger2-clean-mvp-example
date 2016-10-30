@@ -42,7 +42,9 @@ TODOs
 - [X] Unit tests
 - [X] UI tests
 - [X] Refactor to add Repository layer
-- [ ] Refactor Presenter layer to make it testable with JUnit
+- [X] Refactor Presenter layer to make it testable with JUnit
+- [ ] Add retrofit2-based API layer, keeping the retrofit1 one
+- [ ] Redesign UI to a more attractive one
 
 Developed By
 ------------
