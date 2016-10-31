@@ -48,6 +48,8 @@ public class UserRenderer extends Renderer<User> {
 
     @InjectView(R.id.user_container)
     RelativeLayout root;
+    @InjectView(R.id.user_iv_background)
+    ImageView ivBackground;
     @InjectView(R.id.user_iv_thumbnail)
     ImageView ivThumbnail;
     @InjectView(R.id.user_tv_title)
@@ -99,35 +101,52 @@ public class UserRenderer extends Renderer<User> {
         User u = getContent();
         renderTitle(u);
         renderDescription(u);
+        renderBackground(u);
         renderThumbnail(u);
         renderClicks(u);
     }
 
-    private void renderThumbnail(User user) {
+    protected void renderBackground(User u) {
+        int resId = R.mipmap.background3;
+        Picasso.with(mContext)
+                .load(resId)
+                .into(ivBackground);
+    }
+
+    protected void renderThumbnail(User user) {
         if (!user.hasThumbnail()) {
             return;
         }
 
         Picasso.with(mContext).load(user.getThumbnail())
-                .transform(new RoundedTransformation()).placeholder(R.drawable.ic_launcher).into(ivThumbnail);
+                .transform(new RoundedTransformation())
+                .resizeDimen(R.dimen.user_thumbnail_w, R.dimen.user_thumbnail_h)
+                .placeholder(R.mipmap.background1)
+                .into(ivThumbnail);
+
+//        transformImageWithPorterDuff(ivThumbnail);
+    }
+
+    private void transformImageWithPorterDuff(ImageView imageView) {
         Drawable background = ContextCompat.getDrawable(mContext, R.drawable.rounded_edges);
         background.setColorFilter(ContextCompat.getColor(mContext, R.color.light_gray), PorterDuff.Mode.SRC_OVER);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            ivThumbnail.setBackground(background); // setBackground requires minSdkVersion >= 16!!
+            imageView.setBackground(background); // setBackground requires minSdkVersion >= 16!!
         } else {
-            ivThumbnail.setBackgroundDrawable(background); // setBackground requires minSdkVersion >= 16!!
+            imageView.setBackgroundDrawable(background); // setBackground requires minSdkVersion >= 16!!
         }
     }
 
-    private void renderDescription(User user) {
+    protected void renderDescription(User user) {
         tvDescription.setText(user.getEmail());
     }
 
-    private void renderTitle(User user) {
+    protected void renderTitle(User user) {
         tvTitle.setText(user.getName());
     }
 
-    private void renderClicks(User user) {
+    protected void renderClicks(User user) {
         tvClicks.setText(Integer.toString(0));
     }
 
