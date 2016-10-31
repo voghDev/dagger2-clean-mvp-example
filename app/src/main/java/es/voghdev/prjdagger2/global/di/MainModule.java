@@ -43,7 +43,9 @@ public class MainModule {
                 new ThreadExecutor(),
                 new MainThreadImpl());
 
-        userRepository = new UserRepository(application, interactor, new GetUsersFileImpl(application));
+        userRepository = new UserRepository(application, interactor, new GetUsersFileImpl(application,
+                new ThreadExecutor(),
+                new MainThreadImpl()));
     }
 
     @Provides

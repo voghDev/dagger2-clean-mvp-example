@@ -31,13 +31,21 @@ import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.datasource.api.GetUsersResponse;
 import es.voghdev.prjdagger2.datasource.api.model.UserApiEntry;
 import es.voghdev.prjdagger2.global.model.User;
+import es.voghdev.prjdagger2.interactor.Interactor;
+import es.voghdev.prjdagger2.interactor.MainThread;
+import es.voghdev.prjdagger2.interactor.impl.ThreadExecutor;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class GetUsersFileImpl implements GetUsers {
+public class GetUsersFileImpl implements Interactor, GetUsers {
     private Context mContext = null;
+    ThreadExecutor threadExecutor;
+    MainThread mainThread;
+    Listener listener = new EmptyListener();
 
-    public GetUsersFileImpl(Context applicationContext) {
-        mContext = applicationContext;
+    public GetUsersFileImpl(Context applicationContext, ThreadExecutor threadExecutor, MainThread mainThread) {
+        this.mContext = applicationContext;
+        this.threadExecutor = threadExecutor;
+        this.mainThread = mainThread;
     }
 
     private List<User> parseUsersFromRawFile(int resId) throws IOException {
@@ -76,20 +84,49 @@ public class GetUsersFileImpl implements GetUsers {
 
     @Override
     public void getAsync(final Listener listener) {
+        this.listener = listener;
+        this.threadExecutor.run(this);
+
+    }
+
+    @Override
+    public void run() {
         try {
             final List<User> users = parseUsersFromRawFile(R.raw.users);
 
+            mainThread.post(new Runnable() {
+                @Override
+                public void run() {
+                    listener.onUsersReceived(users, true);
+                }
+            });
             // Wait 3s to simulate a real load process
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    listener.onUsersReceived(users, true);
                 }
             }, 3000);
 
         } catch (IOException e) {
             listener.onError(e);
+        }
+    }
+
+    private class EmptyListener implements Listener {
+        @Override
+        public void onUsersReceived(List<User> users, boolean isCached) {
+            /* Empty */
+        }
+
+        @Override
+        public void onError(Exception e) {
+            /* Empty */
+        }
+
+        @Override
+        public void onNoInternetAvailable() {
+            /* Empty */
         }
     }
 }

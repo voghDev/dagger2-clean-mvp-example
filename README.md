@@ -36,7 +36,7 @@ This project has taken the following **talks**, **articles**, and **repos** as i
 TODOs
 -----
 
-- [ ] A better Thread management to do heavier operations outside the UI Thread
+- [X] A better Thread management to do heavier operations outside the UI Thread
 - [X] RecyclerViews, Renderers2.0
 - [ ] More DataSources like ~~parse~~, Google Cloud, Azure, protobuf...
 - [X] Unit tests
