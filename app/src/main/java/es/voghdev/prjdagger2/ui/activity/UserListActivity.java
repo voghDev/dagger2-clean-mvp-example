@@ -43,6 +43,7 @@ import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
 import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
+import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 
 public class UserListActivity extends BaseActivity implements AbsUserListPresenter.View {
     @InjectView(R.id.users_list)
@@ -57,6 +58,9 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     @Inject
     GetUsersInteractor getUsersInteractor;
+
+    @Inject
+    ShowUserClicked showUserClicked;
 
     private UserListComponent component;
 
@@ -137,7 +141,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     @Override
     public void showUserClickedMessage(User user) {
-        Toast.makeText(this, getString(R.string.user_was_clicked, user.getEmail()), Toast.LENGTH_LONG).show();
+        showUserClicked.show(user);
     }
 
     private UserListComponent component() {

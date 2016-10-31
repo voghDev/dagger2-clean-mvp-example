@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Olmo Gallegos Hernández.
+ * Copyright (C) 2016 Olmo Gallegos Hernández.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,30 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.di;
+package es.voghdev.prjdagger2.ui.view;
 
 import android.content.Context;
+import android.widget.Toast;
 
-import dagger.Module;
-import dagger.Provides;
-import es.voghdev.prjdagger2.ui.view.ShowUserClickedToastImpl;
+import es.voghdev.prjdagger2.R;
+import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 
-@Module
-public class UserListModule {
+public class ShowUserClickedToastImpl implements ShowUserClicked {
+    Context context;
 
-    Context mContext;
-    ShowUserClicked showUserClickedToast;
-
-    public UserListModule(final Context context) {
-        mContext = context;
-
-        showUserClickedToast = new ShowUserClickedToastImpl(mContext);
+    public ShowUserClickedToastImpl(Context context) {
+        this.context = context;
     }
 
-    @Provides
-    public ShowUserClicked provideShowUserClicked() {
-        return showUserClickedToast;
+    @Override
+    public void show(User user) {
+        Toast.makeText(context, context.getString(R.string.user_was_clicked, user.getEmail()), Toast.LENGTH_LONG).show();
     }
-
 }

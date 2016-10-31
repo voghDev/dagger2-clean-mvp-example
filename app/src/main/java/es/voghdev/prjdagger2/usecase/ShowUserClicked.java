@@ -13,30 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.global.di;
 
-import android.content.Context;
+package es.voghdev.prjdagger2.usecase;
 
-import dagger.Module;
-import dagger.Provides;
-import es.voghdev.prjdagger2.ui.view.ShowUserClickedToastImpl;
-import es.voghdev.prjdagger2.usecase.ShowUserClicked;
+import es.voghdev.prjdagger2.global.model.User;
 
-@Module
-public class UserListModule {
-
-    Context mContext;
-    ShowUserClicked showUserClickedToast;
-
-    public UserListModule(final Context context) {
-        mContext = context;
-
-        showUserClickedToast = new ShowUserClickedToastImpl(mContext);
-    }
-
-    @Provides
-    public ShowUserClicked provideShowUserClicked() {
-        return showUserClickedToast;
-    }
-
+public interface ShowUserClicked {
+    void show(User user);
 }
