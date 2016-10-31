@@ -83,7 +83,7 @@ public class UserListPresenterTest {
 
         presenter.initialize();
 
-        verify(mockInteractor, times(1)).getUsers(any(GetUsers.Listener.class));
+        verify(mockInteractor, times(1)).getAsync(any(GetUsers.Listener.class));
     }
 
     @Test
@@ -153,7 +153,7 @@ public class UserListPresenterTest {
                 ((GetUsers.Listener) invocation.getArguments()[0]).onNoInternetAvailable();
                 return null;
             }
-        }).when(mockErrorInteractor).getUsers(
+        }).when(mockErrorInteractor).getAsync(
                 any(GetUsers.Listener.class));
 
         UserListPresenter presenter = new UserListPresenter(mockContext, mockErrorInteractor);
@@ -169,7 +169,7 @@ public class UserListPresenterTest {
                 ((GetUsers.Listener) invocation.getArguments()[0]).onError(new Exception("Unparseable JSON Message"));
                 return null;
             }
-        }).when(mockErrorInteractor).getUsers(
+        }).when(mockErrorInteractor).getAsync(
                 any(GetUsers.Listener.class));
 
         UserListPresenter presenter = new UserListPresenter(mockContext, mockErrorInteractor);

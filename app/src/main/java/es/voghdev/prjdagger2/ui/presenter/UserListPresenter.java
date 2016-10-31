@@ -30,7 +30,7 @@ import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class UserListPresenter extends AbsUserListPresenter {
 
-    protected GetUsersInteractor interactor;
+    protected GetUsers interactor;
 
     protected Context context;
 
@@ -45,7 +45,7 @@ public class UserListPresenter extends AbsUserListPresenter {
     @Override
     public void initialize() {
         view.showLoading();
-        interactor.getUsers(new GetUsers.Listener() {
+        interactor.getAsync(new GetUsers.Listener() {
             @Override
             public void onUsersReceived(List<User> users, boolean isCached) {
                 view.showUserList(users);
