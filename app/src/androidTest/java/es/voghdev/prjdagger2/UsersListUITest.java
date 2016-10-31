@@ -19,7 +19,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class ApplicationTest {
+public class UsersListUITest {
 
     @Mock
     GetUsers getUsers;
