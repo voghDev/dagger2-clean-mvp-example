@@ -16,7 +16,6 @@
 package es.voghdev.prjdagger2.datasource.datafile;
 
 import android.content.Context;
-import android.os.Handler;
 
 import com.google.gson.Gson;
 
@@ -94,21 +93,17 @@ public class GetUsersFileImpl implements Interactor, GetUsers {
         try {
             final List<User> users = parseUsersFromRawFile(R.raw.users);
 
+            wait(3000);
+
             mainThread.post(new Runnable() {
                 @Override
                 public void run() {
                     listener.onUsersReceived(users, true);
                 }
             });
-            // Wait 3s to simulate a real load process
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                }
-            }, 3000);
-
         } catch (IOException e) {
+            listener.onError(e);
+        } catch (InterruptedException e) {
             listener.onError(e);
         }
     }
