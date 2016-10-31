@@ -39,11 +39,11 @@ public class MainModule {
     public MainModule(App application) {
         this.application = application;
 
-        userRepository = new UserRepository(application, new GetUsersApiImpl(10, 0), new GetUsersFileImpl(application));
-
-        interactor = new GetUsersInteractor(userRepository,
+        interactor = new GetUsersInteractor(new GetUsersApiImpl(10, 0),
                 new ThreadExecutor(),
                 new MainThreadImpl());
+
+        userRepository = new UserRepository(application, interactor, new GetUsersFileImpl(application));
     }
 
     @Provides
