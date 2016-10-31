@@ -21,6 +21,8 @@ Some of the aspects covered on this project are:
 * Low-boilerplate **MVP** implementation using generics (splitted into Presenter / APresenter / APresenterImpl).
 * [Travis CI][22] integration including instrumentation tests ran on an AVD. see [.travis.yml script][23]
 
+![Screenshot][firstScreenshot]
+
 This project has taken the following **talks**, **articles**, and **repos** as inspiration (it wouldn't have been possible without them)
 
 * [Jorge Barroso - Forgetting Android][3]
@@ -75,6 +77,7 @@ Developed By
     limitations under the License.
 
 
+[firstScreenshot]: ./screenshots/sample1.gif
 [1]: https://github.com/pedrovgs/
 [2]: https://github.com/pedrovgs/EffectiveAndroidUI
 [3]: https://www.youtube.com/watch?v=ROdIvrLL1ao
