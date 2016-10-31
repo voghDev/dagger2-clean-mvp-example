@@ -44,6 +44,7 @@ import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
 import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
+import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
 public class UserListActivity extends BaseActivity implements AbsUserListPresenter.View {
     @InjectView(R.id.users_list)
@@ -61,6 +62,8 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     @Inject
     ShowUserClicked showUserClicked;
+    @Inject
+    ShowUserGreeting showUserGreeting;
 
     private UserListComponent component;
 
@@ -136,7 +139,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     @Override
     public void makeUserSayHello(User user) {
-        Toast.makeText(this, getString(R.string.user_greeting, user.getName()), Toast.LENGTH_LONG).show();
+        showUserGreeting.show(user);
     }
 
     @Override
