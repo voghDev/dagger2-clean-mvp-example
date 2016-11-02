@@ -15,7 +15,6 @@
  */
 package es.voghdev.prjdagger2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import es.voghdev.prjdagger2.global.model.User;
@@ -32,11 +31,5 @@ public class UserListCollaborator extends BaseUnitTest {
         }).start();
     }
 
-    protected List<User> generateMockUserList() {
-        List<User> list = new ArrayList<User>();
-        list.add(createMockUser("A001", "John Smith", "Sunset Blvd. 27", "smithjohn", "", "1248234564"));
-        list.add(createMockUser("A002", "Dianne Harris", "Sunset Blvd. 29", "dianne", "", "1212354823"));
-        list.add(createMockUser("A003", "Hans Veljden", "Sunset Blvd. 31", "hansv", "", "1248789723"));
-        return list;
-    }
+
 }
