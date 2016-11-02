@@ -53,6 +53,8 @@
         android:layout_below="@+id/user_tv_title"
         android:layout_marginTop="8dp"
         android:text="@string/loading"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/orange" />
 
