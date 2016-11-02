@@ -76,6 +76,10 @@ Developed By
     See the License for the specific language governing permissions and
     limitations under the License.
 
+Imagery
+-------
+
+All icons & art were obtained from [flaticon.com][24], an excellent resource for downloading icons under attribution. If you don't know it, I recommend you to have a look, and don't forget to credit the authors!
 
 [firstScreenshot]: ./screenshots/sample1.gif
 [1]: https://github.com/pedrovgs/
@@ -101,3 +105,4 @@ Developed By
 [21]: https://github.com/flipper83/protohipster
 [22]: http://travis-ci.org
 [23]: https://github.com/voghDev/dagger2-clean-mvp-example/blob/master/.travis.yml
+[24]: http://www.flaticon.com
