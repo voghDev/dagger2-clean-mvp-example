@@ -19,6 +19,8 @@ import android.content.Context;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -32,6 +34,7 @@ import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.repository.UserRepository;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
+import static junit.framework.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -44,6 +47,13 @@ public class UserRepositoryTest extends BaseUnitTest {
     GetUsers mockGetUsersApi;
     @Mock
     Context mockContext;
+    @Mock
+    UserListCollaborator userListCollaborator;
+
+    RepositoryCaller repositoryCaller;
+
+    @Captor
+    ArgumentCaptor<GetUsers.Listener> argumentCaptor;
 
     @Before
     public void setUp() {
@@ -57,6 +67,32 @@ public class UserRepositoryTest extends BaseUnitTest {
         userRepository.getAsync(new EmptyListener());
 
         verify(mockGetUsersApi, times(1)).getAsync(any(GetUsers.Listener.class));
+    }
+
+    @Test
+    public void shouldReturnTwoUsersWhenUsingApiDataSource() throws Exception {
+        givenAMockedRepository();
+
+        repositoryCaller = new RepositoryCaller(mockGetUsersApi);
+        repositoryCaller.getUsers();
+
+        verify(mockGetUsersApi, times(1)).getAsync(argumentCaptor.capture());
+        verify(mockGetUsersFile, times(0)).getAsync(any(GetUsers.Listener.class));
+
+        assertEquals(2, repositoryCaller.getResult().size());
+    }
+
+    @Test
+    public void shouldReturnOneUsersWhenUsingFileDataSource() throws Exception {
+        givenAMockedRepository();
+
+        repositoryCaller = new RepositoryCaller(mockGetUsersFile);
+        repositoryCaller.getUsers();
+
+        verify(mockGetUsersFile, times(1)).getAsync(argumentCaptor.capture());
+        verify(mockGetUsersApi, times(0)).getAsync(any(GetUsers.Listener.class));
+
+        assertEquals(1, repositoryCaller.getResult().size());
     }
 
     @Test
