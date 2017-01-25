@@ -132,6 +132,17 @@ public class UserListPresenterTest {
         verify(mockView, times(0)).showNoInternetMessage();
     }
 
+    @Test
+    public void shouldShowUserListAfterApiReturnsResults() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenter();
+
+        PresenterCaller presenterCaller = new PresenterCaller(mockInteractor);
+
+        presenter.initialize();
+
+        // verify(mockGetUsersApi, times(1)).getAsync(argumentCaptor.capture());
+    }
+
     private void givenAMockedEnvironment() {
         when(mockContext.getApplicationContext()).thenReturn(mockApp);
         when(mockApp.getComponent()).thenReturn(mockComponent);

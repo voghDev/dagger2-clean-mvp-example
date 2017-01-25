@@ -83,7 +83,7 @@ public class UserRepositoryTest extends BaseUnitTest {
     }
 
     @Test
-    public void shouldReturnOneUsersWhenUsingFileDataSource() throws Exception {
+    public void shouldReturnOneUserWhenUsingFileDataSource() throws Exception {
         givenAMockedRepository();
 
         repositoryCaller = new RepositoryCaller(mockGetUsersFile);
