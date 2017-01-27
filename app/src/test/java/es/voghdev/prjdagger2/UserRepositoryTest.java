@@ -148,17 +148,17 @@ public class UserRepositoryTest extends BaseUnitTest {
     private class EmptyListener implements GetUsers.Listener {
         @Override
         public void onUsersReceived(List<User> users, boolean isCached) {
-
+            /* Empty */
         }
 
         @Override
         public void onError(Exception e) {
-
+            /* Empty */
         }
 
         @Override
         public void onNoInternetAvailable() {
-
+            /* Empty */
         }
     }
 }

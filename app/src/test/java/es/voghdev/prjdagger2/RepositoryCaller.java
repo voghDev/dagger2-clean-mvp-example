@@ -48,6 +48,6 @@ public class RepositoryCaller implements GetUsers.Listener {
 
     @Override
     public void onNoInternetAvailable() {
-
+        /* Empty */
     }
 }

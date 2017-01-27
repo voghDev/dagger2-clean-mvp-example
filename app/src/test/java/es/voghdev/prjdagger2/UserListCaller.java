@@ -48,6 +48,6 @@ public class UserListCaller implements GetUsers.Listener {
 
     @Override
     public void onNoInternetAvailable() {
-
+        /* Empty */
     }
 }
