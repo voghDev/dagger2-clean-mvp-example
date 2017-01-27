@@ -24,6 +24,8 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import java.util.List;
+
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
@@ -40,7 +42,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class UserListPresenterTest {
+public class UserListPresenterTest extends BaseUnitTest {
 
     @Mock
     GetUsersInteractor mockInteractor;
@@ -134,13 +136,22 @@ public class UserListPresenterTest {
 
     @Test
     public void shouldShowUserListAfterApiReturnsResults() throws Exception {
-        UserListPresenter presenter = givenAMockedPresenter();
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                List<User> users = generateMockUserList();
+                GetUsers.Listener callback = (GetUsers.Listener) invocation.getArguments()[0];
+                callback.onUsersReceived(users, true);
+                return null;
+            }
+        }).when(mockInteractor).getAsync(any(GetUsers.Listener.class));
 
-        PresenterCaller presenterCaller = new PresenterCaller(mockInteractor);
+        UserListPresenter presenter = givenAMockedPresenter();
 
         presenter.initialize();
 
-        // verify(mockGetUsersApi, times(1)).getAsync(argumentCaptor.capture());
+        verify(mockView, times(1)).showUserList(any(List.class));
+        verify(mockView, times(1)).hideLoading();
     }
 
     private void givenAMockedEnvironment() {
