@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.7'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
@@ -21,7 +21,6 @@ task checkstyle(type: Checkstyle) {
     classpath = files()
 }
 
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -34,10 +33,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
-    //compileOptions {
-    //    sourceCompatibility JavaVersion.VERSION_1_7
-    //    targetCompatibility JavaVersion.VERSION_1_7
-    //}
 
     buildTypes {
         release {
@@ -52,45 +47,65 @@ android {
             buildConfigField "String", "DEFAULT_PASSWORD", "\"4notherWay0fD3finingBuildC0nfigVars\""
         }
     }
+
+    productFlavors {
+        prod{
+            Properties prop = new Properties();
+            prop.load(project.rootProject.file('dev.properties').newDataInputStream())
+            def iv = prop.get("iv", null)
+            def secretKey = prop.get("secretKey", null)
+            def root = "https://api.randomuser.me/"
+            buildConfigField("String", "ROOT_URL", "\"${root}\"")
+            buildConfigField("String", "IV", iv)
+            buildConfigField("String", "SECRET_KEY", secretKey)
+        }
+        cpws {
+            Properties prop = new Properties();
+            prop.load(project.rootProject.file('dev.properties').newDataInputStream())
+            def iv = prop.get("iv", null)
+            def secretKey = prop.get("secretKey", null)
+            def root = "http://add.your.test.server.location/here"
+            buildConfigField("String", "ROOT_URL", "\"${root}\"")
+            buildConfigField("String", "IV", iv)
+            buildConfigField("String", "SECRET_KEY", secretKey)
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Google
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-    compile 'com.github.pedrovgs:renderers:2.0.1'
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'com.squareup.picasso:picasso:2.3.+'
     compile 'com.google.dagger:dagger:2.0.2'
     apt 'com.google.dagger:dagger-compiler:2.0.2'
-    androidTestCompile 'com.github.fabioCollini:DaggerMock:0.5'
     provided 'javax.annotation:jsr250-api:1.0'
+
+    // Square
     compile 'com.jakewharton:butterknife:6.0.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.picasso:picasso:2.3.+'
 
-    testCompile "junit:junit:4.12"
-    testCompile "org.mockito:mockito-core:1.10.19"
-    testCompile 'org.mockito:mockito-all:1.10.19'
+    // Libs from cool developers
+    compile 'com.github.pedrovgs:renderers:2.0.3'
+    compile 'es.voghdev.progressbuttonview:ProgressButtonView:0.7.9'
 
-    compile 'org.glassfish:javax.annotation:10.0-b28'
+    // Testing
+    testCompile 'junit:junit:4.12'
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:0.5"
+    androidTestCompile "com.android.support.test:rules:0.5"
+
+    // Dependencies for Android unit tests
+    androidTestCompile "junit:junit:4.12"
+    androidTestCompile "org.mockito:mockito-core:1.10.19"
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
-    androidTestCompile('com.google.dexmaker:dexmaker-mockito:1.2') {
-        exclude group: 'org.hamcrest', module: 'hamcrest-core'
-    }
-    androidTestCompile 'com.android.support.test:runner:0.4.1'
-    androidTestCompile 'com.android.support.test:rules:0.4.1'
-    androidTestCompile 'org.mockito:mockito-core:1.10.19'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
-        exclude group: 'javax.inject', module: 'javax.inject'
-        exclude group: 'com.squareup', module: 'javawriter'
-    }
-    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.1') {
-        exclude module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-        exclude module: 'support-v4'
-    }
-    androidTestCompile('com.android.support.test.espresso:espresso-intents:2.2.1')
-}
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
 
-configurations.all {
-    resolutionStrategy.force 'com.android.support:support-annotations:23.0.1'
+    // Espresso UI Testing
+    androidTestCompile "com.android.support.test.espresso:espresso-core:2.2.2"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:2.2.2"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:2.2.2"
 }

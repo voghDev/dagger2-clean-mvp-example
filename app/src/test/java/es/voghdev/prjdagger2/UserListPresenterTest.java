@@ -113,6 +113,7 @@ public class UserListPresenterTest extends BaseUnitTest {
 
         presenter.initialize();
 
+        verify(mockView, times(1)).hideLoading();
         verify(mockView, times(0)).showUserListError(any(Exception.class));
     }
 
@@ -122,6 +123,7 @@ public class UserListPresenterTest extends BaseUnitTest {
 
         presenter.initialize();
 
+        verify(mockView, times(1)).hideLoading();
         verify(mockView, times(1)).showUserListError(any(Exception.class));
     }
 
@@ -131,6 +133,7 @@ public class UserListPresenterTest extends BaseUnitTest {
 
         presenter.initialize();
 
+        verify(mockView, times(1)).hideLoading();
         verify(mockView, times(0)).showNoInternetMessage();
     }
 
