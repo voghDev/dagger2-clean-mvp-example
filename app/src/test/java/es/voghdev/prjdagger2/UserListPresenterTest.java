@@ -26,6 +26,7 @@ import org.mockito.stubbing.Answer;
 
 import java.util.List;
 
+import dagger.Module;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
@@ -58,6 +59,8 @@ public class UserListPresenterTest extends BaseUnitTest {
     Context mockContext;
     @Mock
     UserListPresenter.View mockView;
+    @Mock
+    User mockUser;
 
     @Before
     public void setUp() {
@@ -155,6 +158,26 @@ public class UserListPresenterTest extends BaseUnitTest {
 
         verify(mockView, times(1)).showUserList(any(List.class));
         verify(mockView, times(1)).hideLoading();
+    }
+
+    @Test
+    public void shouldDisplayUserNameWhenARowIsClicked() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenter();
+
+        presenter.onUserRowClicked(mockUser);
+
+        verify(mockView, times(1)).showUserClickedMessage(mockUser);
+        verify(mockView, times(0)).makeUserSayHello(mockUser);
+    }
+
+    @Test
+    public void shouldDisplayAHelloMessageWhenUserPictureIsClicked() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenter();
+
+        presenter.onUserPictureClicked(mockUser);
+
+        verify(mockView, times(1)).makeUserSayHello(mockUser);
+        verify(mockView, times(0)).showUserClickedMessage(mockUser);
     }
 
     private void givenAMockedEnvironment() {
