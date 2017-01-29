@@ -49,7 +49,7 @@ android {
     }
 
     productFlavors {
-        prod{
+        prod {
             Properties prop = new Properties();
             prop.load(project.rootProject.file('dev.properties').newDataInputStream())
             def iv = prop.get("iv", null)
