@@ -26,7 +26,6 @@ import org.mockito.stubbing.Answer;
 
 import java.util.List;
 
-import dagger.Module;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
@@ -92,22 +91,23 @@ public class UserListPresenterTest extends BaseUnitTest {
     }
 
     @Test
-    public void shouldSayHelloWhenAUserIsClicked() throws Exception {
-        UserListPresenter presenter = givenAMockedPresenter();
-        User mockUser = givenAMockedUser();
-
-        presenter.onUserPictureClicked(mockUser);
-
-        verify(mockView, times(1)).makeUserSayHello(mockUser);
-    }
-
-    @Test
     public void shouldShowNoInternetMessageWhenInternetIsNotAvailable() throws Exception {
         UserListPresenter presenter = givenAMockedPresenterWithNoInternet();
 
         presenter.initialize();
 
         verify(mockView, times(1)).showNoInternetMessage();
+        verify(mockView, times(1)).hideLoading();
+    }
+
+    @Test
+    public void shouldNotShowUserListWhenInternetIsNotAvailable() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenterWithNoInternet();
+
+        presenter.initialize();
+
+        verify(mockView, times(1)).hideLoading();
+        verify(mockView, times(0)).showUserList(any(List.class));
     }
 
     @Test
@@ -178,6 +178,36 @@ public class UserListPresenterTest extends BaseUnitTest {
 
         verify(mockView, times(1)).makeUserSayHello(mockUser);
         verify(mockView, times(0)).showUserClickedMessage(mockUser);
+    }
+
+    @Test
+    public void shouldDoNothingOnResume() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenter();
+
+        presenter.resume();
+
+        verify(mockInteractor, times(0)).getAsync(any(GetUsers.Listener.class));
+        verify(mockErrorInteractor, times(0)).getAsync(any(GetUsers.Listener.class));
+    }
+
+    @Test
+    public void shouldDoNothingOnPause() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenter();
+
+        presenter.pause();
+
+        verify(mockInteractor, times(0)).getAsync(any(GetUsers.Listener.class));
+        verify(mockErrorInteractor, times(0)).getAsync(any(GetUsers.Listener.class));
+    }
+
+    @Test
+    public void shouldDoNothingOnDestroy() throws Exception {
+        UserListPresenter presenter = givenAMockedPresenter();
+
+        presenter.destroy();
+
+        verify(mockInteractor, times(0)).getAsync(any(GetUsers.Listener.class));
+        verify(mockErrorInteractor, times(0)).getAsync(any(GetUsers.Listener.class));
     }
 
     private void givenAMockedEnvironment() {

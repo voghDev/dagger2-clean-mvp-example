@@ -32,6 +32,8 @@ import java.util.List;
 
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.repository.UserRepository;
+import es.voghdev.prjdagger2.repository.cachepolicy.NoCachePolicy;
+import es.voghdev.prjdagger2.repository.cachepolicy.TimedCachePolicy;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 import static junit.framework.Assert.assertEquals;
@@ -104,6 +106,47 @@ public class UserRepositoryTest extends BaseUnitTest {
         verify(mockGetUsersFile, times(0)).getAsync(any(GetUsers.Listener.class));
     }
 
+    @Test
+    public void shouldNotUseAnyDataSourceInTheSecondCall() throws Exception {
+        UserRepository userRepository = givenAMockedRepository();
+
+        userRepository.get();
+
+        verify(mockGetUsersApi, times(1)).get();
+
+        userRepository.get();
+
+        verify(mockGetUsersApi, times(1)).get(); // Interactions should remain 1
+    }
+
+    @Test
+    public void shouldAlwaysUseApiDataSourceIfCachePolicySaysAlwaysInvalidate() throws Exception {
+        UserRepository userRepository = givenAMockedRepository();
+        userRepository.setCachePolicy(new NoCachePolicy());
+
+        userRepository.getAsync(new EmptyListener());
+
+        verify(mockGetUsersApi, times(1)).getAsync(any(GetUsers.Listener.class));
+
+        userRepository.getAsync(new EmptyListener());
+
+        verify(mockGetUsersApi, times(2)).getAsync(any(GetUsers.Listener.class));
+    }
+
+    @Test
+    public void shouldNotUseAnyDataSourceInTheSecondAsynchronousCall() throws Exception {
+        UserRepository userRepository = givenAMockedRepository();
+        userRepository.setCachePolicy(new TimedCachePolicy(20000));
+
+        userRepository.getAsync(new EmptyListener());
+
+        verify(mockGetUsersApi, times(1)).getAsync(any(GetUsers.Listener.class));
+
+        userRepository.getAsync(new EmptyListener());
+
+        verify(mockGetUsersApi, times(1)).getAsync(any(GetUsers.Listener.class));
+    }
+
     private UserRepository givenAMockedRepository() {
         final List<User> apiUsers = givenThereAreSomeUsers();
         final List<User> fileUsers = givenThereIsOneUser();
@@ -125,6 +168,9 @@ public class UserRepositoryTest extends BaseUnitTest {
                 return null;
             }
         }).when(mockGetUsersFile).getAsync(any(GetUsers.Listener.class));
+
+        Mockito.when(mockGetUsersApi.get()).thenReturn(apiUsers);
+        Mockito.when(mockGetUsersFile.get()).thenReturn(fileUsers);
 
         return userRepository;
     }
