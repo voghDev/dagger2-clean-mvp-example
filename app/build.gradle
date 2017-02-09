@@ -59,16 +59,16 @@ android {
             buildConfigField("String", "IV", iv)
             buildConfigField("String", "SECRET_KEY", secretKey)
         }
-//        cpws {
-//            Properties prop = new Properties();
-//            prop.load(project.rootProject.file('dev.properties').newDataInputStream())
-//            def iv = prop.get("iv", null)
-//            def secretKey = prop.get("secretKey", null)
-//            def root = "http://add.your.test.server.location/here"
-//            buildConfigField("String", "ROOT_URL", "\"${root}\"")
-//            buildConfigField("String", "IV", iv)
-//            buildConfigField("String", "SECRET_KEY", secretKey)
-//        }
+        cpws {
+            Properties prop = new Properties();
+            prop.load(project.rootProject.file('dev.properties').newDataInputStream())
+            def iv = prop.get("iv", null)
+            def secretKey = prop.get("secretKey", null)
+            def root = "http://add.your.test.server.location/here"
+            buildConfigField("String", "ROOT_URL", "\"${root}\"")
+            buildConfigField("String", "IV", iv)
+            buildConfigField("String", "SECRET_KEY", secretKey)
+        }
     }
 }
 
