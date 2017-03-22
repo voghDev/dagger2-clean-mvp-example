@@ -5,5 +5,11 @@
     <string name="no_internet">No Internet available. Please check your internet connection</string>
     <string name="users_list">User list</string>
     <string name="user_greeting">Hey what\'s up, I\'m %1$s, and I\'m as freak as you can see in my picture</string>
-    <string name="user_was_clicked">User %1$s was clicked</string>
+    <string name="user_was_clicked">User %1$s was clicked</string>ç
+    <string name="name">Name</string>
+    <string name="user_name">Username</string>
+    <string name="user_address">Address</string>
+    <string name="user_thumbnail">Thumbnail</string>
+    <string name="user_facebookId">Facebook ID</string>
+    <string name="user_email">Email</string>
 </resources>

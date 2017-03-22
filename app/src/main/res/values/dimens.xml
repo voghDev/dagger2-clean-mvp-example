@@ -2,4 +2,8 @@
 <resources>
     <dimen name="user_thumbnail_w">64dp</dimen>
     <dimen name="user_thumbnail_h">64dp</dimen>
+    <dimen name="user_data_margin">10dp</dimen>
+    <dimen name="user_data_margin_T">5dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>
