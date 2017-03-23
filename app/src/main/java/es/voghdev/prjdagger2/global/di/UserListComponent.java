@@ -23,4 +23,5 @@ public interface UserListComponent {
     void inject(UserListActivity activity);
 
     // ... Fragment
+
 }

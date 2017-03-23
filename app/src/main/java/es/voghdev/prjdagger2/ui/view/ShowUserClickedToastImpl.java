@@ -16,10 +16,11 @@
 package es.voghdev.prjdagger2.ui.view;
 
 import android.content.Context;
-import android.content.Intent;
+import android.widget.Toast;
 
+
+import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.ui.activity.UserDetailActivity;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 
 public class ShowUserClickedToastImpl implements ShowUserClicked {
@@ -31,11 +32,7 @@ public class ShowUserClickedToastImpl implements ShowUserClicked {
 
     @Override
     public void show(User user) {
-        //Toast.makeText(context, context.getString(R.string.user_was_clicked, user.getEmail()),
-        //        Toast.LENGTH_LONG).show();
-        Intent i = new Intent(this.context, UserDetailActivity.class);
-        i.putExtra("usuario", user);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
+        Toast.makeText(context, context.getString(R.string.user_was_clicked, user.getEmail()),
+                Toast.LENGTH_LONG).show();
     }
 }

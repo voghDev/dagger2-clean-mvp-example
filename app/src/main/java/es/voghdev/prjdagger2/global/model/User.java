@@ -15,9 +15,7 @@
  */
 package es.voghdev.prjdagger2.global.model;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class User {
 
     String id = "";
     String name = "";

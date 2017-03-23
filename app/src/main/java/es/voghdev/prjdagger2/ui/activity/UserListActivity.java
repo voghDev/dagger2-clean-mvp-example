@@ -44,6 +44,7 @@ import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
 import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
+import es.voghdev.prjdagger2.usecase.ShowUserDetail;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
 public class UserListActivity extends BaseActivity implements AbsUserListPresenter.View {
@@ -65,6 +66,9 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
     @Inject
     ShowUserGreeting showUserGreeting;
 
+    @Inject
+    ShowUserDetail showUserDetail;
+
     private UserListComponent component;
 
     final UserRenderer.OnUserClicked mUserClickListener = new UserRenderer.OnUserClicked() {
@@ -75,7 +79,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
         @Override
         public void onBackgroundClicked(User user) {
-            presenter.onUserRowClicked(user);
+            showUserDetail.show(user.getId());
         }
     };
 

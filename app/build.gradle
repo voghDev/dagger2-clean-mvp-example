@@ -38,8 +38,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "DEFAULT_USER", "\"\"")
-            buildConfigField "String", "DEFAULT_PASSWORD", "\"\""
+            buildConfigField("String","DEFAULT_USER","\"\"")
+            buildConfigField "String","DEFAULT_PASSWORD","\"\""
         }
 
         debug {
@@ -76,39 +76,40 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // Google
-    
-
-    // Square
-    
-    // Libs from cool developers
-    
-    // Testing
-    
-    // Android Testing Support Library's runner and rules
-    
-    // Dependencies for Android unit tests
-    
-    // Espresso UI Testing
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.dagger:dagger:2.0.2'
+    apt 'com.google.dagger:dagger-compiler:2.0.2'
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    // Square
     compile 'com.jakewharton:butterknife:6.0.0'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.picasso:picasso:2.3.+'
+
+    // Libs from cool developers
     compile 'com.github.pedrovgs:renderers:2.0.3'
     compile 'es.voghdev.progressbuttonview:ProgressButtonView:0.7.9'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // Testing
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
+
+    // Android Testing Support Library's runner and rules
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
+
+    // Dependencies for Android unit tests
     androidTestCompile 'junit:junit:4.12'
     androidTestCompile 'org.mockito:mockito-core:1.10.19'
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+
+    // Espresso UI Testing
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
-    apt 'com.google.dagger:dagger-compiler:2.0.2'
-    provided 'javax.annotation:jsr250-api:1.0'
+
+
 }
