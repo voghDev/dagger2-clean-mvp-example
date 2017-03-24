@@ -2,6 +2,7 @@ package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -24,6 +25,7 @@ import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.ui.picasso.RoundedTransformation;
 import es.voghdev.prjdagger2.ui.presenter.UserDetailPresenter;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserDetailPresenter;
+import es.voghdev.prjdagger2.usecase.ShowUserDetail;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
 public class UserDetailActivity extends AppCompatActivity implements AbsUserDetailPresenter.View {
@@ -54,8 +56,10 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
     @Inject
     ShowUserGreeting showUserGreeting;
 
-    @Inject
     AbsUserDetailPresenter presenter;
+
+    @Inject
+    ShowUserDetail showUserDetail;
 
     @Inject
     GetUsersInteractor getUserInteractor;
@@ -67,28 +71,38 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail);
 
+
         ButterKnife.inject(this);
 
         Bundle bundle = getIntent().getExtras();
         final String userId = (String) bundle.get("userId");
 
-        //component.inject(this);
+        component().inject(this);
 
         presenter = new UserDetailPresenter(this, getUserInteractor, userId);
         presenter.setView(this);
+
         presenter.initialize();
+
+        userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onUserPictureClicked();
+            }
+        });
+
 
     }
 
     private void userInfo(User user) {
         if (user != null) {
-            if (!user.getName().isEmpty()) {
-                tvUserName.setText(user.getName());
+            if (!user.getUsername().isEmpty()) {
+                tvUserName.setText(user.getUsername());
             } else {
                 tvUserName.setText("-");
             }
-            if (!user.getUsername().isEmpty()) {
-                userName.setText(user.getUsername());
+            if (!user.getName().isEmpty()) {
+                userName.setText(user.getName());
             } else {
                 userName.setText("-");
             }
@@ -143,11 +157,14 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
     @Override
     public void showUserData(User user) {
         userInfo(user);
+        getSupportActionBar().setTitle(user.getName());
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public void showUserClickedMessage() {
-
+    public void showUserClickedMessage(User user) {
+        showUserGreeting.show(user);
     }
 
     private UserListComponent component() {
@@ -161,4 +178,16 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
         return component;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                //
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

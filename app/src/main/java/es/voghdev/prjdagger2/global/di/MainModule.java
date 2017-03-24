@@ -28,8 +28,6 @@ import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.interactor.impl.MainThreadImpl;
 import es.voghdev.prjdagger2.interactor.impl.ThreadExecutor;
 import es.voghdev.prjdagger2.repository.UserRepository;
-import es.voghdev.prjdagger2.ui.view.ShowUserDetailImpl;
-import es.voghdev.prjdagger2.usecase.ShowUserDetail;
 
 @Module
 public class MainModule {
@@ -58,11 +56,6 @@ public class MainModule {
     @Provides
     UserRepository provideUserRepository() {
         return userRepository;
-    }
-
-    @Provides
-    public ShowUserDetail provideShowUserDetail() {
-        return new ShowUserDetailImpl(application);
     }
 
     @Provides

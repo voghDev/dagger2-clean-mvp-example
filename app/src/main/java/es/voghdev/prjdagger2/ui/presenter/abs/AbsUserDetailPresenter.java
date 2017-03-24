@@ -20,6 +20,6 @@ public abstract class AbsUserDetailPresenter extends Presenter<AbsUserDetailPres
 
         void showUserData(User user);
 
-        void showUserClickedMessage();
+        void showUserClickedMessage(User user);
     }
 }

@@ -65,7 +65,6 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
     ShowUserClicked showUserClicked;
     @Inject
     ShowUserGreeting showUserGreeting;
-
     @Inject
     ShowUserDetail showUserDetail;
 
