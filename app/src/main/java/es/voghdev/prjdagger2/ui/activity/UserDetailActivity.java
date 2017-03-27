@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
@@ -22,7 +23,6 @@ import es.voghdev.prjdagger2.global.di.UserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
-import es.voghdev.prjdagger2.ui.picasso.RoundedTransformation;
 import es.voghdev.prjdagger2.ui.presenter.UserDetailPresenter;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserDetailPresenter;
 import es.voghdev.prjdagger2.usecase.ShowUserDetail;
@@ -44,9 +44,6 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
     @InjectView(R.id.user_detail_tv_data_email)
     TextView userEmail;
 
-    @InjectView(R.id.user_detail_tv_data_thumbnail)
-    TextView userThumbnail;
-
     @InjectView(R.id.user_detail_userImage)
     ImageView userImage;
 
@@ -63,6 +60,11 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
 
     @Inject
     GetUsersInteractor getUserInteractor;
+
+    @OnClick(R.id.user_detail_userImage)
+    public void userClicked(View view) {
+        presenter.onUserPictureClicked();
+    }
 
     private UserListComponent component;
 
@@ -84,54 +86,7 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
 
         presenter.initialize();
 
-        userImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.onUserPictureClicked();
-            }
-        });
 
-
-    }
-
-    private void userInfo(User user) {
-        if (user != null) {
-            if (!user.getUsername().isEmpty()) {
-                tvUserName.setText(user.getUsername());
-            } else {
-                tvUserName.setText("-");
-            }
-            if (!user.getName().isEmpty()) {
-                userName.setText(user.getName());
-            } else {
-                userName.setText("-");
-            }
-            if (!user.getAddress().isEmpty()) {
-                userAddress.setText(user.getAddress());
-            } else {
-                userAddress.setText("-");
-            }
-            if (!user.getFacebookId().isEmpty()) {
-                userFacebookId.setText(user.getFacebookId());
-            } else {
-                userFacebookId.setText("-");
-            }
-            if (!user.getEmail().isEmpty()) {
-                userEmail.setText(user.getEmail());
-            } else {
-                userEmail.setText("-");
-            }
-            if (!user.getThumbnail().isEmpty()) {
-                userThumbnail.setText(user.getThumbnail());
-            } else {
-                userThumbnail.setText("-");
-            }
-            Picasso.with(this).load(user.getThumbnail())
-                    .transform(new RoundedTransformation())
-                    .resizeDimen(R.dimen.user_thumbnail_w, R.dimen.user_thumbnail_h)
-                    .placeholder(R.mipmap.background1)
-                    .into(userImage);
-        }
     }
 
     @Override
@@ -154,13 +109,6 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
         Toast.makeText(this, getResources().getString(R.string.no_user_data), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void showUserData(User user) {
-        userInfo(user);
-        getSupportActionBar().setTitle(user.getName());
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
     @Override
     public void showUserClickedMessage(User user) {
@@ -185,9 +133,69 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
                 finish();
                 break;
             default:
-                //
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showUserName(String username) {
+        if (!username.isEmpty()) {
+            tvUserName.setText(username);
+        } else {
+            tvUserName.setText("-");
+        }
+    }
+
+    @Override
+    public void showUserFacebookId(String userFacebookid) {
+        if (!userFacebookid.isEmpty()) {
+            userFacebookId.setText(userFacebookid);
+        } else {
+            userFacebookId.setText("-");
+        }
+    }
+
+    @Override
+    public void showUserAddress(String userAddres) {
+        if (!userAddres.isEmpty()) {
+            userAddress.setText(userAddres);
+        } else {
+            userAddress.setText("-");
+        }
+    }
+
+    @Override
+    public void showUserEmail(String useremail) {
+        if (!useremail.isEmpty()) {
+            userEmail.setText(useremail);
+        } else {
+            userEmail.setText("-");
+        }
+    }
+
+    @Override
+    public void showUsername(String name) {
+        if (!name.isEmpty()) {
+            userName.setText(name);
+        } else {
+            userName.setText("-");
+        }
+    }
+
+    @Override
+    public void showUserImage(String thumbnail) {
+        Picasso.with(this).load(thumbnail)
+                // .transform(new RoundedTransformation())
+                .resizeDimen(R.dimen.user_thumbnail_w, R.dimen.user_thumbnail_h)
+                .placeholder(R.mipmap.background1)
+                .into(userImage);
+    }
+
+    @Override
+    public void configureToolbar(String username) {
+        getSupportActionBar().setTitle(username);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

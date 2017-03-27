@@ -12,115 +12,82 @@
     tools:context="es.voghdev.prjdagger2.ui.activity.UserDetailActivity">
     <ImageView
         android:id="@+id/user_detail_userImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:background="@color/light_gray"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:src="@color/light_gray"
-       />
-    <TextView
-        android:id="@+id/user_detail_tv_title_name"
-        android:textColor="@android:color/background_dark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:layout_toRightOf="@+id/user_detail_userImage"
-        android:layout_marginLeft="@dimen/user_data_margin_left"/>
+        />
     <TextView
         android:id="@+id/user_detail_tv_data_name"
-        android:layout_marginTop="@dimen/user_data_margin_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/user_detail_userImage"
-        android:layout_marginLeft="@dimen/user_data_margin_left"
-        android:layout_below="@+id/user_detail_tv_title_name"/>
-    <TextView
-        android:id="@+id/user_detail_tv_title_address"
-        android:layout_marginTop="@dimen/user_data_margin_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/user_detail_userImage"
-        android:layout_below="@id/user_detail_tv_data_name"
-        android:text="@string/user_address"
-        android:layout_marginLeft="@dimen/user_data_margin_left"
-        android:textColor="@android:color/background_dark"/>
-    <TextView
-        android:id="@+id/user_detail_tv_data_address"
-        android:layout_marginTop="@dimen/user_data_margin_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/user_detail_userImage"
-        android:layout_below="@+id/user_detail_tv_title_address"
-        android:layout_marginLeft="@dimen/user_data_margin_left"
+        android:text="@string/name"
+        android:background="@color/transparent"
+        android:layout_alignBottom="@+id/user_detail_userImage"
+        android:layout_margin="@dimen/margin_between_titles"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
         />
     <TextView
         android:id="@+id/user_detail_tv_title_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_detail_tv_data_address"
-        android:layout_toRightOf="@+id/user_detail_userImage"
         android:text="@string/user_name"
-        android:textColor="@android:color/background_dark"
-        android:layout_marginLeft="@dimen/user_data_margin_left"
-        />
+        android:textColor="@color/black"
+        android:layout_below="@+id/user_detail_userImage"
+        android:layout_marginTop="@dimen/margin_between_titles"/>
     <TextView
         android:id="@+id/user_detail_tv_data_username"
-        android:layout_marginTop="@dimen/user_data_margin_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/user_detail_userImage"
-        android:layout_below="@id/user_detail_tv_title_username"
-        android:layout_marginLeft="@dimen/user_data_margin_left"
-        />
+        android:layout_below="@+id/user_detail_tv_title_username"
+        android:layout_marginTop="@dimen/margin_between_data"/>
     <TextView
-        android:id="@+id/user_detail_tv_title_thumbnail"
+        android:id="@+id/user_detail_tv_title_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/user_thumbnail"
-        android:textColor="@android:color/background_dark"
-        android:layout_below="@+id/user_detail_userImage"
-        android:layout_marginTop="@dimen/user_data_margin_left"
-        />
+        android:text="@string/user_address"
+        android:textColor="@color/black"
+        android:layout_below="@+id/user_detail_tv_data_username"
+        android:layout_marginTop="@dimen/margin_between_titles"/>
     <TextView
-        android:id="@+id/user_detail_tv_data_thumbnail"
-        android:layout_marginTop="@dimen/user_data_margin_top"
+        android:id="@+id/user_detail_tv_data_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user_detail_tv_title_thumbnail"
-        />
+        android:layout_below="@+id/user_detail_tv_title_address"
+        android:layout_marginTop="@dimen/margin_between_data"/>
     <TextView
         android:id="@+id/user_detail_tv_title_facebookId"
-        android:layout_marginTop="@dimen/user_data_margin_left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/user_detail_tv_data_address"
         android:text="@string/user_facebookId"
-        android:layout_below="@+id/user_detail_tv_data_thumbnail"
-        android:textColor="@android:color/background_dark"
-        />
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/margin_between_titles"/>
     <TextView
         android:id="@+id/user_detail_tv_data_facebookId"
-        android:layout_marginTop="@dimen/user_data_margin_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_detail_tv_title_facebookId"
-        />
+        android:layout_marginTop="@dimen/margin_between_data"/>
     <TextView
         android:id="@+id/user_detail_tv_title_email"
-        android:layout_marginTop="@dimen/user_data_margin_left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/user_email"
-        android:textColor="@android:color/background_dark"
         android:layout_below="@+id/user_detail_tv_data_facebookId"
-        />
+        android:text="@string/user_email"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/margin_between_titles"/>
     <TextView
         android:id="@+id/user_detail_tv_data_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_detail_tv_title_email"
-        />
+        android:layout_marginTop="@dimen/margin_between_data"/>
     <ProgressBar
         android:id="@+id/user_detail_pbr_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

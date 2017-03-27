@@ -34,12 +34,14 @@ public class UserListModule {
     ShowUserGreeting showUserGreetingToast;
     ShowUserDetail showUserDetail;
 
+
     public UserListModule(final Context context) {
         mContext = context;
 
         showUserClickedToast = new ShowUserClickedToastImpl(mContext);
         showUserGreetingToast = new ShowUserGreetingToastImpl(mContext);
-        showUserDetail = new ShowUserDetailImpl(context);
+        showUserDetail = new ShowUserDetailImpl(mContext);
+
     }
 
     @Provides

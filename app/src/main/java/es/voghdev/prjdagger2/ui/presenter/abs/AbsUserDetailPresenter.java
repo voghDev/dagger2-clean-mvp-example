@@ -18,8 +18,20 @@ public abstract class AbsUserDetailPresenter extends Presenter<AbsUserDetailPres
 
         void showErrorLoading();
 
-        void showUserData(User user);
-
         void showUserClickedMessage(User user);
+
+        void showUserName(String username);
+
+        void showUserFacebookId(String userFacebookId);
+
+        void showUserAddress(String userAddress);
+
+        void showUserEmail(String userEmail);
+
+        void showUsername(String name);
+
+        void showUserImage(String thumbnail);
+
+        void configureToolbar(String username);
     }
 }

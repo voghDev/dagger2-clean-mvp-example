@@ -32,5 +32,4 @@ public interface RootComponent {
 
     void inject(UserDetailPresenter userDetailPresenter);
 
-
 }
