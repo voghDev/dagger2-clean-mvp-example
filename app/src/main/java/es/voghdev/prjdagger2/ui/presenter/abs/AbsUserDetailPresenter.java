@@ -16,7 +16,7 @@ public abstract class AbsUserDetailPresenter extends Presenter<AbsUserDetailPres
 
         void hideLoading();
 
-        void showErrorLoading();
+        void showUserError();
 
         void showUserClickedMessage(User user);
 

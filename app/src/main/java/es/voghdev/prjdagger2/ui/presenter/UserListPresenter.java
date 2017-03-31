@@ -89,7 +89,7 @@ public class UserListPresenter extends AbsUserListPresenter {
 
     @Override
     public void onUserRowClicked(User user) {
-        view.showUserClickedMessage(user);
+        view.showUserDetailScreen(user);
     }
 
     protected RootComponent getComponent() {

@@ -1,5 +1,7 @@
 package es.voghdev.prjdagger2.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -23,6 +25,7 @@ import es.voghdev.prjdagger2.global.di.UserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
+import es.voghdev.prjdagger2.repository.UserRepository;
 import es.voghdev.prjdagger2.ui.presenter.UserDetailPresenter;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserDetailPresenter;
 import es.voghdev.prjdagger2.usecase.ShowUserDetail;
@@ -61,6 +64,9 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
     @Inject
     GetUsersInteractor getUserInteractor;
 
+    @Inject
+    UserRepository userRepository;
+
     @OnClick(R.id.user_detail_userImage)
     public void userClicked(View view) {
         presenter.onUserPictureClicked();
@@ -68,20 +74,27 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
 
     private UserListComponent component;
 
+    public static void open(Context ctx, String id) {
+        Intent intent = new Intent(ctx, UserDetailActivity.class);
+        intent.putExtra("userId", id);
+        ctx.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail);
 
-
         ButterKnife.inject(this);
 
-        Bundle bundle = getIntent().getExtras();
-        final String userId = (String) bundle.get("userId");
+        String userId = "";
+        if (getIntent() != null && getIntent().hasExtra("userId")) {
+            userId = getIntent().getStringExtra("userId");
+        }
 
         component().inject(this);
 
-        presenter = new UserDetailPresenter(this, getUserInteractor, userId);
+        presenter = new UserDetailPresenter(this, getUserInteractor, userRepository, userId);
         presenter.setView(this);
 
         presenter.initialize();
@@ -105,7 +118,7 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
     }
 
     @Override
-    public void showErrorLoading() {
+    public void showUserError() {
         Toast.makeText(this, getResources().getString(R.string.no_user_data), Toast.LENGTH_SHORT).show();
     }
 

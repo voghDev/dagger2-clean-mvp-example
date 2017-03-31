@@ -78,7 +78,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
         @Override
         public void onBackgroundClicked(User user) {
-            showUserDetail.show(user.getId());
+            presenter.onUserRowClicked(user);
         }
     };
 
@@ -148,6 +148,12 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
     @Override
     public void showUserClickedMessage(User user) {
         showUserClicked.show(user);
+    }
+
+    @Override
+    public void showUserDetailScreen(User user) {
+        showUserDetail.show(user.getId());
+        UserDetailActivity.open(this, user.getId());
     }
 
     private UserListComponent component() {

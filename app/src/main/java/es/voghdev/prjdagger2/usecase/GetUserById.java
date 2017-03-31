@@ -13,25 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.prjdagger2.ui.view;
+package es.voghdev.prjdagger2.usecase;
 
-import android.content.Context;
-import android.widget.Toast;
-
-import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 
-public class ShowUserClickedToastImpl implements ShowUserClicked {
-    Context context;
+public interface GetUserById {
+    void getUserById(String id, final Listener listener);
 
-    public ShowUserClickedToastImpl(Context context) {
-        this.context = context;
-    }
+    interface Listener {
+        void onSuccess(final User user, boolean isCached);
 
-    @Override
-    public void show(User user) {
-        Toast.makeText(context, context.getString(R.string.user_was_clicked, user.getEmail()),
-                Toast.LENGTH_LONG).show();
+        void onError(Exception e);
+
+        void onNoInternetAvailable();
     }
 }

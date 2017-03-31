@@ -41,5 +41,7 @@ public abstract class AbsUserListPresenter extends Presenter<AbsUserListPresente
         void makeUserSayHello(User user);
 
         void showUserClickedMessage(User user);
+
+        void showUserDetailScreen(User user);
     }
 }

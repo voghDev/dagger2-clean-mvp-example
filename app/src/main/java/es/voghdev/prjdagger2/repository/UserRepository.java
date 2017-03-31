@@ -9,9 +9,10 @@ import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.repository.cachepolicy.CachePolicy;
 import es.voghdev.prjdagger2.repository.cachepolicy.NoCachePolicy;
 import es.voghdev.prjdagger2.repository.cachepolicy.TimedCachePolicy;
+import es.voghdev.prjdagger2.usecase.GetUserById;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class UserRepository implements GetUsers {
+public class UserRepository implements GetUsers, GetUserById {
     Context context;
     CachePolicy cachePolicy;
     GetUsers apiDataSource;
@@ -50,13 +51,13 @@ public class UserRepository implements GetUsers {
     }
 
     @Override
-    public void getAsync(final Listener listener) {
+    public void getAsync(final GetUsers.Listener listener) {
         invalidateCacheIfNecessary(cachePolicy, users);
 
         if (users != null && users.size() > 0) {
             listener.onUsersReceived(users, true);
         } else {
-            apiDataSource.getAsync(new Listener() {
+            apiDataSource.getAsync(new GetUsers.Listener() {
                 @Override
                 public void onUsersReceived(List<User> list, boolean isCached) {
                     users = list;
@@ -76,4 +77,12 @@ public class UserRepository implements GetUsers {
         }
     }
 
+    @Override
+    public void getUserById(String id, GetUserById.Listener listener) {
+        for (User user : users) {
+            if (user.getId().equals(id)) {
+                listener.onSuccess(user, true);
+            }
+        }
+    }
 }
