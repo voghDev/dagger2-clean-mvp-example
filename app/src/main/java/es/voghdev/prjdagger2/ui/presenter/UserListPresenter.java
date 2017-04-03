@@ -63,7 +63,6 @@ public class UserListPresenter extends AbsUserListPresenter {
                 view.showNoInternetMessage();
                 view.hideLoading();
             }
-
         });
     }
 
@@ -89,7 +88,7 @@ public class UserListPresenter extends AbsUserListPresenter {
 
     @Override
     public void onUserRowClicked(User user) {
-        view.showUserDetailScreen(user);
+        navigator.showUserDetailScreen(user);
     }
 
     protected RootComponent getComponent() {

@@ -20,8 +20,8 @@ import java.util.List;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.Presenter;
 
-public abstract class AbsUserListPresenter extends Presenter<AbsUserListPresenter.View> {
-
+public abstract class AbsUserListPresenter extends Presenter<AbsUserListPresenter.View,
+        AbsUserListPresenter.Navigator> {
 
     public abstract void onUserPictureClicked(User user);
 
@@ -42,6 +42,9 @@ public abstract class AbsUserListPresenter extends Presenter<AbsUserListPresente
 
         void showUserClickedMessage(User user);
 
+    }
+
+    public interface Navigator {
         void showUserDetailScreen(User user);
     }
 }

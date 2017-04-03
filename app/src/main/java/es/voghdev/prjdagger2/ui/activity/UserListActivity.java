@@ -47,7 +47,8 @@ import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 import es.voghdev.prjdagger2.usecase.ShowUserDetail;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
-public class UserListActivity extends BaseActivity implements AbsUserListPresenter.View {
+public class UserListActivity extends BaseActivity implements AbsUserListPresenter.View,
+        AbsUserListPresenter.Navigator {
     @InjectView(R.id.users_list)
     RecyclerView recyclerView;
 
@@ -96,6 +97,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
         presenter = new UserListPresenter(this, getUsersInteractor);
         presenter.setView(this);
+        presenter.setNavigator(this);
         presenter.initialize();
 
         initializeRecyclerView();
@@ -152,7 +154,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     @Override
     public void showUserDetailScreen(User user) {
-        showUserDetail.show(user.getId());
+        // showUserDetail.show(user.getId());
         UserDetailActivity.open(this, user.getId());
     }
 

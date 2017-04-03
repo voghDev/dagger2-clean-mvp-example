@@ -4,7 +4,8 @@ package es.voghdev.prjdagger2.ui.presenter.abs;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.Presenter;
 
-public abstract class AbsUserDetailPresenter extends Presenter<AbsUserDetailPresenter.View> {
+public abstract class AbsUserDetailPresenter extends Presenter<AbsUserDetailPresenter.View,
+        AbsUserDetailPresenter.Navigate> {
 
     public abstract void onUserPictureClicked();
 
@@ -33,5 +34,9 @@ public abstract class AbsUserDetailPresenter extends Presenter<AbsUserDetailPres
         void showUserImage(String thumbnail);
 
         void configureToolbar(String username);
+    }
+
+    public interface Navigate {
+
     }
 }

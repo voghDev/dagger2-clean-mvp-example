@@ -15,7 +15,7 @@
  */
 package es.voghdev.prjdagger2.ui.presenter;
 
-public abstract class Presenter<T> {
+public abstract class Presenter<T1, T2> {
     public abstract void initialize();
 
     public abstract void resume();
@@ -24,9 +24,15 @@ public abstract class Presenter<T> {
 
     public abstract void destroy();
 
-    protected T view;
+    protected T1 view;
 
-    public void setView(T v) {
+    protected T2 navigator;
+
+    public void setView(T1 v) {
         view = v;
+    }
+
+    public void setNavigator(T2 navigator) {
+        this.navigator = navigator;
     }
 }
