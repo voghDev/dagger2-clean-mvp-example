@@ -28,7 +28,6 @@ import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.repository.UserRepository;
 import es.voghdev.prjdagger2.ui.presenter.UserDetailPresenter;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserDetailPresenter;
-import es.voghdev.prjdagger2.usecase.ShowUserDetail;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
 public class UserDetailActivity extends AppCompatActivity implements AbsUserDetailPresenter.View {
@@ -57,9 +56,6 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
     ShowUserGreeting showUserGreeting;
 
     AbsUserDetailPresenter presenter;
-
-    @Inject
-    ShowUserDetail showUserDetail;
 
     @Inject
     GetUsersInteractor getUserInteractor;
@@ -96,7 +92,6 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
 
         presenter = new UserDetailPresenter(this, getUserInteractor, userRepository, userId);
         presenter.setView(this);
-
         presenter.initialize();
 
 

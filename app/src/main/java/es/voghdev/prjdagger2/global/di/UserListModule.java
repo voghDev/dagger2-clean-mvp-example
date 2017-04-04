@@ -20,10 +20,8 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import es.voghdev.prjdagger2.ui.view.ShowUserClickedToastImpl;
-import es.voghdev.prjdagger2.ui.view.ShowUserDetailImpl;
 import es.voghdev.prjdagger2.ui.view.ShowUserGreetingToastImpl;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
-import es.voghdev.prjdagger2.usecase.ShowUserDetail;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
 @Module
@@ -32,7 +30,6 @@ public class UserListModule {
     Context mContext;
     ShowUserClicked showUserClickedToast;
     ShowUserGreeting showUserGreetingToast;
-    ShowUserDetail showUserDetail;
 
 
     public UserListModule(final Context context) {
@@ -40,8 +37,6 @@ public class UserListModule {
 
         showUserClickedToast = new ShowUserClickedToastImpl(mContext);
         showUserGreetingToast = new ShowUserGreetingToastImpl(mContext);
-        showUserDetail = new ShowUserDetailImpl(mContext);
-
     }
 
     @Provides
@@ -52,11 +47,6 @@ public class UserListModule {
     @Provides
     public ShowUserGreeting provideShowUserGreeting() {
         return showUserGreetingToast;
-    }
-
-    @Provides
-    public ShowUserDetail provideShowUserDetail() {
-        return showUserDetail;
     }
 
 }
