@@ -5,7 +5,7 @@ import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.presenter.Presenter;
 
 public abstract class AbsUserDetailPresenter extends Presenter<AbsUserDetailPresenter.View,
-        AbsUserDetailPresenter.Navigate> {
+        AbsUserDetailPresenter.Navigator> {
 
     public abstract void onUserPictureClicked();
 
@@ -36,7 +36,7 @@ public abstract class AbsUserDetailPresenter extends Presenter<AbsUserDetailPres
         void configureToolbar(String username);
     }
 
-    public interface Navigate {
+    public interface Navigator {
 
     }
 }
