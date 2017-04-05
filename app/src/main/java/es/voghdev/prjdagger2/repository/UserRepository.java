@@ -80,30 +80,10 @@ public class UserRepository implements GetUsers, GetUserById {
 
     @Override
     public void getUserById(final String id, final GetUserById.Listener listener) {
-//        for (User user : users) {
-//            if (user.getId().equals(id)) {
-//                listener.onSuccess(user, true);
-//            }
-//        }
-        apiDataSource.getAsync(new GetUsers.Listener() {
-            @Override
-            public void onUsersReceived(List<User> users, boolean isCached) {
-                for (User user : users) {
-                    if (user.getId().equals(id)) {
-                        listener.onSuccess(user, true);
-                    }
-                }
+        for (User user : users) {
+            if (user.getId().equals(id)) {
+                listener.onSuccess(user, true);
             }
-
-            @Override
-            public void onError(Exception e) {
-                listener.onError(e);
-            }
-
-            @Override
-            public void onNoInternetAvailable() {
-                listener.onNoInternetAvailable();
-            }
-        });
+        }
     }
 }
