@@ -6,14 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="es.voghdev.prjdagger2.ui.activity.UserDetailActivity">
     <ImageView
         android:id="@+id/user_detail_userImage"
         android:background="@color/light_gray"
         android:layout_width="match_parent"
+        android:scaleType="centerCrop"
         android:layout_height="150dp"
         android:src="@color/light_gray"
         />
@@ -27,11 +25,13 @@
         android:layout_margin="@dimen/margin_between_titles"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="20sp"
         />
     <TextView
         android:id="@+id/user_detail_tv_title_username"
         android:layout_width="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_height="wrap_content"
         android:text="@string/user_name"
         android:textColor="@color/black"
@@ -41,12 +41,16 @@
         android:id="@+id/user_detail_tv_data_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_below="@+id/user_detail_tv_title_username"
         android:layout_marginTop="@dimen/margin_between_data"/>
     <TextView
         android:id="@+id/user_detail_tv_title_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="@string/user_address"
         android:textColor="@color/black"
         android:layout_below="@+id/user_detail_tv_data_username"
@@ -55,12 +59,16 @@
         android:id="@+id/user_detail_tv_data_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_below="@+id/user_detail_tv_title_address"
         android:layout_marginTop="@dimen/margin_between_data"/>
     <TextView
         android:id="@+id/user_detail_tv_title_facebookId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_below="@+id/user_detail_tv_data_address"
         android:text="@string/user_facebookId"
         android:textColor="@color/black"
@@ -69,12 +77,16 @@
         android:id="@+id/user_detail_tv_data_facebookId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_below="@+id/user_detail_tv_title_facebookId"
         android:layout_marginTop="@dimen/margin_between_data"/>
     <TextView
         android:id="@+id/user_detail_tv_title_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_below="@+id/user_detail_tv_data_facebookId"
         android:text="@string/user_email"
         android:textColor="@color/black"
@@ -83,6 +95,8 @@
         android:id="@+id/user_detail_tv_data_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_below="@+id/user_detail_tv_title_email"
         android:layout_marginTop="@dimen/margin_between_data"/>
     <ProgressBar

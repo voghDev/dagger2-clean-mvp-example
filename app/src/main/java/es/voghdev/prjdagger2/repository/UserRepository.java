@@ -18,7 +18,6 @@ public class UserRepository implements GetUsers, GetUserById {
     GetUsers apiDataSource;
     GetUsers fileDataSource;
     List<User> users = new ArrayList<>();
-    GetUserById getUserByIdApiDataSource;
 
     public UserRepository(Context context, GetUsers apiDataSource, GetUsers fileDataSource) {
         this.context = context;
@@ -80,10 +79,14 @@ public class UserRepository implements GetUsers, GetUserById {
 
     @Override
     public void getUserById(final String id, final GetUserById.Listener listener) {
-        for (User user : users) {
-            if (user.getId().equals(id)) {
-                listener.onSuccess(user, true);
+        if (users.size() > 0) {
+            for (User user : users) {
+                if (user.getId().equals(id)) {
+                    listener.onSuccess(user, true);
+                }
             }
+        } else {
+            listener.onNoInternetAvailable();
         }
     }
 }

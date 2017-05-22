@@ -16,10 +16,11 @@
 package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends android.app.Activity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,4 +33,5 @@ public abstract class BaseActivity extends android.app.Activity {
     }
 
     protected abstract int getLayoutId();
+
 }

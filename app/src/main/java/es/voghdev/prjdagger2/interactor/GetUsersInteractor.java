@@ -15,6 +15,7 @@
  */
 package es.voghdev.prjdagger2.interactor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import es.voghdev.prjdagger2.global.model.User;

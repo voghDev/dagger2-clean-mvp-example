@@ -53,7 +53,6 @@ public class UserDetailPresenter extends AbsUserDetailPresenter {
                 view.showUserName(user.getUsername());
                 view.showUserImage(user.getThumbnail());
                 view.configureToolbar(user.getName());
-
                 view.hideLoading();
             }
 

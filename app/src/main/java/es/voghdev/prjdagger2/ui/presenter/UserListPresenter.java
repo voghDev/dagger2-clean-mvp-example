@@ -25,19 +25,20 @@ import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
+import es.voghdev.prjdagger2.repository.UserRepository;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class UserListPresenter extends AbsUserListPresenter {
 
-    protected GetUsers interactor;
 
     protected Context context;
+    UserRepository userRepository;
 
     @Inject
-    public UserListPresenter(Context ctx, GetUsersInteractor getUsersInteractor) {
+    public UserListPresenter(Context ctx, UserRepository userRepository) {
         context = ctx;
-        interactor = getUsersInteractor;
+        this.userRepository = userRepository;
 
         getComponent().inject(this);
     }
@@ -45,7 +46,7 @@ public class UserListPresenter extends AbsUserListPresenter {
     @Override
     public void initialize() {
         view.showLoading();
-        interactor.getAsync(new GetUsers.Listener() {
+        userRepository.getAsync(new GetUsers.Listener() {
             @Override
             public void onUsersReceived(List<User> users, boolean isCached) {
                 view.showUserList(users);

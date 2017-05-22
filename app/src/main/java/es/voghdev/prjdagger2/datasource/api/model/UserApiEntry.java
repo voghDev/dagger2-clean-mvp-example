@@ -41,7 +41,7 @@ public class UserApiEntry {
                 .append(name.getFirst()).append(SPACE)
                 .append(name.getLast());
         u.setName(strb.toString());
-        u.setThumbnail(picture.getThumbnail());
+        u.setThumbnail(picture.getLarge());
 
         return u;
     }

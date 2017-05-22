@@ -39,6 +39,7 @@ import es.voghdev.prjdagger2.global.di.UserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
+import es.voghdev.prjdagger2.repository.UserRepository;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
@@ -59,7 +60,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
     AbsUserListPresenter presenter;
 
     @Inject
-    GetUsersInteractor getUsersInteractor;
+    UserRepository userRepository;
 
     @Inject
     ShowUserClicked showUserClicked;
@@ -93,7 +94,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
                 new ListAdapteeCollection<User>(new ArrayList<User>())
         );
 
-        presenter = new UserListPresenter(this, getUsersInteractor);
+        presenter = new UserListPresenter(this, userRepository);
         presenter.setView(this);
         presenter.setNavigator(this);
         presenter.initialize();
@@ -152,7 +153,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     @Override
     public void showUserDetailScreen(User user) {
-        UserDetailActivity.open(this, user.getId());
+        UserDetailActivity.openUserDetail(this, user.getId());
     }
 
     private UserListComponent component() {

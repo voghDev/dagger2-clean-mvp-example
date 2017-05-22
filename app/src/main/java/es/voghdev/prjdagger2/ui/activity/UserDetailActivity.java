@@ -30,7 +30,7 @@ import es.voghdev.prjdagger2.ui.presenter.UserDetailPresenter;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserDetailPresenter;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
-public class UserDetailActivity extends AppCompatActivity implements AbsUserDetailPresenter.View {
+public class UserDetailActivity extends BaseActivity implements AbsUserDetailPresenter.View {
     @InjectView(R.id.user_detail_tv_data_username)
     TextView tvUserName;
 
@@ -70,7 +70,7 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
 
     private UserListComponent component;
 
-    public static void open(Context ctx, String id) {
+    public static void openUserDetail(Context ctx, String id) {
         Intent intent = new Intent(ctx, UserDetailActivity.class);
         intent.putExtra("userId", id);
         ctx.startActivity(intent);
@@ -79,22 +79,19 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_detail);
-
-        ButterKnife.inject(this);
-
-        String userId = "";
-        if (getIntent() != null && getIntent().hasExtra("userId")) {
-            userId = getIntent().getStringExtra("userId");
-        }
 
         component().inject(this);
 
-        presenter = new UserDetailPresenter(this, getUserInteractor, userRepository, userId);
+        presenter = new UserDetailPresenter(this, getUserInteractor, userRepository, getUserId());
         presenter.setView(this);
         presenter.initialize();
 
 
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_user_detail;
     }
 
     @Override
@@ -116,7 +113,6 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
     public void showUserError() {
         Toast.makeText(this, getResources().getString(R.string.no_user_data), Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     public void showUserClickedMessage(User user) {
@@ -205,5 +201,13 @@ public class UserDetailActivity extends AppCompatActivity implements AbsUserDeta
         getSupportActionBar().setTitle(username);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public String getUserId() {
+        String userId = "";
+        if (getIntent() != null && getIntent().hasExtra("userId")) {
+            userId = getIntent().getStringExtra("userId");
+        }
+        return userId;
     }
 }
