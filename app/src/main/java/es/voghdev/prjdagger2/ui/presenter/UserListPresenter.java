@@ -24,7 +24,6 @@ import javax.inject.Inject;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
-import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.repository.UserRepository;
 import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.usecase.GetUsers;
