@@ -83,11 +83,11 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
 
     // Square
-    compile 'com.jakewharton:butterknife:6.0.0'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.picasso:picasso:2.3.+'
 
     // Libs from cool developers
+    compile 'com.jakewharton:butterknife:6.0.0'
     compile 'com.github.pedrovgs:renderers:2.0.3'
     compile 'es.voghdev.progressbuttonview:ProgressButtonView:0.7.9'
 
