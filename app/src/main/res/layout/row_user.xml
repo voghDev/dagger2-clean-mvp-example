@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/user_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/user_iv_background"
@@ -16,8 +16,11 @@
         android:id="@+id/user_iv_thumbnail"
         android:layout_width="@dimen/user_thumbnail_w"
         android:layout_height="@dimen/user_thumbnail_h"
-        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/user_tv_title"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:src="@mipmap/ic_user_avatar" />
 
     <TextView
@@ -49,12 +52,11 @@
         android:id="@+id/user_tv_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/user_iv_thumbnail"
         android:layout_alignLeft="@+id/user_tv_title"
-        android:layout_below="@+id/user_tv_title"
-        android:layout_marginTop="8dp"
-        android:text="@string/loading"
-        android:maxLines="1"
         android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/loading"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/orange" />
 
