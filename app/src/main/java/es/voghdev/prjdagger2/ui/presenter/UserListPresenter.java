@@ -33,7 +33,7 @@ public class UserListPresenter extends Presenter<UserListPresenter.View> {
 
     protected Context context;
 
-    //@Inject
+    @Inject
     public UserListPresenter(Context ctx, GetUsersInteractor getUsersInteractor) {
         context = ctx;
         interactor = getUsersInteractor;
