@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import es.voghdev.prjdagger2.ui.activity.BaseActivity;
 import es.voghdev.prjdagger2.R;
-import es.voghdev.prjdagger2.ui.AndroidResLocator;
+import es.voghdev.prjdagger2.global.AndroidResLocator;
 import es.voghdev.prjdagger2.ui.presenter.DetailPresenter;
 
 public class DetailActivity extends BaseActivity implements DetailPresenter.MVPView, DetailPresenter.Navigator {
@@ -28,4 +28,3 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.MVPV
         return R.layout.activity_detail;
     }
 }
-
