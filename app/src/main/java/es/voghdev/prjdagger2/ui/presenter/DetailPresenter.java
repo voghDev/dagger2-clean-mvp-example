@@ -1,16 +1,14 @@
 package es.voghdev.prjdagger2.ui.presenter;
 
-import es.voghdev.prjdagger2.ui.presenter.Presenter;
-import es.voghdev.prjdagger2.repository.UserRepository;
-import es.voghdev.prjdagger2.ui.ResLocator;
+import es.voghdev.prjdagger2.global.AndroidResLocator;
+import es.voghdev.prjdagger2.global.ResLocator;
 
-public class DetailPresenter extends Presenter<DetailPresenter.MVPView, DetailPresenter.Navigator> {
+public class DetailPresenter extends Presenter<DetailPresenter.MVPView> {
     ResLocator resLocator;
 
 
-    public DetailPresenter(ResLocator resLocator) {
+    public DetailPresenter(AndroidResLocator resLocator) {
         this.resLocator = resLocator;
-
     }
 
     @Override
@@ -33,11 +31,7 @@ public class DetailPresenter extends Presenter<DetailPresenter.MVPView, DetailPr
 
     }
 
-    public interface MVPView extends AbsMVPView {
-
-    }
-
-    public interface Navigator extends AbsNavigator {
+    public interface MVPView {
 
     }
 }

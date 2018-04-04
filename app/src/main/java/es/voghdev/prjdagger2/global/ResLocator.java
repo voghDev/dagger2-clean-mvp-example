@@ -17,7 +17,7 @@ package es.voghdev.prjdagger2.global;
 
 import java.util.List;
 
-interface ResLocator {
+public interface ResLocator {
     String getString(int resID);
     List<String> getStringArray(int resID);
 }

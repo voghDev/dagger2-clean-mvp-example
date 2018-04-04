@@ -16,6 +16,7 @@
 package es.voghdev.prjdagger2.ui.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
+import es.voghdev.prjdagger2.ui.activity.DetailActivity;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class UserListPresenter extends Presenter<UserListPresenter.View> {
@@ -83,10 +85,12 @@ public class UserListPresenter extends Presenter<UserListPresenter.View> {
 
     public void onUserPictureClicked(User user) {
         view.makeUserSayHello(user);
+        context.startActivity(new Intent(context, DetailActivity.class));
     }
 
     public void onUserRowClicked(User user) {
         view.showUserClickedMessage(user);
+        context.startActivity(new Intent(context, DetailActivity.class));
     }
 
     protected RootComponent getComponent() {

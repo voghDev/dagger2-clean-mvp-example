@@ -7,7 +7,7 @@ import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.global.AndroidResLocator;
 import es.voghdev.prjdagger2.ui.presenter.DetailPresenter;
 
-public class DetailActivity extends BaseActivity implements DetailPresenter.MVPView, DetailPresenter.Navigator {
+public class DetailActivity extends BaseActivity implements DetailPresenter.MVPView {
     DetailPresenter presenter;
 
 
@@ -18,7 +18,7 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.MVPV
 
         presenter = new DetailPresenter(new AndroidResLocator(this));
         presenter.setView(this);
-        presenter.setNavigator(this);
+        //presenter.setNavigator(this);
 
         presenter.initialize();
     }
