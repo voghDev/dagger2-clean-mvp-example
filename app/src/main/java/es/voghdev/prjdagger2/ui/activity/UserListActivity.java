@@ -40,13 +40,12 @@ import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
-import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
 import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
-public class UserListActivity extends BaseActivity implements AbsUserListPresenter.View {
+public class UserListActivity extends BaseActivity implements UserListPresenter.View {
     @InjectView(R.id.users_list)
     RecyclerView recyclerView;
 
@@ -55,7 +54,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     RVRendererAdapter<User> adapter;
 
-    AbsUserListPresenter presenter;
+    UserListPresenter presenter;
 
     @Inject
     GetUsersInteractor getUsersInteractor;
@@ -138,7 +137,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
     }
 
     @Override
-    public void makeUserSayHello(User user) {
+    public void navigateToDetailActivityAndSayHello(User user) {
         showUserGreeting.show(user);
     }
 
