@@ -52,6 +52,7 @@ Developed By
 ------------
 
 * Olmo Gallegos Hernández - [@voghDev][9] - [mobiledevstories.com][10]
+* Sylvia Domenech
 
 <a href="http://twitter.com/voghDev">
   <img alt="Follow me on Twitter" src="https://image.freepik.com/iconos-gratis/twitter-logo_318-40209.jpg" height="60" width="60" />
