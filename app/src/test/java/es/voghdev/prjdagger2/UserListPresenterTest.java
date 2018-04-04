@@ -167,7 +167,7 @@ public class UserListPresenterTest extends BaseUnitTest {
         presenter.onUserRowClicked(mockUser);
 
         verify(mockView, times(1)).showUserClickedMessage(mockUser);
-        verify(mockView, times(0)).makeUserSayHello(mockUser);
+        verify(mockView, times(0)).navigateToDetailActivityAndSayHello(mockUser);
     }
 
     @Test
@@ -176,7 +176,7 @@ public class UserListPresenterTest extends BaseUnitTest {
 
         presenter.onUserPictureClicked(mockUser);
 
-        verify(mockView, times(1)).makeUserSayHello(mockUser);
+        verify(mockView, times(1)).navigateToDetailActivityAndSayHello(mockUser);
         verify(mockView, times(0)).showUserClickedMessage(mockUser);
     }
 

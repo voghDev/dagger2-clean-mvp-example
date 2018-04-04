@@ -16,6 +16,7 @@
 package es.voghdev.prjdagger2.ui.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.List;
 
@@ -25,10 +26,10 @@ import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
-import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
+import es.voghdev.prjdagger2.ui.activity.DetailActivity;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
-public class UserListPresenter extends AbsUserListPresenter {
+public class UserListPresenter extends Presenter<UserListPresenter.View> {
 
     protected GetUsers interactor;
 
@@ -82,17 +83,32 @@ public class UserListPresenter extends AbsUserListPresenter {
 
     }
 
-    @Override
     public void onUserPictureClicked(User user) {
-        view.makeUserSayHello(user);
+        view.navigateToDetailActivityAndSayHello(user);
+        context.startActivity(new Intent(context, DetailActivity.class));
     }
 
-    @Override
     public void onUserRowClicked(User user) {
         view.showUserClickedMessage(user);
     }
 
     protected RootComponent getComponent() {
         return ((App) context.getApplicationContext()).getComponent();
+    }
+
+    public interface View {
+        void showUserList(List<User> users);
+
+        void showUserListError(Exception e);
+
+        void showNoInternetMessage();
+
+        void showLoading();
+
+        void hideLoading();
+
+        void navigateToDetailActivityAndSayHello(User user);
+
+        void showUserClickedMessage(User user);
     }
 }
