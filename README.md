@@ -52,7 +52,6 @@ Developed By
 ------------
 
 * Olmo Gallegos Hernández - [@voghDev][9] - [mobiledevstories.com][10]
-* Sylvia Domenech
 
 <a href="http://twitter.com/voghDev">
   <img alt="Follow me on Twitter" src="https://image.freepik.com/iconos-gratis/twitter-logo_318-40209.jpg" height="60" width="60" />
@@ -60,6 +59,8 @@ Developed By
 <a href="https://www.linkedin.com/profile/view?id=91543271">
   <img alt="Find me on Linkedin" src="https://image.freepik.com/iconos-gratis/boton-del-logotipo-linkedin_318-84979.png" height="60" width="60" />
 </a>
+
+* Sylvia Domenech
 
 # License
 
