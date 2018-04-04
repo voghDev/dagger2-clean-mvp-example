@@ -137,7 +137,7 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
     }
 
     @Override
-    public void makeUserSayHello(User user) {
+    public void navigateToDetailActivityAndSayHello(User user) {
         showUserGreeting.show(user);
     }
 

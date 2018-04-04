@@ -18,7 +18,6 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.MVPV
 
         presenter = new DetailPresenter(new AndroidResLocator(this));
         presenter.setView(this);
-        //presenter.setNavigator(this);
 
         presenter.initialize();
     }

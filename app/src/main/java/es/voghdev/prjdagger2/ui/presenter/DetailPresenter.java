@@ -1,13 +1,11 @@
 package es.voghdev.prjdagger2.ui.presenter;
 
-import es.voghdev.prjdagger2.global.AndroidResLocator;
 import es.voghdev.prjdagger2.global.ResLocator;
 
 public class DetailPresenter extends Presenter<DetailPresenter.MVPView> {
     ResLocator resLocator;
 
-
-    public DetailPresenter(AndroidResLocator resLocator) {
+    public DetailPresenter(ResLocator resLocator) {
         this.resLocator = resLocator;
     }
 

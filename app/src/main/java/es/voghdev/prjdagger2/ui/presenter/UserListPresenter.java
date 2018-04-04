@@ -84,13 +84,12 @@ public class UserListPresenter extends Presenter<UserListPresenter.View> {
     }
 
     public void onUserPictureClicked(User user) {
-        view.makeUserSayHello(user);
+        view.navigateToDetailActivityAndSayHello(user);
         context.startActivity(new Intent(context, DetailActivity.class));
     }
 
     public void onUserRowClicked(User user) {
         view.showUserClickedMessage(user);
-        context.startActivity(new Intent(context, DetailActivity.class));
     }
 
     protected RootComponent getComponent() {
@@ -108,7 +107,7 @@ public class UserListPresenter extends Presenter<UserListPresenter.View> {
 
         void hideLoading();
 
-        void makeUserSayHello(User user);
+        void navigateToDetailActivityAndSayHello(User user);
 
         void showUserClickedMessage(User user);
     }
