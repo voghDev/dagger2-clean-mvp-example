@@ -60,6 +60,8 @@ Developed By
   <img alt="Find me on Linkedin" src="https://image.freepik.com/iconos-gratis/boton-del-logotipo-linkedin_318-84979.png" height="60" width="60" />
 </a>
 
+* Sylvia Domenech
+
 # License
 
     Copyright 2016 Olmo Gallegos Hernández
