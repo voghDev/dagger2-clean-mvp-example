@@ -19,11 +19,11 @@ import java.util.List;
 
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
-import es.voghdev.prjdagger2.ui.presenter.abs.AbsUserListPresenter;
+import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class PresenterCaller implements GetUsers.Listener {
-    AbsUserListPresenter.View view;
+    UserListPresenter.View view;
     GetUsersInteractor collaborator;
 
     public PresenterCaller(GetUsersInteractor collaborator) {
@@ -34,7 +34,7 @@ public class PresenterCaller implements GetUsers.Listener {
         collaborator.getAsync(this);
     }
 
-    public AbsUserListPresenter.View getView() {
+    public UserListPresenter.View getView() {
         return view;
     }
 
