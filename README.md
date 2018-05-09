@@ -87,7 +87,7 @@ All icons & art were obtained from [flaticon.com][24], an excellent resource for
 [1]: https://github.com/pedrovgs/
 [2]: https://github.com/pedrovgs/EffectiveAndroidUI
 [3]: https://www.youtube.com/watch?v=ROdIvrLL1ao
-[4]: https://www.youtube.com/watch?v=ONziKX93iTM
+[4]: https://www.youtube.com/watch?v=N6yqe88ysNw
 [5]: https://github.com/dlazaro66/Dagger2-example
 [6]: https://github.com/google/dagger
 [7]: https://github.com/antoniolg/androidmvp
