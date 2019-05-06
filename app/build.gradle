@@ -1,15 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'checkstyle'
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-    }
-}
 
 task checkstyle(type: Checkstyle) {
     configFile = rootProject.file('config/checkstyle.xml')
@@ -22,13 +12,12 @@ task checkstyle(type: Checkstyle) {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 27
 
     defaultConfig {
         applicationId "es.voghdev.prjdagger2"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
@@ -47,6 +36,8 @@ android {
             buildConfigField "String", "DEFAULT_PASSWORD", "\"4notherWay0fD3finingBuildC0nfigVars\""
         }
     }
+
+    flavorDimensions "default"
 
     productFlavors {
         prod {
@@ -73,25 +64,25 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Google
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:design:25.4.0'
-    compile 'com.google.dagger:dagger:2.0.2'
-    apt 'com.google.dagger:dagger-compiler:2.0.2'
-    provided 'javax.annotation:jsr250-api:1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
 
     // Square
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'com.squareup.picasso:picasso:2.3.+'
+    implementation 'com.squareup.retrofit:retrofit:1.9.0'
+    implementation 'com.squareup.picasso:picasso:2.3.+'
 
     // Libs from cool developers
-    compile 'com.jakewharton:butterknife:6.0.0'
-    compile 'com.github.pedrovgs:renderers:2.0.3'
-    compile 'es.voghdev.progressbuttonview:ProgressButtonView:0.7.9'
+    implementation 'com.jakewharton:butterknife:6.0.0'
+    annotationProcessor 'com.jakewharton:butterknife:6.0.0'
+    implementation 'com.github.pedrovgs:renderers:2.0.3'
+    implementation 'es.voghdev.progressbuttonview:ProgressButtonView:0.7.9'
 
     // Testing
-    testCompile 'junit:junit:4.12'
-    testCompile "org.mockito:mockito-core:1.10.19"
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:1.10.19"
 }
