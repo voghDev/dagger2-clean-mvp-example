@@ -27,6 +27,7 @@ public class UserApiEntry {
     UserPictureApiEntry picture = new UserPictureApiEntry();
     UserLocationApiEntry location = new UserLocationApiEntry();
     String md5 = "";
+    UserDateOfBirthApiEntry dob;
 
     public User parseUser() {
 
