@@ -16,12 +16,11 @@
 package es.voghdev.prjdagger2.datasource.api.retrofit;
 
 import es.voghdev.prjdagger2.datasource.api.GetUsersResponse;
-import retrofit.Callback;
-import retrofit.http.GET;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface GetUsersRetrofitRequest {
     @GET("/")
-    void getRandomUsers(@Query("results") int maxUsers, @Query("seed") int page,
-                        Callback<GetUsersResponse> callback);
+    Call<GetUsersResponse> getRandomUsers(@Query("results") int maxUsers, @Query("seed") int page);
 }
