@@ -31,10 +31,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
     private static final String ENDPOINT = "https://api.randomuser.me/";
 
-    private int pageSize = 0;
-    private int pageNumber = 0;
+    private int pageSize;
+    private int pageNumber;
 
-    Listener listener = new NullListener();
+    private Listener listener = new NullListener();
 
     public GetUsersApiImpl(int pageSize, int pageNumber) {
         this.pageSize = pageSize;
@@ -61,6 +61,7 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
     }
 
     @Override
+
     public void onResponse(Call<GetUsersResponse> call, Response<GetUsersResponse> response) {
         List<User> users = new ArrayList<User>();
 
@@ -78,12 +79,15 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
 
     private class NullListener implements Listener {
         public void onUsersReceived(List<User> users, boolean isCached) {
+            /* Empty */
         }
 
         public void onError(Exception e) {
+            /* Empty */
         }
 
         public void onNoInternetAvailable() {
+            /* Empty */
         }
     }
 }

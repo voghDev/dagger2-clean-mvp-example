@@ -16,10 +16,6 @@
 package es.voghdev.prjdagger2.ui.renderer;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +26,8 @@ import android.widget.TextView;
 import com.pedrogomez.renderers.Renderer;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -38,10 +36,11 @@ import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.picasso.RoundedTransformation;
 
 public class UserRenderer extends Renderer<User> {
-    protected Context mContext;
-    protected OnUserClicked listener = new EmptyOnUserClicked();
 
-    public UserRenderer(Context ctx, OnUserClicked onUserClicked) {
+    private Context mContext;
+    private OnUserClicked listener = new EmptyOnUserClicked();
+
+    UserRenderer(Context ctx, OnUserClicked onUserClicked) {
         mContext = ctx.getApplicationContext();
         setListener(onUserClicked);
     }
@@ -82,12 +81,12 @@ public class UserRenderer extends Renderer<User> {
     }
 
     @OnClick(R.id.user_container)
-    public void onClickRow(RelativeLayout root) {
+    void onClickRow(RelativeLayout root) {
         listener.onBackgroundClicked(getContent());
     }
 
     @OnClick(R.id.user_iv_thumbnail)
-    public void onClickThumbnail(ImageView imageView) {
+    void onClickThumbnail(ImageView imageView) {
         listener.onPictureClicked(getContent());
     }
 
@@ -103,58 +102,48 @@ public class UserRenderer extends Renderer<User> {
         renderDescription(u);
         renderBackground(u);
         renderThumbnail(u);
-        renderClicks(u);
+        renderClicks(0);
     }
 
-    protected void renderBackground(User u) {
+    private void renderBackground(User u) {
         int resId = R.mipmap.background3;
         Picasso.with(mContext)
                 .load(resId)
                 .into(ivBackground);
     }
 
-    protected void renderThumbnail(User user) {
+    private void renderThumbnail(User user) {
         if (!user.hasThumbnail()) {
             return;
         }
 
-        Picasso.with(mContext).load(user.getThumbnail())
+        Picasso.with(mContext)
+                .load(user.getThumbnail())
                 .transform(new RoundedTransformation())
                 .resizeDimen(R.dimen.user_thumbnail_w, R.dimen.user_thumbnail_h)
                 .placeholder(R.mipmap.background1)
                 .into(ivThumbnail);
-
-//        transformImageWithPorterDuff(ivThumbnail);
     }
 
-    private void transformImageWithPorterDuff(ImageView imageView) {
-        Drawable background = ContextCompat.getDrawable(mContext, R.drawable.rounded_edges);
-        background.setColorFilter(ContextCompat.getColor(mContext, R.color.light_gray), PorterDuff.Mode.SRC_OVER);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            imageView.setBackground(background); // setBackground requires minSdkVersion >= 16!!
-        } else {
-            imageView.setBackgroundDrawable(background); // setBackground requires minSdkVersion >= 16!!
-        }
-    }
-
-    protected void renderDescription(User user) {
+    private void renderDescription(User user) {
         tvDescription.setText(user.getEmail());
     }
 
-    protected void renderTitle(User user) {
+    private void renderTitle(User user) {
         tvTitle.setText(user.getName());
     }
 
-    protected void renderClicks(User user) {
-        tvClicks.setText(Integer.toString(0));
+    private void renderClicks(int numberOfClicks) {
+        tvClicks.setText(String.format(Locale.getDefault(), "%d", numberOfClicks));
     }
 
     private class EmptyOnUserClicked implements OnUserClicked {
         public void onPictureClicked(User user) {
+            /* Empty */
         }
 
         public void onBackgroundClicked(User user) {
+            /* Empty */
         }
     }
 }

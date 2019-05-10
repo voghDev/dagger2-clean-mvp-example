@@ -33,8 +33,7 @@ public class GetUsersMockImpl implements GetUsers {
 
     @Override
     public List<User> get() {
-        List<User> users = generateMockedUsers();
-        return users;
+        return generateMockedUsers();
     }
 
     @Override
@@ -45,7 +44,7 @@ public class GetUsersMockImpl implements GetUsers {
 
         if (random < 8) {
             listener.onUsersReceived(users, true);
-        } else if (random >= 8 && random <= 9) {
+        } else if (random > 8 && random <= 9) {
             listener.onNoInternetAvailable();
         } else {
             listener.onError(new Exception("Unparseable response"));
@@ -53,7 +52,7 @@ public class GetUsersMockImpl implements GetUsers {
     }
 
     private List<User> generateMockedUsers() {
-        List<User> users = new ArrayList<User>();
+        List<User> users = new ArrayList<>();
         users.add(generateMockUser("1", "Antonio", "I.E.S. Zaidin-Vergeles, 5"));
         users.add(generateMockUser("2", "Juan", "I.E.S. Zaidin-Vergeles, 6"));
         users.add(generateMockUser("3", "Ana", "I.E.S. Zaidin-Vergeles, 7"));

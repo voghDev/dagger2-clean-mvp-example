@@ -16,14 +16,11 @@
 package es.voghdev.prjdagger2.datasource.api.model;
 
 
-public class IdApiEntry {
-    String name = "";
-    String value = "";
+class IdApiEntry {
+    private String name = "";
+    private String value = "";
 
-    public String parseId() {
-        StringBuilder strb = new StringBuilder()
-                .append(name != null ? name : "")
-                .append(value != null ? value : "");
-        return strb.toString();
+    String parseId() {
+        return String.format("%s%s", name != null ? name : "", value != null ? value : "");
     }
 }

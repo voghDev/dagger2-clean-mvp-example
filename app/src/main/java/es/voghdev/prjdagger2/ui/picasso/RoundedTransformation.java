@@ -56,8 +56,8 @@ public class RoundedTransformation implements com.squareup.picasso.Transformatio
         canvas.drawCircle(r, r, r, paint);
 
         squaredBitmap.recycle();
-        return bitmap;
 
+        return bitmap;
     }
 
     @Override
