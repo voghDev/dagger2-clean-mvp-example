@@ -18,11 +18,16 @@ package es.voghdev.prjdagger2.datasource.api.model;
 import es.voghdev.prjdagger2.global.model.User;
 
 public class UserApiEntry {
-    private IdApiEntry id = new IdApiEntry();
-    private UserNameApiEntry name = new UserNameApiEntry();
-    private String email = "";
-    private UserPictureApiEntry picture = new UserPictureApiEntry();
-    private UserLocationApiEntry location = new UserLocationApiEntry();
+
+    private static final String SPACE = " ";
+
+    IdApiEntry id = new IdApiEntry();
+    UserNameApiEntry name = new UserNameApiEntry();
+    String email = "";
+    String gender = "";
+    UserPictureApiEntry picture = new UserPictureApiEntry();
+    UserLocationApiEntry location = new UserLocationApiEntry();
+    String md5 = "";
 
     public User parseUser() {
         User u = new User();

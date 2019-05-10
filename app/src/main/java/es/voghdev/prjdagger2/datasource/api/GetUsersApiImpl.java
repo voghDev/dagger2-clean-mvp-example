@@ -22,10 +22,11 @@ import es.voghdev.prjdagger2.datasource.api.model.UserApiEntry;
 import es.voghdev.prjdagger2.datasource.api.retrofit.GetUsersRetrofitRequest;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.usecase.GetUsers;
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
     private static final String ENDPOINT = "https://api.randomuser.me/";
@@ -50,16 +51,21 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
         if (listener != null) {
             this.listener = listener;
         }
-        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(ENDPOINT).build();
-        GetUsersRetrofitRequest request = restAdapter.create(GetUsersRetrofitRequest.class);
-        request.getRandomUsers(pageSize, pageNumber, this);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ENDPOINT)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        GetUsersRetrofitRequest request = retrofit.create(GetUsersRetrofitRequest.class);
+        Call<GetUsersResponse> call = request.getRandomUsers(pageSize, pageNumber);
+        call.enqueue(this);
     }
 
     @Override
-    public void success(GetUsersResponse getUsersResponse, Response response) {
-        List<User> users = new ArrayList<>();
 
-        for (UserApiEntry entry : getUsersResponse.getResults()) {
+    public void onResponse(Call<GetUsersResponse> call, Response<GetUsersResponse> response) {
+        List<User> users = new ArrayList<User>();
+
+        for (UserApiEntry entry : response.body().getResults()) {
             users.add(entry.parseUser());
         }
 
@@ -67,8 +73,8 @@ public class GetUsersApiImpl implements GetUsers, Callback<GetUsersResponse> {
     }
 
     @Override
-    public void failure(RetrofitError error) {
-        listener.onError(error);
+    public void onFailure(Call<GetUsersResponse> call, Throwable t) {
+        listener.onError(new Exception(t));
     }
 
     private class NullListener implements Listener {
