@@ -15,20 +15,10 @@
  */
 package es.voghdev.prjdagger2.datasource.api.model;
 
-public class UserPictureApiEntry {
-    private String large = "";
-    private String medium = "";
+class UserPictureApiEntry {
     private String thumbnail = "";
 
-    public String getLarge() {
-        return large;
-    }
-
-    public String getMedium() {
-        return medium;
-    }
-
-    public String getThumbnail() {
+    String getThumbnail() {
         return thumbnail;
     }
 }

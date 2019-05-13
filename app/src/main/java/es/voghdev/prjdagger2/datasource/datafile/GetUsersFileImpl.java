@@ -36,10 +36,10 @@ import es.voghdev.prjdagger2.interactor.impl.ThreadExecutor;
 import es.voghdev.prjdagger2.usecase.GetUsers;
 
 public class GetUsersFileImpl implements Interactor, GetUsers {
-    private Context mContext = null;
-    ThreadExecutor threadExecutor;
-    MainThread mainThread;
-    Listener listener = new EmptyListener();
+    private Context mContext;
+    private ThreadExecutor threadExecutor;
+    private MainThread mainThread;
+    private Listener listener = new EmptyListener();
 
     public GetUsersFileImpl(Context applicationContext, ThreadExecutor threadExecutor, MainThread mainThread) {
         this.mContext = applicationContext;
@@ -51,7 +51,7 @@ public class GetUsersFileImpl implements Interactor, GetUsers {
         InputStream inputStream = mContext.getResources().openRawResource(resId);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-        int x = -1;
+        int x;
         byte[] buffer = new byte[1024];
         while ((x = inputStream.read(buffer, 0, buffer.length)) != -1) {
             bos.write(buffer, 0, x);
@@ -65,7 +65,7 @@ public class GetUsersFileImpl implements Interactor, GetUsers {
 
     private List<User> getUsersFromJson(String json) {
         GetUsersResponse response = new Gson().fromJson(json, GetUsersResponse.class);
-        List<User> users = new ArrayList<User>();
+        List<User> users = new ArrayList<>();
         for (UserApiEntry entry : response.getResults()) {
             users.add(entry.parseUser());
         }
