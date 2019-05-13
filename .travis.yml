@@ -1,20 +1,11 @@
 language: android
 
-env:
-  global:
-    - ADB_INSTALL_TIMEOUT=8 # 8 minutes (2 minutes by default)
-
 android:
   components:
     - tools
-    - platform-tools
     - build-tools-28.0.2
-    - android-24
-    - android-22
-    - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-22
 licenses:
   - 'android-sdk-license-.+'
   - 'android-sdk-preview-license-.+'
@@ -23,13 +14,5 @@ licenses:
 before_install:
   - yes | sdkmanager "build-tools;28.0.3"
 
-before_script:
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a -c 32M
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - sleep 180
-  - adb devices
-  - adb shell input keyevent 82 &
-
 script:
-   - ./gradlew build checkstyle test connectedCheck -PdisablePreDex
+  - ./gradlew build checkstyle test
