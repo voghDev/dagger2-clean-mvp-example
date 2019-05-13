@@ -81,7 +81,6 @@ dependencies {
     implementation 'com.jakewharton:butterknife:6.0.0'
     annotationProcessor 'com.jakewharton:butterknife:6.0.0'
     implementation 'com.github.pedrovgs:renderers:2.0.3'
-    implementation 'es.voghdev.progressbuttonview:ProgressButtonView:0.7.9'
 
     // Testing
     testImplementation 'junit:junit:4.12'
