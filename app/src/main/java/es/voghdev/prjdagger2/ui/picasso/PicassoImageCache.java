@@ -110,5 +110,11 @@ public class PicassoImageCache implements Cache {
         }
         return null;
     }
+
+    @Override
+    public void clearKeyUri(String keyPrefix) {
+        /* Empty */
+    }
+
     //endregion
 }
