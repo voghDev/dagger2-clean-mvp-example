@@ -107,7 +107,7 @@ public class UserRenderer extends Renderer<User> {
 
     private void renderBackground(User u) {
         int resId = R.mipmap.background3;
-        Picasso.with(mContext)
+        Picasso.get()
                 .load(resId)
                 .into(ivBackground);
     }
@@ -117,7 +117,7 @@ public class UserRenderer extends Renderer<User> {
             return;
         }
 
-        Picasso.with(mContext)
+        Picasso.get()
                 .load(user.getThumbnail())
                 .transform(new RoundedTransformation())
                 .resizeDimen(R.dimen.user_thumbnail_w, R.dimen.user_thumbnail_h)
