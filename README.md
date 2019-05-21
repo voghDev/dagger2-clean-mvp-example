@@ -18,7 +18,7 @@ Some of the aspects covered on this project are:
 * Code-style rules using [checkstyle][16]. [This blogpost][17] indicates how checkstyle has been imported
 * Android Unit testing using JUnit 4 and [Mockito][18].
 * UI Testing using [Espresso][19]
-* Low-boilerplate **MVP** implementation using generics (splitted into Presenter / APresenter / APresenterImpl).
+* Simple **MVP** implementation without interfaces because [Interfaces for presenters in MVP are a waste of time](https://gist.github.com/pedrovgs/61a8301a9952d195081edc989aa1fd41).
 * [Travis CI][22] integration including instrumentation tests ran on an AVD. see [.travis.yml script][23]
 
 ![Screenshot][firstScreenshot]
@@ -40,13 +40,12 @@ TODOs
 
 - [X] A better Thread management to do heavier operations outside the UI Thread
 - [X] RecyclerViews, Renderers2.0
-- [ ] More DataSources like ~~parse~~, Google Cloud, Azure, protobuf...
 - [X] Unit tests
 - [X] UI tests
 - [X] Refactor to add Repository layer
 - [X] Refactor Presenter layer to make it testable with JUnit
-- [ ] Add retrofit2-based API layer, keeping the retrofit1 one
-- [ ] Redesign UI to a more attractive one
+- [X] Add retrofit2-based API layer ~keeping the retrofit1 one~
+- [X] Redesign UI to a more attractive one
 
 Developed By
 ------------
