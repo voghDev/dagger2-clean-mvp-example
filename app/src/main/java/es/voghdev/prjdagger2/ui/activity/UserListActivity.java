@@ -31,7 +31,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
@@ -47,10 +47,10 @@ import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
 public class UserListActivity extends BaseActivity implements AbsUserListPresenter.View {
-    @InjectView(R.id.users_list)
+    @BindView(R.id.users_list)
     RecyclerView recyclerView;
 
-    @InjectView(R.id.users_progressBar)
+    @BindView(R.id.users_progressBar)
     ProgressBar progressBar;
 
     RVRendererAdapter<User> adapter;

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'checkstyle'
 
 buildscript {
@@ -7,7 +6,6 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
@@ -22,17 +20,19 @@ task checkstyle(type: Checkstyle) {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.1.1"
 
     defaultConfig {
         applicationId "es.voghdev.prjdagger2"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
+
+    flavorDimensions "default"
 
     buildTypes {
         release {
@@ -58,6 +58,7 @@ android {
             buildConfigField("String", "ROOT_URL", "\"${root}\"")
             buildConfigField("String", "IV", iv)
             buildConfigField("String", "SECRET_KEY", secretKey)
+            dimension "default"
         }
         cpws {
             Properties prop = new Properties();
@@ -68,6 +69,7 @@ android {
             buildConfigField("String", "ROOT_URL", "\"${root}\"")
             buildConfigField("String", "IV", iv)
             buildConfigField("String", "SECRET_KEY", secretKey)
+            dimension "default"
         }
     }
 }
@@ -76,18 +78,18 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // Google
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:design:25.4.0'
-    compile 'com.google.dagger:dagger:2.0.2'
-    apt 'com.google.dagger:dagger-compiler:2.0.2'
-    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.android.support:appcompat-v7:27.1.1'
+    compile 'com.android.support:design:27.1.1'
+    compile 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
 
     // Square
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.picasso:picasso:2.3.+'
 
     // Libs from cool developers
-    compile 'com.jakewharton:butterknife:6.0.0'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.github.pedrovgs:renderers:2.0.3'
     compile 'es.voghdev.progressbuttonview:ProgressButtonView:0.7.9'
 

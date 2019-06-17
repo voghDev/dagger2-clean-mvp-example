@@ -27,8 +27,7 @@ public abstract class BaseActivity extends android.app.Activity {
 
         setContentView(getLayoutId());
 
-        ButterKnife.inject(this);
-
+        ButterKnife.bind(this);
     }
 
     protected abstract int getLayoutId();

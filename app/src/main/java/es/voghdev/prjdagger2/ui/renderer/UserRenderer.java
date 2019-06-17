@@ -30,8 +30,8 @@ import android.widget.TextView;
 import com.pedrogomez.renderers.Renderer;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.global.model.User;
@@ -46,17 +46,17 @@ public class UserRenderer extends Renderer<User> {
         setListener(onUserClicked);
     }
 
-    @InjectView(R.id.user_container)
+    @BindView(R.id.user_container)
     RelativeLayout root;
-    @InjectView(R.id.user_iv_background)
+    @BindView(R.id.user_iv_background)
     ImageView ivBackground;
-    @InjectView(R.id.user_iv_thumbnail)
+    @BindView(R.id.user_iv_thumbnail)
     ImageView ivThumbnail;
-    @InjectView(R.id.user_tv_title)
+    @BindView(R.id.user_tv_title)
     TextView tvTitle;
-    @InjectView(R.id.user_tv_description)
+    @BindView(R.id.user_tv_description)
     TextView tvDescription;
-    @InjectView(R.id.user_tv_label)
+    @BindView(R.id.user_tv_label)
     TextView tvClicks;
 
     public interface OnUserClicked {
@@ -73,7 +73,7 @@ public class UserRenderer extends Renderer<User> {
 
     @Override
     protected void setUpView(View rootView) {
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
     }
 
     @Override
