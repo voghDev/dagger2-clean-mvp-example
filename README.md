@@ -10,7 +10,6 @@ Some of the aspects covered on this project are:
 * Elegant ~~ListView~~ **RecyclerView** implementation using [Renderers][15].
 * View binding using Jake Wharton's [ButterKnife 6.x][11] (current is 8.x).
 * Image loading using [picasso][12], round transformations using **PorterDuff**.
-* Creating an image cache with [picasso][12].
 * Model-View-Presenter + Interactor + DataSource layers, with different **DataSource**s:
   * a REST Api using [retrofit][13]
   * a local **JSON file**
