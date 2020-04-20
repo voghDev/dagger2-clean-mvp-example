@@ -19,19 +19,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.pedrogomez.renderers.Renderer;
 import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
 import es.voghdev.prjdagger2.R;
+import es.voghdev.prjdagger2.databinding.RowUserBinding;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.picasso.RoundedTransformation;
 
@@ -39,24 +34,12 @@ public class UserRenderer extends Renderer<User> {
 
     private Context mContext;
     private OnUserClicked listener = new EmptyOnUserClicked();
+    private RowUserBinding binding;
 
     UserRenderer(Context ctx, OnUserClicked onUserClicked) {
         mContext = ctx.getApplicationContext();
         setListener(onUserClicked);
     }
-
-    @InjectView(R.id.user_container)
-    RelativeLayout root;
-    @InjectView(R.id.user_iv_background)
-    ImageView ivBackground;
-    @InjectView(R.id.user_iv_thumbnail)
-    ImageView ivThumbnail;
-    @InjectView(R.id.user_tv_title)
-    TextView tvTitle;
-    @InjectView(R.id.user_tv_description)
-    TextView tvDescription;
-    @InjectView(R.id.user_tv_label)
-    TextView tvClicks;
 
     public interface OnUserClicked {
         void onPictureClicked(User user);
@@ -72,7 +55,7 @@ public class UserRenderer extends Renderer<User> {
 
     @Override
     protected void setUpView(View rootView) {
-        ButterKnife.inject(this, rootView);
+
     }
 
     @Override
@@ -80,18 +63,18 @@ public class UserRenderer extends Renderer<User> {
 
     }
 
-    @OnClick(R.id.user_container)
-    void onClickRow(RelativeLayout root) {
+    public void onClickRow(View view) {
         listener.onBackgroundClicked(getContent());
     }
 
-    @OnClick(R.id.user_iv_thumbnail)
-    void onClickThumbnail(ImageView imageView) {
+    public void onClickThumbnail(View view) {
         listener.onPictureClicked(getContent());
     }
 
     @Override
     protected View inflate(LayoutInflater inflater, ViewGroup parent) {
+        binding = RowUserBinding.inflate(inflater);
+
         return inflater.inflate(R.layout.row_user, parent, false);
     }
 
@@ -109,7 +92,7 @@ public class UserRenderer extends Renderer<User> {
         int resId = R.mipmap.background3;
         Picasso.get()
                 .load(resId)
-                .into(ivBackground);
+                .into(binding.userIvBackground);
     }
 
     private void renderThumbnail(User user) {
@@ -122,19 +105,19 @@ public class UserRenderer extends Renderer<User> {
                 .transform(new RoundedTransformation())
                 .resizeDimen(R.dimen.user_thumbnail_w, R.dimen.user_thumbnail_h)
                 .placeholder(R.mipmap.background1)
-                .into(ivThumbnail);
+                .into(binding.userIvThumbnail);
     }
 
     private void renderDescription(User user) {
-        tvDescription.setText(user.getEmail());
+        binding.userTvDescription.setText(user.getEmail());
     }
 
     private void renderTitle(User user) {
-        tvTitle.setText(user.getName());
+        binding.userTvTitle.setText(user.getName());
     }
 
     private void renderClicks(int numberOfClicks) {
-        tvClicks.setText(String.format(Locale.getDefault(), "%d", numberOfClicks));
+        binding.userTvLabel.setText(String.format(Locale.getDefault(), "%d", numberOfClicks));
     }
 
     private class EmptyOnUserClicked implements OnUserClicked {

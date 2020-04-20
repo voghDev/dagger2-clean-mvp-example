@@ -41,6 +41,10 @@ android {
         enabled = true
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     flavorDimensions "default"
 
     productFlavors {

@@ -16,12 +16,18 @@
 package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.view.LayoutInflater;
+>>>>>>> Migrate ButterKnife to ViewBinding
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+<<<<<<< HEAD
 import androidx.recyclerview.widget.RecyclerView;
+=======
+>>>>>>> Migrate ButterKnife to ViewBinding
 
 import com.pedrogomez.renderers.ListAdapteeCollection;
 import com.pedrogomez.renderers.RVRendererAdapter;
@@ -31,8 +37,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
 import es.voghdev.prjdagger2.R;
+import es.voghdev.prjdagger2.databinding.ActivityUsersListBinding;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListComponent;
@@ -46,15 +52,12 @@ import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
 public class UserListActivity extends BaseActivity implements UserListPresenter.View {
-    @InjectView(R.id.users_list)
-    RecyclerView recyclerView;
-
-    @InjectView(R.id.users_progressBar)
-    ProgressBar progressBar;
 
     RVRendererAdapter<User> adapter;
 
     UserListPresenter presenter;
+
+    ActivityUsersListBinding binding;
 
     @Inject
     GetUsersInteractor getUsersInteractor;
@@ -84,6 +87,10 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
 
         component().inject(this);
 
+        binding = ActivityUsersListBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
+
         adapter = new RVRendererAdapter(
                 new UserRendererBuilder(this, mUserClickListener),
                 new ListAdapteeCollection(new ArrayList<User>())
@@ -97,13 +104,8 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
     }
 
     private void initializeRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_users_list;
+        binding.usersList.setLayoutManager(new LinearLayoutManager(this));
+        binding.usersList.setAdapter(adapter);
     }
 
     @Override
@@ -127,12 +129,12 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
 
     @Override
     public void showLoading() {
-        progressBar.setVisibility(View.VISIBLE);
+        binding.usersProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
+        binding.usersProgressBar.setVisibility(View.GONE);
     }
 
     @Override

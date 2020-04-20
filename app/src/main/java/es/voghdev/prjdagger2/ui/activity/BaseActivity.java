@@ -17,18 +17,12 @@ package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
 
-import butterknife.ButterKnife;
+import androidx.appcompat.app.AppCompatActivity;
 
-public abstract class BaseActivity extends android.app.Activity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(getLayoutId());
-
-        ButterKnife.inject(this);
     }
-
-    protected abstract int getLayoutId();
 }

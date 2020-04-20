@@ -1,63 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/user_container"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/user_iv_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/background3" />
-
-    <ImageView
-        android:id="@+id/user_iv_thumbnail"
-        android:layout_width="@dimen/user_thumbnail_w"
-        android:layout_height="@dimen/user_thumbnail_h"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/user_tv_title"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:src="@mipmap/ic_user_avatar" />
-
-    <TextView
-        android:id="@+id/user_tv_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/zero"
-        android:textAppearance="?android:attr/textAppearanceLargeInverse"
-        android:textColor="@color/yellow" />
-
-    <TextView
-        android:id="@+id/user_tv_title"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="handlers" type="es.voghdev.prjdagger2.ui.renderer.UserRenderer"/>
+        <variable name="user" type="es.voghdev.prjdagger2.global.model.User"/>
+    </data>
+    <RelativeLayout
+        android:id="@+id/user_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/user_tv_label"
-        android:layout_marginLeft="16dip"
-        android:layout_toLeftOf="@+id/user_tv_label"
-        android:layout_toRightOf="@+id/user_iv_thumbnail"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/loading"
-        android:textAppearance="?android:attr/textAppearanceLargeInverse" />
+        android:onClick="@{handlers::onClickRow}"
+        >
 
-    <TextView
-        android:id="@+id/user_tv_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/user_iv_thumbnail"
-        android:layout_alignLeft="@+id/user_tv_title"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/loading"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/orange" />
+        <ImageView
+            android:id="@+id/user_iv_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/background3" />
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/user_iv_thumbnail"
+            android:layout_width="@dimen/user_thumbnail_w"
+            android:layout_height="@dimen/user_thumbnail_h"
+            android:layout_alignTop="@+id/user_tv_title"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:onClick="@{handlers::onClickThumbnail}"
+            android:src="@mipmap/ic_user_avatar" />
+
+        <TextView
+            android:id="@+id/user_tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/zero"
+            android:textAppearance="?android:attr/textAppearanceLargeInverse"
+            android:textColor="@color/yellow" />
+
+        <TextView
+            android:id="@+id/user_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/user_tv_label"
+            android:layout_marginLeft="16dip"
+            android:layout_toLeftOf="@+id/user_tv_label"
+            android:layout_toRightOf="@+id/user_iv_thumbnail"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/loading"
+            android:textAppearance="?android:attr/textAppearanceLargeInverse" />
+
+        <TextView
+            android:id="@+id/user_tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/user_tv_title"
+            android:layout_alignBottom="@+id/user_iv_thumbnail"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/loading"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/orange" />
+
+    </RelativeLayout>
+</layout>
