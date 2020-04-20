@@ -17,20 +17,16 @@ package es.voghdev.prjdagger2.global;
 
 import android.app.Application;
 
-import com.squareup.picasso.Picasso;
-
 import java.io.File;
 
 import es.voghdev.prjdagger2.global.di.DaggerRootComponent;
 import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
-import es.voghdev.prjdagger2.ui.picasso.PicassoImageCache;
 
 public class App extends Application {
     public static final String IMAGES_DIR = "images";
 
     private RootComponent component;
-    private PicassoImageCache cache;
     private MainModule mainModule;
 
     @Override
@@ -43,7 +39,6 @@ public class App extends Application {
     private void initializeDependencyInjector() {
         mainModule = new MainModule(this);
         component = DaggerRootComponent.builder()
-                .mainModule(mainModule)
                 .build();
         component.inject(this);
     }
@@ -55,12 +50,6 @@ public class App extends Application {
         }
 
         cacheDir.mkdirs();
-        cache = new PicassoImageCache(this, cacheDir);
-        Picasso picasso = new Picasso.Builder(this)
-                //        .downloader(new OkHttpDownloader(cacheDir))
-                .memoryCache(cache)
-                .build();
-        //Picasso.setSingletonInstance(picasso);
     }
 
     public MainModule getMainModule() {
