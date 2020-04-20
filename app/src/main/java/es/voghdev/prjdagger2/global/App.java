@@ -16,7 +16,6 @@
 package es.voghdev.prjdagger2.global;
 
 import android.app.Application;
-import android.support.annotation.VisibleForTesting;
 
 import com.squareup.picasso.Picasso;
 
@@ -75,10 +74,5 @@ public class App extends Application {
 
     public RootComponent getComponent() {
         return component;
-    }
-
-    @VisibleForTesting
-    public void setComponent(RootComponent component) {
-        this.component = component;
     }
 }
