@@ -84,10 +84,9 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
 
         component().inject(this);
 
-        adapter = new RVRendererAdapter<User>(
-                LayoutInflater.from(this),
+        adapter = new RVRendererAdapter(
                 new UserRendererBuilder(this, mUserClickListener),
-                new ListAdapteeCollection<User>(new ArrayList<User>())
+                new ListAdapteeCollection(new ArrayList<User>())
         );
 
         presenter = new UserListPresenter(this, getUsersInteractor);
