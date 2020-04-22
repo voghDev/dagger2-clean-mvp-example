@@ -16,12 +16,12 @@
 package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pedrogomez.renderers.ListAdapteeCollection;
 import com.pedrogomez.renderers.RVRendererAdapter;
@@ -84,10 +84,9 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
 
         component().inject(this);
 
-        adapter = new RVRendererAdapter<User>(
-                LayoutInflater.from(this),
+        adapter = new RVRendererAdapter(
                 new UserRendererBuilder(this, mUserClickListener),
-                new ListAdapteeCollection<User>(new ArrayList<User>())
+                new ListAdapteeCollection(new ArrayList<User>())
         );
 
         presenter = new UserListPresenter(this, getUsersInteractor);
