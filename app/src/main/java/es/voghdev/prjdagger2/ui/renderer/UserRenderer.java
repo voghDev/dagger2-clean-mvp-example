@@ -55,16 +55,19 @@ public class UserRenderer extends Renderer<User> {
 
     @Override
     protected void setUpView(View rootView) {
-
     }
 
     @Override
     protected void hookListeners(View rootView) {
-
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onBackgroundClicked(getContent());
+            }
+        });
     }
 
     public void onClickRow(View view) {
-        listener.onBackgroundClicked(getContent());
     }
 
     public void onClickThumbnail(View view) {
@@ -75,7 +78,7 @@ public class UserRenderer extends Renderer<User> {
     protected View inflate(LayoutInflater inflater, ViewGroup parent) {
         binding = RowUserBinding.inflate(inflater);
 
-        return inflater.inflate(R.layout.row_user, parent, false);
+        return binding.getRoot();
     }
 
     @Override

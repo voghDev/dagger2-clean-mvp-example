@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 <<<<<<< HEAD
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,7 +52,7 @@ import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
-public class UserListActivity extends BaseActivity implements UserListPresenter.View {
+public class UserListActivity extends AppCompatActivity implements UserListPresenter.View {
 
     RVRendererAdapter<User> adapter;
 
