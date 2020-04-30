@@ -1,12 +1,11 @@
 package es.voghdev.prjdagger2.ui.adapter;
 
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import es.voghdev.prjdagger2.R;
+import es.voghdev.prjdagger2.databinding.RowUserBinding;
 
 public class UserViewHolder extends RecyclerView.ViewHolder {
     public ImageView ivBackground;
@@ -15,13 +14,14 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
     public TextView tvDescription;
     public TextView tvLabel;
 
-    public UserViewHolder(View rootView) {
-        super(rootView);
 
-        ivBackground = rootView.findViewById(R.id.user_iv_background);
-        ivThumbnail = rootView.findViewById(R.id.user_iv_thumbnail);
-        tvTitle = rootView.findViewById(R.id.user_tv_title);
-        tvDescription = rootView.findViewById(R.id.user_tv_description);
-        tvLabel = rootView.findViewById(R.id.user_tv_label);
+    public UserViewHolder(RowUserBinding binding) {
+        super(binding.getRoot());
+
+        ivBackground = binding.userIvBackground;
+        ivThumbnail = binding.userIvThumbnail;
+        tvTitle = binding.userTvTitle;
+        tvDescription = binding.userTvDescription;
+        tvLabel = binding.userTvLabel;
     }
 }

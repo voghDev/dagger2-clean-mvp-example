@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 import es.voghdev.prjdagger2.R;
+import es.voghdev.prjdagger2.databinding.RowUserBinding;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.ui.picasso.RoundedTransformation;
 
@@ -32,9 +33,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_user, parent, false);
+        RowUserBinding binding = RowUserBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
 
-        return new UserViewHolder(view);
+        return new UserViewHolder(binding);
     }
 
     @Override
