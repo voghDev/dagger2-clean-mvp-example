@@ -53,9 +53,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
         int resId = R.mipmap.background3;
         Picasso.get()
                 .load(resId)
-                .into(holder.ivBackground);
+                .into(holder.binding.userIvBackground);
 
-        holder.ivBackground.setOnClickListener(new View.OnClickListener() {
+        holder.binding.userIvBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onBackgroundClicked(user);
@@ -73,9 +73,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
                 .transform(new RoundedTransformation())
                 .resizeDimen(R.dimen.user_thumbnail_w, R.dimen.user_thumbnail_h)
                 .placeholder(R.mipmap.background1)
-                .into(holder.ivThumbnail);
+                .into(holder.binding.userIvThumbnail);
 
-        holder.ivThumbnail.setOnClickListener(new View.OnClickListener() {
+        holder.binding.userIvThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onPictureClicked(user);
@@ -84,15 +84,15 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
     }
 
     private void renderDescription(User user, @NonNull UserViewHolder holder) {
-        holder.tvDescription.setText(user.getEmail());
+        holder.binding.userTvDescription.setText(user.getEmail());
     }
 
     private void renderTitle(User user, @NonNull UserViewHolder holder) {
-        holder.tvTitle.setText(user.getName());
+        holder.binding.userTvTitle.setText(user.getName());
     }
 
     private void renderClicks(int numberOfClicks, @NonNull UserViewHolder holder) {
-        holder.tvLabel.setText(String.format(Locale.getDefault(), "%d", numberOfClicks));
+        holder.binding.userTvLabel.setText(String.format(Locale.getDefault(), "%d", numberOfClicks));
     }
 
     @Override
