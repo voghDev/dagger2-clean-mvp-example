@@ -16,24 +16,12 @@
 package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
-import android.view.LayoutInflater;
->>>>>>> Migrate ButterKnife to ViewBinding
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-<<<<<<< HEAD
-import androidx.recyclerview.widget.RecyclerView;
-=======
->>>>>>> Migrate ButterKnife to ViewBinding
 
-import com.pedrogomez.renderers.ListAdapteeCollection;
-import com.pedrogomez.renderers.RVRendererAdapter;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,15 +34,15 @@ import es.voghdev.prjdagger2.global.di.UserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
+import es.voghdev.prjdagger2.ui.adapter.UserListAdapter;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
 import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
-import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
-public class UserListActivity extends AppCompatActivity implements UserListPresenter.View {
+public class UserListActivity extends AppCompatActivity implements UserListPresenter.View, UserListAdapter.Listener {
 
-    RVRendererAdapter<User> adapter;
+    UserListAdapter adapter;
 
     UserListPresenter presenter;
 
@@ -92,10 +80,7 @@ public class UserListActivity extends AppCompatActivity implements UserListPrese
 
         setContentView(binding.getRoot());
 
-        adapter = new RVRendererAdapter(
-                new UserRendererBuilder(this, mUserClickListener),
-                new ListAdapteeCollection(new ArrayList<User>())
-        );
+        adapter = new UserListAdapter(this);
 
         presenter = new UserListPresenter(this, getUsersInteractor);
         presenter.setView(this);
@@ -112,7 +97,7 @@ public class UserListActivity extends AppCompatActivity implements UserListPrese
     @Override
     public void showUserList(List<User> users) {
         for (User u : users) {
-            adapter.add(u);
+            adapter.addUser(u);
         }
 
         adapter.notifyDataSetChanged();
@@ -157,5 +142,15 @@ public class UserListActivity extends AppCompatActivity implements UserListPrese
                     .build();
         }
         return component;
+    }
+
+    @Override
+    public void onPictureClicked(User user) {
+        presenter.onUserPictureClicked(user);
+    }
+
+    @Override
+    public void onBackgroundClicked(User user) {
+        presenter.onUserRowClicked(user);
     }
 }
