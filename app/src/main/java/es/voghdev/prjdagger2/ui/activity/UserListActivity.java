@@ -36,7 +36,6 @@ import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.ui.adapter.UserListAdapter;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
-import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
@@ -57,18 +56,6 @@ public class UserListActivity extends AppCompatActivity implements UserListPrese
     ShowUserGreeting showUserGreeting;
 
     private UserListComponent component;
-
-    final UserRenderer.OnUserClicked mUserClickListener = new UserRenderer.OnUserClicked() {
-        @Override
-        public void onPictureClicked(User user) {
-            presenter.onUserPictureClicked(user);
-        }
-
-        @Override
-        public void onBackgroundClicked(User user) {
-            presenter.onUserRowClicked(user);
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

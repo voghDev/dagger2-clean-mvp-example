@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable name="handlers" type="es.voghdev.prjdagger2.ui.renderer.UserRenderer"/>
-        <variable name="user" type="es.voghdev.prjdagger2.global.model.User"/>
-    </data>
+
     <RelativeLayout
         android:id="@+id/user_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="@{handlers::onClickRow}"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/user_iv_background"
@@ -28,7 +23,6 @@
             android:layout_alignParentLeft="true"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:onClick="@{handlers::onClickThumbnail}"
             android:src="@mipmap/ic_user_avatar" />
 
         <TextView
