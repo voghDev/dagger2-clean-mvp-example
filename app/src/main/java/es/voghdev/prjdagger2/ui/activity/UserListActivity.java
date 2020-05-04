@@ -17,44 +17,35 @@ package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.pedrogomez.renderers.ListAdapteeCollection;
-import com.pedrogomez.renderers.RVRendererAdapter;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
 import es.voghdev.prjdagger2.R;
+import es.voghdev.prjdagger2.databinding.ActivityUsersListBinding;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
+import es.voghdev.prjdagger2.ui.adapter.UserListAdapter;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
-import es.voghdev.prjdagger2.ui.renderer.UserRenderer;
-import es.voghdev.prjdagger2.ui.renderer.UserRendererBuilder;
 import es.voghdev.prjdagger2.usecase.ShowUserClicked;
 import es.voghdev.prjdagger2.usecase.ShowUserGreeting;
 
-public class UserListActivity extends BaseActivity implements UserListPresenter.View {
-    @InjectView(R.id.users_list)
-    RecyclerView recyclerView;
+public class UserListActivity extends AppCompatActivity implements UserListPresenter.View, UserListAdapter.Listener {
 
-    @InjectView(R.id.users_progressBar)
-    ProgressBar progressBar;
-
-    RVRendererAdapter<User> adapter;
+    UserListAdapter adapter;
 
     UserListPresenter presenter;
+
+    ActivityUsersListBinding binding;
 
     @Inject
     GetUsersInteractor getUsersInteractor;
@@ -66,28 +57,17 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
 
     private UserListComponent component;
 
-    final UserRenderer.OnUserClicked mUserClickListener = new UserRenderer.OnUserClicked() {
-        @Override
-        public void onPictureClicked(User user) {
-            presenter.onUserPictureClicked(user);
-        }
-
-        @Override
-        public void onBackgroundClicked(User user) {
-            presenter.onUserRowClicked(user);
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         component().inject(this);
 
-        adapter = new RVRendererAdapter(
-                new UserRendererBuilder(this, mUserClickListener),
-                new ListAdapteeCollection(new ArrayList<User>())
-        );
+        binding = ActivityUsersListBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
+
+        adapter = new UserListAdapter(this);
 
         presenter = new UserListPresenter(this, getUsersInteractor);
         presenter.setView(this);
@@ -97,19 +77,14 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
     }
 
     private void initializeRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_users_list;
+        binding.usersList.setLayoutManager(new LinearLayoutManager(this));
+        binding.usersList.setAdapter(adapter);
     }
 
     @Override
     public void showUserList(List<User> users) {
         for (User u : users) {
-            adapter.add(u);
+            adapter.addUser(u);
         }
 
         adapter.notifyDataSetChanged();
@@ -127,12 +102,12 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
 
     @Override
     public void showLoading() {
-        progressBar.setVisibility(View.VISIBLE);
+        binding.usersProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
+        binding.usersProgressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -154,5 +129,15 @@ public class UserListActivity extends BaseActivity implements UserListPresenter.
                     .build();
         }
         return component;
+    }
+
+    @Override
+    public void onPictureClicked(User user) {
+        presenter.onUserPictureClicked(user);
+    }
+
+    @Override
+    public void onBackgroundClicked(User user) {
+        presenter.onUserRowClicked(user);
     }
 }
