@@ -15,15 +15,13 @@
     <RelativeLayout
         android:id="@+id/user_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="@{handlers::onRowClicked}">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/user_iv_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:onClick="@{handlers::onPictureClicked}"
             android:scaleType="centerCrop"
             android:src="@mipmap/background3" />
 

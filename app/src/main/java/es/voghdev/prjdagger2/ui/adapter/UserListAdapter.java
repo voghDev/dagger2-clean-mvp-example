@@ -56,6 +56,13 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
         Picasso.get()
                 .load(resId)
                 .into(holder.binding.userIvBackground);
+
+        holder.binding.userContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onBackgroundClicked(user);
+            }
+        });
     }
 
     private void renderThumbnail(final User user, @NonNull UserViewHolder holder) {
@@ -69,14 +76,21 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
                 .resizeDimen(R.dimen.user_thumbnail_w, R.dimen.user_thumbnail_h)
                 .placeholder(R.mipmap.background1)
                 .into(holder.binding.userIvThumbnail);
+
+        holder.binding.userIvThumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onPictureClicked(user);
+            }
+        });
     }
 
     public void onRowClicked(View view) {
-        listener.onBackgroundClicked(null);
+        /* Empty */
     }
 
     public void onPictureClicked(View view) {
-        listener.onPictureClicked(null);
+        /* Empty */
     }
 
     private void renderDescription(User user, @NonNull UserViewHolder holder) {
